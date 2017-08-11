@@ -1,5 +1,11 @@
 // global variables
+
+// container for provinces
 var provinces = [];
+
+// mapbox Style layer name
+// style url: mapbox://styles/ciatph/cj67ldcoi0muu2smku4qksstd
+var mbLayerName = "amia-midres-tileset";
 
 
 /*
@@ -35,7 +41,7 @@ var createColoredLayer = function(layerName, filterValue){
         "id": layerName,
         "type": "fill",
         "source": "composite",
-        "source-layer": "amia-lowres-tileset",
+        "source-layer": mbLayerName,
         "layout": {},
         "paint": {
             "fill-color": randomizeColors(),
@@ -56,7 +62,7 @@ var colorLayersRandom = function(propertyFilter){
         return;
 
     // query a map's rendered features
-    var features = map.queryRenderedFeatures({layers:['amia-lowres-tileset']});
+    var features = map.queryRenderedFeatures({layers:[mbLayerName]});
 
     // put randommized rgb for each province
     for(var i=0; i<features.length; i++){

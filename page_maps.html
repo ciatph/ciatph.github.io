@@ -160,8 +160,8 @@
 			    mapboxgl.accessToken = 'pk.eyJ1IjoiY2lhdHBoIiwiYSI6ImNqNXcyeTNhcTA5MzEycHFpdG90enFxMG8ifQ.gwZ6uo6pvx4-RZ1lHODcBQ';
 			    var map = new mapboxgl.Map({
 			        container: 'map',
-			        // style that uses a GeoJSON datasource "amia-lowres-style"
-			        style: 'mapbox://styles/ciatph/cj64iqv9q5g0j2spa216a6f7r', 
+			        // style that uses a GeoJSON datasource "amia-midres-style"
+			        style: 'mapbox://styles/ciatph/cj67ldcoi0muu2smku4qksstd', 
 			        zoom: 5.0,
 			        center: [122.016, 12.127]
 			    })
@@ -175,7 +175,7 @@
 			            'id': 'amia-villages',
 			            "type": "fill",
 			            "source": "composite",
-			            "source-layer": "amia-lowres-tileset",
+			            "source-layer": mbLayerName,
 			            "layout": {},
 			            "paint": {
 			                "fill-color": "#627BC1",
@@ -188,7 +188,7 @@
 			            "id": "amia-villages-hover",
 			            "type": "fill",
 			            "source": "composite",
-			            "source-layer": "amia-lowres-tileset",
+			            "source-layer": mbLayerName,
 			            "layout": {},
 			            "paint": {
 			                "fill-color": "#ff4",
@@ -207,7 +207,6 @@
 
 			        // display municipality name on mouse-click
 			        map.on('click', 'amia-villages', function (e) {
-			            console.log(e);
 			            // print all data
 			            var content = "";
 			            for(key in e.features[0].properties){
