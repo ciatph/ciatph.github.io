@@ -7,6 +7,7 @@
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
+    <script src='js/app.js' type="text/javascript"></script>
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/main.css">
@@ -152,87 +153,75 @@
 
 
 		<div class="col-sm-6 ">
+			<!-- map GUI -->
 			<div id='map' style="width:1000px; height:600px;"></div>
-<script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoiY2lhdHBoIiwiYSI6ImNqNXcyeTNhcTA5MzEycHFpdG90enFxMG8ifQ.gwZ6uo6pvx4-RZ1lHODcBQ';
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v9',
-        // style: 'mapbox://styles/ciatph/cj64iqv9q5g0j2spa216a6f7r',
-        zoom: 5.0,
-        center: [122.016, 12.127]
-    })
-    .addControl(new mapboxgl.NavigationControl())
-    .addControl(new mapboxgl.AttributionControl({ compact: true }));
 
-    map.on('load', function (e) {
-        // Add a layer showing the state polygons.
-        map.addSource("dataSource", {
-            "type": "geojson",
-            'data': 'https://api.mapbox.com/datasets/v1/ciatph/cj64in9zo1ksx32mr7ke3g7vb/features?access_token=pk.eyJ1IjoiY2lhdHBoIiwiYSI6ImNqNXcyeTNhcTA5MzEycHFpdG90enFxMG8ifQ.gwZ6uo6pvx4-RZ1lHODcBQ'
-        });    
+			<script>
+			    mapboxgl.accessToken = 'pk.eyJ1IjoiY2lhdHBoIiwiYSI6ImNqNXcyeTNhcTA5MzEycHFpdG90enFxMG8ifQ.gwZ6uo6pvx4-RZ1lHODcBQ';
+			    var map = new mapboxgl.Map({
+			        container: 'map',
+			        // style that uses a GeoJSON datasource "amia-lowres-style"
+			        style: 'mapbox://styles/ciatph/cj64iqv9q5g0j2spa216a6f7r', 
+			        zoom: 5.0,
+			        center: [122.016, 12.127]
+			    })
+			    .addControl(new mapboxgl.NavigationControl())
+			    .addControl(new mapboxgl.AttributionControl({ compact: true }));
 
-        // add line layer to separate municipalities
-        map.addLayer({
-            'id': 'municipalities',
-            "type": "line",
-            "source": "dataSource",
-            "layout": {},
-            "paint": {
-                "line-color": "#000",
-                "line-width": 2
-            }
-        });  
+			    map.on('load', function (e) {
+			        // add layer to color the raw source data
+			        // indicate an opcatity:0 if you want to retain the style's colors
+			        map.addLayer({
+			            'id': 'amia-villages',
+			            "type": "fill",
+			            "source": "composite",
+			            "source-layer": "amia-lowres-tileset",
+			            "layout": {},
+			            "paint": {
+			                "fill-color": "#627BC1",
+			                "fill-opacity": 0
+			            }
+			        });     
 
-        // add layer to color the raw source data
-        map.addLayer({
-            'id': 'municipalities',
-            "type": "fill",
-            "source": "dataSource",
-            "layout": {},
-            "paint": {
-                "fill-color": "hsl(304, 85%, 53%)",
-                "fill-opacity": 0.34
-            }
-        });
-        
+			        // add a conditional layer to play over the source data on hover event
+			        map.addLayer({
+			            "id": "amia-villages-hover",
+			            "type": "fill",
+			            "source": "composite",
+			            "source-layer": "amia-lowres-tileset",
+			            "layout": {},
+			            "paint": {
+			                "fill-color": "#ff4",
+			                "fill-opacity": 1
+			             },
+			             "filter": ["==", "MUNI_CITY", ""]
+			        });    
 
-        // add a conditional layer to play over the source data on hover event
-        map.addLayer({
-            "id": "state-fills-hover",
-            "type": "fill",
-            "source": "dataSource",
-            "layout": {},
-            "paint": {
-                "fill-color": "hsl(70, 78%, 63%)",
-                "fill-opacity": 0.8
-             },
-             "filter": ["==", "MUNI_CITY", ""]
-        });        
+			        // paint random colors for provinces
+			        colorLayersRandom("PROV_NAME");
+			     
+				    // display coordinates on mouse hover, for the layer "municipalities"
+				    map.on('mousemove', 'amia-villages', function(e){
+			            map.setFilter("amia-villages-hover", ["==", "MUNI_CITY", e.features[0].properties.MUNI_CITY]);           
+				    });
 
+			        // display municipality name on mouse-click
+			        map.on('click', 'amia-villages', function (e) {
+			            console.log(e);
+			            // print all data
+			            var content = "";
+			            for(key in e.features[0].properties){
+			                content += key + ": " + e.features[0].properties[key];
+			                content += "<br>";
+			            }
 
-    // display coordinates on mouse hover, for the layer "municipalities"
-    map.on('mousemove', 'municipalities', function(e){
-        //document.getElementById('info').innerHTML = JSON.stringify(e.point) + "<br>" + JSON.stringify(e.lngLat);
-        map.setFilter("state-fills-hover", ["==", "MUNI_CITY", e.features[0].properties.MUNI_CITY]);        
-    });
-
-    // display municipality name on mouse-click
-    map.on('click', 'municipalities', function (e) {
-        // print all data
-        var content = "";
-        for(key in e.features[0].properties){
-            content += key + ": " + e.features[0].properties[key];
-            content += "<br>";
-        }
-
-        new mapboxgl.Popup()
-            .setLngLat(e.lngLat)
-            .setHTML(content)
-            .addTo(map);      
-    });    
-});
-</script>			
+			            new mapboxgl.Popup()
+			                .setLngLat(e.lngLat)
+			                .setHTML(content)
+			                .addTo(map);      
+			        });    
+				});
+			</script>			
 		</div>
 
 		<!-- margin-right -->
