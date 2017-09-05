@@ -117,7 +117,7 @@
         	<span class="caret"></span></a>
         	<ul class="dropdown-menu">
 		        <li><a href="https://sites.google.com/site/amiaciatproject/documents/CRVA%20Philippines%204%20Page%20%28002%29.pdf?attredirects=0&d=1" target="blank">Draft CRVA Factsheet</a></li>  
-		        <li><a href="https://drive.google.com/drive/folders/0B9VxzJSCd9EwWXhLSzZjZ200Z1U">Final CBA Outputs of Regional Teams</a></li>
+		        <li><a href="https://drive.google.com/drive/folders/0B9VxzJSCd9EwWUttUndZVElneDA">Draft CBA Outputs of Regional Teams</a></li>
 		        <li><a href="https://sites.google.com/site/amiaciatproject/documents/Draft%20Philippines.pdf?attredirects=0&d=1">Key Insights from the CRA Country Profile</a></li> 
 		        <li><a href="https://www.google.com/url?q=https%3A%2F%2Fcgspace.cgiar.org%2Fbitstream%2Fhandle%2F10568%2F82572%2FCRA_Profile_Philippines.pdf%3Fsequence%3D5%26isAllowed%3Dy&sa=D&sntz=1&usg=AFQjCNE8Hg69G-HVNr7yjXJpRsY2Sxyx2g">CRA Country Profile</a></li> 
 		        <li><a href="page_documents.html">[view all]</a></li> 
@@ -154,7 +154,33 @@
 
 		<div class="col-sm-6 ">
 			<!-- map GUI -->
+
 			<div id='map' style="width:1000px; height:600px;"></div>
+			<br>
+			<h3>Legend</h3>
+			<ul class="legend">
+				<li><span class="glyphicon glyphicon-stop glyph-va-verylow" style="vertical-align: -1px;"></span>&nbsp; - Very low</li>
+				<li><span class="glyphicon glyphicon-stop glyph-va-low" style="vertical-align: -1px;"></span>&nbsp; - Low</li>
+				<li><span class="glyphicon glyphicon-stop glyph-va-moderate" style="vertical-align: -1px;"></span>&nbsp; - Moderate</li>
+				<li><span class="glyphicon glyphicon-stop glyph-va-high" style="vertical-align: -1px;"></span>&nbsp; - High</li>
+				<li><span class="glyphicon glyphicon-stop glyph-va-veryhigh" style="vertical-align: -1px;"></span>&nbsp; - Very High</li>
+			</ul>
+			
+	
+			<!-- map overlay 
+			<div class='map-overlay top'>
+			    <div class='map-overlay-inner'>
+			        <h2>Significant earthquakes in 2015</h2>
+			        <label id='month'></label>
+			        <input id='slider' type='range' min='0' max='11' step='1' value='0' />
+			    </div>
+			    <div class='map-overlay-inner'>
+			        <div id='legend' class='legend'>
+			            <div class='bar'></div>
+			            <div>Magnitude (m)</div>
+			        </div>
+			    </div>
+			</div> -->
 
 			<script>
 			    mapboxgl.accessToken = 'pk.eyJ1IjoiY2lhdHBoIiwiYSI6ImNqNXcyeTNhcTA5MzEycHFpdG90enFxMG8ifQ.gwZ6uo6pvx4-RZ1lHODcBQ';
@@ -198,14 +224,37 @@
 			        });    
 
 			        // paint random colors for provinces
-			        colorLayersRandom("PROV_NAME");
+			        colorLayersRandom("VA_Class");
+
+				    // Create a popup, but don't add it to the map yet.
+				    var popup = new mapboxgl.Popup({
+				        closeButton: false,
+				        closeOnClick: false
+				    });			        
 			     
 				    // display coordinates on mouse hover, for the layer "municipalities"
 				    map.on('mousemove', 'amia-villages', function(e){
-			            map.setFilter("amia-villages-hover", ["==", "MUNI_CITY", e.features[0].properties.MUNI_CITY]);           
+			            map.setFilter("amia-villages-hover", ["==", "MUNI_CITY", e.features[0].properties.MUNI_CITY]);     
+			            /*
+			            var content = "";
+			            for(key in e.features[0].properties){
+			                content += key + ": " + e.features[0].properties[key];
+			                content += "<br>";
+			            }			                  
+
+			            popup.setLngLat(e.lngLat)
+			                .setHTML(content)
+			                .addTo(map);   	*/		            
 				    });
+				    /*
+				    map.on('mouseleave', 'places', function() {
+				        map.getCanvas().style.cursor = '';
+				        popup.remove();
+				    });
+				    */				    
 
 			        // display municipality name on mouse-click
+			        
 			        map.on('click', 'amia-villages', function (e) {
 			            // print all data
 			            var content = "";
@@ -219,6 +268,7 @@
 			                .setHTML(content)
 			                .addTo(map);      
 			        });    
+			        
 				});
 			</script>			
 		</div>

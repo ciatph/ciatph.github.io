@@ -143,6 +143,26 @@ footer{
     color: #000;
 }
 
+.glyph-va-veryhigh{
+    color: #67000d;
+}
+
+.glyph-va-high{
+    color: #d42020;
+}
+
+.glyph-va-moderate{
+    color: #fc7050;
+}
+
+.glyph-va-low{
+    color: #fdbea5;
+}
+
+.glyph-va-verylow{
+    color: #fff5f0;
+}
+
 .logo-small{
 	color: #00954c;
 	font-size: 50px;
@@ -330,6 +350,40 @@ footer .glyphicon{
     vertical-align: middle;
 }
 */
+
+#map{
+    width: 500px;
+    height: 300px;
+}
+
+.map-overlay {
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    position: absolute;
+    width: 25%;
+    top: 0;
+    left: 0;
+    padding: 10px;
+}
+
+.map-overlay .map-overlay-inner {
+    background-color: #fff;
+    box-shadow:0 1px 2px rgba(0, 0, 0, 0.20);
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.map-overlay h2 {
+    line-height: 24px;
+    display: block;
+    margin: 0 0 10px;
+}
+
+.map-overlay .legend .bar {
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #FCA107, #7F3121);
+}
 
 
 
@@ -603,7 +657,7 @@ ul.social-icons {
     }
 
     .divider-gray{
-        background-color: #efeff0;
+        /*background-color: #efeff0;*/
         height: 8px;
     }          
 
