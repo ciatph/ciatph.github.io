@@ -1,11 +1,12 @@
+
 /*--------- social media icons ------------*/
 @import url(https://fonts.googleapis.com/css?family=Lato);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
 
 body{
-	font: 400 15px 'Lucida Sans Regular', 'Lucida Sans',   sans-serif;
-	line-height: 1.8;
-	color: #818181;
+    font: 400 15px 'Lucida Sans Regular', 'Lucida Sans',   sans-serif;
+    line-height: 1.8;
+    color: #818181;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -13,11 +14,11 @@ body{
 /*--------- HEADER ------------*/
 
 .jumbotron{
-	background-color: #00954c;
-	color: #ffffff;
-	padding: 40px 25px 20px;
+    background-color: #00954c;
+    color: #ffffff;
+    padding: 40px 25px 20px;
     margin-bottom: 0px;
-	font-family: 'Lucida Sans Regular', 'Lucida Sans',   sans-serif;
+    font-family: 'Lucida Sans Regular', 'Lucida Sans',   sans-serif;
 }
 
 .jumbotron h1{  
@@ -78,12 +79,12 @@ body{
 
 
 .center {
-	padding: 80px 120px;
+    padding: 80px 120px;
 }
 
 
 .container-fluid {
-	padding: 100px 25px;
+    padding: 100px 25px;
 }
 
 
@@ -94,6 +95,17 @@ body{
     width: 30%;
 }
 
+.content-workshop{
+    text-align: left; 
+    margin-top: 30px; 
+    border: 2px solid #00954c; 
+    padding: 20px;    
+}
+
+.content-workshop ul{
+    margin-left: 10px;
+}
+
 footer{
   background-color: #00954c;
   color: white;
@@ -101,8 +113,8 @@ footer{
 }
 
 .bg-grey{
-	background-color: #f6f6f6;
-	padding: 60px 50px;
+    background-color: #f6f6f6;
+    padding: 60px 50px;
 }
 
 .bg-greylight{
@@ -143,6 +155,10 @@ footer{
     color: #000;
 }
 
+.glyph-nav{
+    padding-left: 10px;
+}
+
 .glyph-va-veryhigh{
     color: #67000d;
 }
@@ -164,13 +180,13 @@ footer{
 }
 
 .logo-small{
-	color: #00954c;
-	font-size: 50px;
+    color: #00954c;
+    font-size: 50px;
 }
 
 .logo{
-	color: #00954c;
-	font-size: 200px;	
+    color: #00954c;
+    font-size: 200px;   
 }
 
 .logo-amia{
@@ -181,21 +197,21 @@ footer{
 }
 
 .img-style{
-	padding: 0 0 15px 0;	
-	margin-bottom: 10px;	
+    padding: 0 0 15px 0;    
+    margin-bottom: 10px;    
 }
 
 .thumbnail{
     border: none;
-	padding: 0 0 15px 0;
-	border-radius: 0;
-	transition: box-shadow 0.5s;	
+    padding: 0 0 15px 0;
+    border-radius: 0;
+    transition: box-shadow 0.5s;    
 }
 
 .thumbnail img{
-	width: 100%;
-	height: 100%;
-	margin-bottom: 10px;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
 }
 
 .thumbnail:hover {
@@ -211,11 +227,11 @@ footer{
 .thumbnail-logo:hover{
     box-shadow: 0px 0px 0px rgba(0,0,0, .2);
 }
-	
+    
 .panel{
-	border: 1px solid orange;
-	border-radius: 0;
-	transition: box-shadow 0.5s;
+    border: 1px solid orange;
+    border-radius: 0;
+    transition: box-shadow 0.5s;
 }
 
 
@@ -238,7 +254,7 @@ footer{
 }
 
 .panel-footer{
-	background-color: #fff !important;
+    background-color: #fff !important;
 }
 
 .panel-footer {
@@ -312,6 +328,46 @@ footer{
 
 .dropdown-menu{
     letter-spacing: 1px;
+    border-top: 3px solid #009552;
+}
+
+.dropdown-submenu{ 
+    position: relative; 
+}
+
+.dropdown-submenu>.dropdown-menu{
+    position: absolute;
+  top:0;
+  left:100%;
+  margin-top:-6px;
+  margin-left:-1px;
+  -webkit-border-radius:0 6px 6px 6px;
+  -moz-border-radius:0 6px 6px 6px;
+  border-radius:0 6px 6px 6px;
+}
+
+.dropdown-submenu>a:after{
+  display:block;
+  content:" ";
+  float:right;
+  width:0;
+  height:0;
+  border-color:transparent;
+  border-style:solid;
+  border-width:5px 0 5px 5px;
+  border-left-color:#cccccc;
+  margin-top:5px;margin-right:-10px;
+}
+.dropdown-submenu:hover>a:after{
+  border-left-color:#555;
+}
+.dropdown-submenu.pull-left{ float: none; }
+.dropdown-submenu.pull-left>.dropdown-menu{
+  left: -100%;
+  margin-left: 10px;
+  -webkit-border-radius: 6px 0 6px 6px;
+  -moz-border-radius: 6px 0 6px 6px;
+  border-radius: 6px 0 6px 6px;
 }
 
  .affix {
@@ -341,9 +397,9 @@ footer{
 /* --------- footer-----------------*/
 /*
 footer .glyphicon{
-	font-size: 20px;
-	margin-bottom: 20px;
-	color: orange;
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: orange;
 }
 
 .glyphicon.center:before {
@@ -352,8 +408,7 @@ footer .glyphicon{
 */
 
 #map{
-    width: 500px;
-    height: 300px;
+    margin-left: -20px;
 }
 
 .map-overlay {
@@ -384,8 +439,6 @@ footer .glyphicon{
     width: 100%;
     background: linear-gradient(to right, #FCA107, #7F3121);
 }
-
-
 
 footer h4{
     font-family: 'Lucida Sans Regular', 'Lucida Sans',   sans-serif;

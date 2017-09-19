@@ -1,3 +1,4 @@
+
 // global variables
 
 // container for provinces
@@ -124,4 +125,22 @@ var colorLayersRandom = function(propertyFilter){
             map.setFilter("amia-" + joined, ["==", propertyFilter, joined]); 
         }
     }   
+};
+
+
+/*------------ window event listeners ------------------*/
+
+// fit map to window size during resize events
+window.onresize = function(){
+    if(map != null && map != undefined){
+        // resize map
+        var mapCanvas = document.getElementsByClassName('mapboxgl-canvas')[0];
+        var mapDiv = document.getElementById('map');        
+                
+        mapDiv.style.width = (window.innerWidth - 10)+ 'px';
+        mapDiv.style.height = window.outerHeight + 'px';
+        mapCanvas.style.width = '100%';   
+                
+        map.resize();           
+    }
 };

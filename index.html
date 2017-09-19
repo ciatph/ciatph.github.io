@@ -11,31 +11,7 @@
   <script src="js/bootstrap.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-	<script type="text/javascript">
-		$(document).ready(function(){
-		  // Add smooth scrolling to all links in navbar + footer link
-		  $(".navbar a, footer a[href='#projectPage']").on('click', function(event) {
-		    // Make sure this.hash has a value before overriding default behavior
-		    if (this.hash !== ""){
-		      // Prevent default anchor click behavior
-		      event.preventDefault();
-
-		      // Store hash
-		      var hash = this.hash;
-
-		      // Using jQuery's animate() method to add smooth page scroll
-		      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-		      $('html, body').animate({
-		        scrollTop: $(hash).offset().top
-		      }, 900, function(){
-		   
-		        // Add hash (#) to URL when done scrolling (default click behavior)
-		        window.location.hash = hash;
-		      });
-		    } // End if
-		  });		  
-		});		
-	</script>
+	<script src="js/main.js" type="text/javascript"></script>
 </head>
 <body id="projectPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
@@ -99,7 +75,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#about">ABOUT</a>
+        <li><a href="index.html">ABOUT</a>
 			<span style="width:100%; height: 10px; background-color: orange;"></span>
         </li>
         
@@ -112,6 +88,13 @@
 		        <li><a href="https://drive.google.com/drive/folders/0B9VxzJSCd9EwWXhLSzZjZ200Z1U">Final CBA Outputs of Regional Teams</a></li>
 		        <li><a href="https://sites.google.com/site/amiaciatproject/documents/Draft%20Philippines.pdf?attredirects=0&d=1">Key Insights from the CRA Country Profile</a></li> 
 		        <li><a href="https://www.google.com/url?q=https%3A%2F%2Fcgspace.cgiar.org%2Fbitstream%2Fhandle%2F10568%2F82572%2FCRA_Profile_Philippines.pdf%3Fsequence%3D5%26isAllowed%3Dy&sa=D&sntz=1&usg=AFQjCNE8Hg69G-HVNr7yjXJpRsY2Sxyx2g">CRA Country Profile</a></li> 
+		        <!-- navigation: workshops -->
+		        <li class="dropdown dropdown-submenu">
+		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Workshops</a>
+		        	<ul class="dropdown-menu" style="width: 70%; overflow: visible;">
+		        		<li><a href="page_documents.html#w-amia3planning">AMIA3 Planning Workshop</a></li>
+		        	</ul>	
+		        </li>		        
 		        <li><a href="page_documents.html">[view all]</a></li> 
         	</ul>
         </li>

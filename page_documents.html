@@ -34,9 +34,16 @@
 		      });
 		    } // End if
 		  });		  
-		});		
 
-		$("#documents",).css('height', window.innerHeight-70);
+		  //$("#documents",).css('height', window.innerHeight-70);
+
+		$('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
+				event.preventDefault(); 
+				event.stopPropagation(); 
+				$(this).parent().siblings().removeClass('open');
+				$(this).parent().toggleClass('open');
+			});		  
+		});				
 	</script>
 </head>
 <body id="projectPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -114,6 +121,13 @@
 		        <li><a href="https://drive.google.com/drive/folders/0B9VxzJSCd9EwWXhLSzZjZ200Z1U">Final CBA Outputs of Regional Teams</a></li>
 		        <li><a href="https://sites.google.com/site/amiaciatproject/documents/Draft%20Philippines.pdf?attredirects=0&d=1">Key Insights from the CRA Country Profile</a></li> 
 		        <li><a href="https://www.google.com/url?q=https%3A%2F%2Fcgspace.cgiar.org%2Fbitstream%2Fhandle%2F10568%2F82572%2FCRA_Profile_Philippines.pdf%3Fsequence%3D5%26isAllowed%3Dy&sa=D&sntz=1&usg=AFQjCNE8Hg69G-HVNr7yjXJpRsY2Sxyx2g">CRA Country Profile</a></li> 
+		        <!-- navigation: workshops -->
+		        <li class="dropdown dropdown-submenu">
+		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Workshops</a>
+		        	<ul class="dropdown-menu" style="width: 70%; overflow: visible;">
+		        		<li><a href="page_documents.html#w-amia3planning">AMIA3 Planning Workshop</a></li>
+		        	</ul>	
+		        </li>		        
 		        <li><a href="page_documents.html">[view all]</a></li> 
         	</ul>
         </li>
@@ -140,7 +154,7 @@
 
 
 <!-- documents -->
-<div id="documents" class="container-fluid text-center bg-grey">
+<div id="documents" class="container-fluid text-center bg-grey" style="padding-bottom: -300px;">
 	<h2>Documents</h2>
 	<h4>Downloadable documents of our outputs</h4>
 	<div class="row text-center">
@@ -190,6 +204,39 @@
 
 	<!-- margin-right -->
 	<div class="col-sm-2"></div>	
+</div>
+
+
+<!-- workshops -->
+<div id="workshops" class="container-fluid text-center" style="margin-bottom: 70px;">
+	<h2>Workshops</h2>
+	<h4>Downloadable files and documents for our workshop outputs</h4>
+
+	<!-- margin-left -->
+	<div class="col-sm-2"></div>
+
+	<!-- content -->
+	<div class="col-sm-8">
+		<div id="w-amia3planning" class="content-workshop">	
+		<ul>
+			<li>
+				<!-- workshop: AMIA3 Planning -->
+				<div><span class="glyphicon glyphicon-plus glyph-black" style="vertical-align: -1px;"></span>&nbsp;
+				<b>AMIA3 Planning Workshop</b></div>
+				<ul>
+					<li>
+						<div><span class="glyphicon glyphicon-minus glyph-black" style="vertical-align: -1px;"></span>&nbsp;
+						<a href="./files/Copy of Planning_Workshop_AMIA3_RCD.xlsx">
+						Copy of Planning_Workshop_AMIA3_RCD.xlsx</a></div>							
+					</li>
+				</ul>
+			</li>
+		</ul>
+		</div>
+	</div>
+
+	<!-- margin-right -->
+	<div class="col-sm-2"></div>			
 </div>
 
 
