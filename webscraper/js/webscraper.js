@@ -25,7 +25,7 @@ var WebScraper = function(url){
 		pageQuery: "?page=",
 
 		// default API url
-		baseUrl: "http://www.iucnredlist.org/search"
+		baseUrl: "https://www.iucnredlist.org/search"
 	};
 
 	this.url = (url != null) ? url : this.settings.baseUrl;
@@ -148,6 +148,7 @@ WebScraper.prototype.loadSpecies = function(callback){
 			},
 			error: function(e){
 				console.log("An error occured: " + e);
+				callback([false]);
 			}
 		});		
 	}
