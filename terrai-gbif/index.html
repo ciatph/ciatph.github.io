@@ -17,28 +17,30 @@
 	
 </head>
 <body>
-    <div id="mapid" style="width: 600px; height: 400px;"></div>
+    <div id="mapid" style="width: 800px; height: 600px;"></div>
 
 <script>
    
-    var baseUrl = 'http://terrai-gbif.azurewebsites.net/';
+    /// var baseUrl = 'http://terrai-gbif.azurewebsites.net/';
+    var baseUrl = 'http://localhost:8080';
 
+    // add OpenStreetMap basemap
     var basemap = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     });
 
-    var p_andina_add = L.tileLayer.wms(baseUrl + '/geoserver/wcs?', {
-        layers: 'terrai-gbif:p_andina_add'
+    var p_andina_add = L.tileLayer.wms(baseUrl + '/geoserver/terrai-gbif/wcs?', {
+        layers: 'terrai-gbif:p_andina_add',
+        format: 'image/png',
+        transparent: true,
+        attibution: 'Species Andina add',
+        styles: 'terrai'
     });
-
-    var prumnopitys_andina = L.tileLayer.wms(baseUrl + '/geoserver/wcs?', {
-        layers: 'terrai-gbif:prumnopitys_andina'
-    });    
 
     var map = L.map('mapid', {
         center: [-26.11598592533351, -81.91406250000001],
         zoom: 3,
-        layers: [basemap, p_andina_add, prumnopitys_andina]
+        layers: [basemap, p_andina_add]
     });    
 
     var baseMaps = {
@@ -46,27 +48,11 @@
     };
 
     var overlayMaps = {
-        "P Andina Add": p_andina_add,
-        "Prumnopitys Andina": prumnopitys_andina
+        "P Andina Add": p_andina_add
     };    
 
     L.control.layers(baseMaps, overlayMaps).addTo(map);
-
-    /*
-    var map = L.map('mapid').setView([-26.11598592533351, -81.91406250000001], 3);
-
-    // add OpenStreetMap basemap
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    //var baseUrl = 'http://localhost:8080/';
-    var baseUrl = 'http://terrai-gbif.azurewebsites.net/';
-    var wmsLayer = L.tileLayer.wms(baseUrl + '/geoserver/wcs?', {
-        layers: 'terrai-gbif:p_andina_add'
-    }).addTo(map);
-    */
- 
+     
 </script>
 
 
