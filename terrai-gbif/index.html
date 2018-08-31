@@ -3,7 +3,7 @@
 <html>
 <head>
 	
-	<title>Quick Start - Leaflet</title>
+	<title>Terrai - GBIF Demo</title>
 
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,50 +13,109 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
 
-
-	
+    <style type="text/css">
+        body, html {
+            margin: 0px;
+        }
+    </style>
 </head>
 <body>
-    <div id="mapid" style="width: 800px; height: 600px;"></div>
+
+    <div id="mapid" style="width: 100%; height:100%; "></div>
 
 <script>
-   
-    var baseUrl = 'http://terrai-gbif.azurewebsites.net/';
-    //var baseUrl = 'http://localhost:8080';
+    var layerToggle;
 
-    // add OpenStreetMap basemap
-    var basemap = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-		maxZoom: 18,
-		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-		id: 'mapbox.streets'
-	});
-	
-    var p_andina_add = L.tileLayer.wms(baseUrl + '/geoserver/terrai-gbif/wcs?', {
-        layers: 'terrai-gbif:p_andina_add',
-        format: 'image/png',
-        transparent: true,
-        attibution: 'Species Andina add',
-        styles: 'terrai',
-		tiled: true
-    });
+    window.onload = function(){
+        // set window fullscreen height
+        var mapDom = document.getElementById('mapid');
+        mapDom.style.height = window.innerHeight + 'px';
 
-    var map = L.map('mapid', {
-        center: [-26.11598592533351, -81.91406250000001],
-        zoom: 3,
-        layers: [basemap, p_andina_add]
-    });    
+        var baseUrl = 'http://terrai-gbif.azurewebsites.net';
+        //var baseUrl = 'http://localhost:8080';
 
-    var baseMaps = {
-        "Base Map": basemap
+        // add OpenStreetMap basemap
+        var basemap = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        });
+
+        var latin_base = L.tileLayer.wms(baseUrl + '/geoserver/terrai-gbif/wcs?', {
+            layers: 'terrai-gbif:latin_terra_I_resamp_fromedit',
+            format: 'image/png',
+            transparent: true,
+            attribution: 'Latin America Basemap',
+            styles: 'terrai-base'
+        });
+
+        var p_andina_add = L.tileLayer.wms(baseUrl + '/geoserver/terrai-gbif/wcs?', {
+            layers: 'terrai-gbif:p_andina_add',
+            format: 'image/png',
+            transparent: true,
+            attribution: 'Prumnopitys Andina Add',
+            styles: 'terrai-species'
+        });
+
+        var p_andina = L.tileLayer.wms(baseUrl + '/geoserver/terrai-gbif/wcs?', {
+            layers: 'terrai-gbif:p_andina',
+            format: 'image/png',
+            transparent: true,
+            attribution: 'Prumnopitys Andina',
+            styles: 'terrai-species'
+        });    
+
+        var p_uviferum_add = L.tileLayer.wms(baseUrl + '/geoserver/terrai-gbif/wcs?', {
+            layers: 'terrai-gbif:p_uviferum_add',
+            format: 'image/png',
+            transparent: true,
+            attribution: 'Pilgerodendron Uviferum Add',
+            styles: 'terrai-species-3'
+        });       
+
+        var pilgerodendron_uviferum = L.tileLayer.wms(baseUrl + '/geoserver/terrai-gbif/wcs?', {
+            layers: 'terrai-gbif:pilgerodendron_uviferum',
+            format: 'image/png',
+            transparent: true,
+            attribution: 'Pilgerodendron Uviferum',
+            styles: 'terrai-species-3'
+        });       
+
+        var p_salignus_add = L.tileLayer.wms(baseUrl + '/geoserver/terrai-gbif/wcs?', {
+            layers: 'terrai-gbif:p_salignus_add',
+            format: 'image/png',
+            transparent: true,
+            attribution: 'Podocarpus Salignus',
+            styles: 'terrai-species-2'
+        });      
+
+        var podocarpus_salignus = L.tileLayer.wms(baseUrl + '/geoserver/terrai-gbif/wcs?', {
+            layers: 'terrai-gbif:podocarpus_salignus',
+            format: 'image/png',
+            transparent: true,
+            attribution: 'Podocarpus Salignus',
+            styles: 'terrai-species-2'
+        });    
+        
+        var map = L.map('mapid', {
+            center: [-26.11598592533351, -81.91406250000001],
+            zoom: 4,
+            layers: [basemap, latin_base]
+        });    
+
+        var baseMaps = {
+            "Base Map": basemap
+        };
+
+        var overlayMaps = {
+            "Prumnopitys Andina": p_andina,
+            "Pilgerodendron Uviferum": pilgerodendron_uviferum,
+            "Podocarpus Salignus": podocarpus_salignus,
+            "Prumnopitys Andina Add": p_andina_add,
+            "Pilgerodendron Uviferum Add": p_uviferum_add,
+            "Podocarpus Salignus Add": p_salignus_add
+        };    
+
+        layerToggle = L.control.layers(baseMaps, overlayMaps).addTo(map);
     };
-
-    var overlayMaps = {
-        "P Andina Add": p_andina_add
-    };    
-
-    L.control.layers(baseMaps, overlayMaps).addTo(map);
 
 </script>
 
