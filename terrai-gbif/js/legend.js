@@ -24,7 +24,7 @@ var legend = L.control({position: 'bottomleft'});
 legend.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info-legend');
         labels = ['<strong>Categories</strong>'],
-        categories = ['Terra-i Base deforestation', 'Prumnopitys Andina', 'Pilgerodendron Uviferum', 'Podocarpus Salignus'];
+        categories = ['Terra-i Base deforestation detection', 'Prumnopitys Andina', 'Pilgerodendron Uviferum', 'Podocarpus Salignus'];
         // categories = cats;
 
         for (var i = 0; i < categories.length; i++) {
