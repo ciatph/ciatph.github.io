@@ -32,7 +32,7 @@
         mapDom.style.height = window.innerHeight + 'px';
 
         var baseUrl = 'http://terrai-gbif.azurewebsites.net';
-        //var baseUrl = 'http://localhost:8080';
+        // var baseUrl = 'http://localhost:8080';
 
         // add OpenStreetMap basemap
         var basemap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
@@ -115,6 +115,7 @@
         };    
 
         layerToggle = L.control.layers(baseMaps, overlayMaps).addTo(map);
+        L.control.scale().addTo(map);
     };
 
 </script>
