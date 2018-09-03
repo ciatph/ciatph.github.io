@@ -35,10 +35,8 @@ legend.onAdd = function (map) {
                     (categories[i] ? categories[i] : '+'));
                 }
             div.innerHTML = labels.join('<br>');
-        return div;
+            return div;
         };
-
-    return legend;
 };   
 
 
