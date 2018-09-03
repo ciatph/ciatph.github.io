@@ -37,6 +37,8 @@ legend.onAdd = function (map) {
             div.innerHTML = labels.join('<br>');
             return div;
         };
+
+    return legend;
 };   
 
 
