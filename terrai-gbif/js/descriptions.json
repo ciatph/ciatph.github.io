@@ -1,0 +1,30 @@
+{
+    "latin_base": {
+        "label": "Terra-i resampled",
+        "description": "This layer is the Terra-I (http://www.terra-i.org/terra-i.html) detection of deforestation events for Asia. The raster is a binary valued layer, wherein 0 is no detection of a deforestation event, while 1 corresponds to a deforestation event. This layer is refreshed once in every 15 days, thereby providing near real time information of deforestation events."
+    },
+    "p_uviferum": {
+        "label": "Pilgerodendron uviferum",
+        "description": "This raster layer is the output of the species distribution model. Geotagged positive occurrences (127 observations) of the species extracted from the GBIF data repository are used to model and predict the distribution of the species across the South American continent as a function of bioclimatic variables. The modelling procedure involves generation of pseudo-absence background points as an alternative class for learning and classification. The model has an AUC value greater than 0.8, which means the model out of every 10 true positive occurrences, correctly predicts 8, and wrongly predicts two of them as pseudo-absence points. The layer is a binary valued layer, with 1 corresponding to predicted presence, and 0 corresponding to predicted absence of the species."
+    },
+    "p_uviferum_add": {
+        "label": "Pilgerodendron uviferum add",
+        "description": "This raster layer is the output obtained when Pilgerodendron uviferum layer is overlayed with latin_terra_I_resamp_fromedit layer. A score of 0 at a particular pixel (location) would indicate predicted absence of species, or no detection of a deforestation event. A score of 1 would indicate predicted presence of species or detection of a deforestation event, while a score above 1 would indicate both predicted presence of species and a deforestation event."
+    },
+    "p_salignus": {
+        "label": "Podocarpus salignus",
+        "description": "This raster layer is the output of the species distribution model. Geotagged positive occurrences (81 observations) of the species extracted from the GBIF data repository are used to model and predict the distribution of the species across the South American continent as a function of bioclimatic variables. The modelling procedure involves generation of pseudo-absence background points as an alternative class for learning and classification. The model has an AUC value greater than 0.8, which means the model out of every 10 true positive occurrences, correctly predicts 8, and wrongly predicts two of them as pseudo-absence points. The layer is a binary valued layer, with 1 corresponding to predicted presence, and 0 corresponding to predicted absence of the species."
+    },
+    "p_salignus_add": {
+        "label": "Podocarpus salignus add",
+        "description": "This raster layer is the output obtained when Podocarpus salignus layer is overlayed with latin_terra_I_resamp_fromedit layer. A score of 0 at a particular pixel (location) would indicate predicted absence of species, or no detection of a deforestation event. A score of 1 would indicate predicted presence of species or detection of a deforestation event, while a score above 1 would indicate both predicted presence of species and a deforestation event."
+    },
+    "p_andina": {
+        "label": "Prumnopitys andina",
+        "description": "This raster layer is the output of the species distribution model. Geotagged positive occurrences (126 observations) of the species extracted from the GBIF data repository are used to model and predict the distribution of the species across the South American continent as a function of bioclimatic variables. The modelling procedure involves generation of pseudo-absence background points as an alternative class for learning and classification. The model has an AUC value greater than 0.8, which means the model out of every 10 true positive occurrences, correctly predicts 8, and wrongly predicts two of them as pseudo-absence points. The layer is a binary valued layer, with 1 corresponding to predicted presence, and 0 corresponding to predicted absence of the species."
+    },
+    "p_andina_add": {
+        "label": "Prumnopitys andina add",
+        "description": "This raster layer is the output obtained when Prumnopitys andina layer is overlayed with latin_terra_I_resamp_fromedit layer. A score of 0 at a particular pixel (location) would indicate predicted absence of species, or no detection of a deforestation event. A score of 1 would indicate predicted presence of species or detection of a deforestation event, while a score above 1 would indicate both predicted presence of species and a deforestation event."
+    }            
+}

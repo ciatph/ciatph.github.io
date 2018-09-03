@@ -1,5 +1,6 @@
 // legends
 var legends_list = {};
+const maparea = { ASIA:1, LATIN_AMERICA:2 };
 
 // color list
 
@@ -39,3 +40,15 @@ legend.onAdd = function (map) {
 
     return legend;
 };   
+
+
+var toggleMap = function(maparea){
+    console.log(maparea);
+
+    if(maparea === 'asia'){
+        
+    }
+    else if(maparea === 'la'){
+
+    }
+};
