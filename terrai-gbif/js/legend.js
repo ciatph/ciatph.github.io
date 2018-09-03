@@ -18,11 +18,15 @@ var labels_colors = {
     "Podocarpus Salignus": "#2ca25f"
 };
 
-var createLegend = function(legend_name, cats){
-// base terrai
-var legend = L.control({position: 'bottomleft'});
 
-legend.onAdd = function (map) {
+/**
+ * Create a legend for LA
+ * @param {Legend titles to print} cats 
+ */
+var createLegend = function(){
+    var legend = L.control({position: 'bottomleft'});
+
+    legend.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info-legend');
         labels = ['<strong>Categories</strong>'],
         categories = ['Terra-i Base deforestation detection', 'Prumnopitys Andina', 'Pilgerodendron Uviferum', 'Podocarpus Salignus'];
@@ -35,11 +39,26 @@ legend.onAdd = function (map) {
                     (categories[i] ? categories[i] : '+'));
                 }
             div.innerHTML = labels.join('<br>');
-            return div;
-        };
+        return div;
+    };
 
     return legend;
 };   
+
+
+/**
+ * Prints a legend-like text caption for the selected layer
+ * @param {JSON object containing layer information. Format: {label:"", description:""}} caption 
+ */
+var createCaption = function(caption){
+    var holder = L.control({position: 'topleft'});
+    holder.onAdd = function(map){
+        var div = L.DomUtil.create('div', 'info-caption');
+        div.innerHTML = '<h4>' + caption.label + '</h4>' + caption.description;
+        return div;
+    }
+    return holder;
+}
 
 
 var toggleMap = function(maparea){

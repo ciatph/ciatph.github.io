@@ -67,13 +67,15 @@
     var legend;
     var scale;
     var layerToggle;
-    var d;
+    var text;
+    var t;
+    var caption;
 
     var createDescriptions = function(){
         $.ajax({
             url: 'js/descriptions.json',
             success: function(j){
-                d = j;
+                text = j;
                 console.log('loaded!');
 
                 for(var i in j){
@@ -152,17 +154,17 @@
         
         mapLatin.addLayer({
             name: 'p_andina_add', layers: 'terrai-gbif:p_andina_add',
-            attribution: 'Prumnopitys Andina Add', styles: 'terrai-species'
+            attribution: 'Prumnopitys andina add', styles: 'terrai-species'
         });     
         
         mapLatin.addLayer({
             name: 'p_salignus_add', layers: 'terrai-gbif:p_salignus_add',
-            attribution: 'Podocarpus Salignus Add', styles: 'terrai-species-2'
+            attribution: 'Podocarpus salignus add', styles: 'terrai-species-2'
         });     
         
         mapLatin.addLayer({
             name: 'p_uviferum_add', layers: 'terrai-gbif:p_uviferum_add',
-            attribution: 'Pilgerodendron Uviferum Add', styles: 'terrai-species-3'
+            attribution: 'Pilgerodendron uviferum add', styles: 'terrai-species-3'
         });           
         
         var baseMaps = {
@@ -184,6 +186,23 @@
 
         // add legend
         legend = createLegend().addTo(map);
+
+        // add layer caption
+        map.on('layeradd', function(e){
+            t = e;
+            console.log('added layer ' + e.layer.getAttribution());
+
+            if(caption !== undefined)
+                map.removeControl(caption);
+
+            caption = createCaption(text[e.layer.getAttribution()]).addTo(map);
+        });
+
+        // remove layer caption
+        map.on('layerremove', function(e){
+            if(caption !== undefined)
+                map.removeControl(caption);
+        });
     };
 
     window.onload = function(){

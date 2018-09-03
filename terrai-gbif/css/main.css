@@ -60,3 +60,10 @@ html, body, #mapid {
   background-color: rgba(255, 255, 255, 0.5);
   padding: 10px;
 }    
+
+.info-caption {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 10px;
+  width: 30%;
+  font-size: 14px;
+}    
