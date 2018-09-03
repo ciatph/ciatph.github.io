@@ -11,7 +11,7 @@ var colors = {
 };
 
 var labels_colors = {
-    "Terra-i Base deforestation": "#fc8d59",
+    "Terra-i Base deforestation detection": "#fc8d59",
     "Prumnopitys Andina": "#00ff00",
     "Pilgerodendron Uviferum": "#3182bd",
     "Podocarpus Salignus": "#2ca25f"

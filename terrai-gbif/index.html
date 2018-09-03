@@ -43,8 +43,8 @@
         var mapDom = document.getElementById('mapid');
         mapDom.style.height = window.innerHeight + 'px';
 
-        // var baseUrl = 'http://terrai-gbif.azurewebsites.net';
-        var baseUrl = 'http://localhost:8080';
+        var baseUrl = 'http://terrai-gbif.azurewebsites.net';
+        // var baseUrl = 'http://localhost:8080';
 
         // add OpenStreetMap basemap
         var basemap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
@@ -114,11 +114,11 @@
         });    
 
         var baseMaps = {
-            "Base Map": basemap
+            "Latin America Base Map": basemap
         };
 
         var overlayMaps = {
-            "Terra-i Deforestation": latin_base,
+            "Terra-i Deforestation Detection": latin_base,
             "Prumnopitys Andina": p_andina,
             "Pilgerodendron Uviferum": pilgerodendron_uviferum,
             "Podocarpus Salignus": podocarpus_salignus,
