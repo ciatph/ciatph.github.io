@@ -55,6 +55,9 @@ var createCaption = function(caption){
     holder.onAdd = function(map){
         var div = L.DomUtil.create('div', 'info-caption');
         div.innerHTML = '<h4>' + caption.label + '</h4>' + caption.description;
+        div.addEventListener('click', function(e){
+            console.log('i was clicked');
+        });
         return div;
     }
     return holder;
