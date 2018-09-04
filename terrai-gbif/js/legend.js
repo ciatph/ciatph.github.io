@@ -32,13 +32,19 @@ var createLegend = function(cats, position){
     legend.onAdd = function (map) {
 		var div = L.DomUtil.create('div', 'info legend'),
 			grades = [0, 1, 2],
-			labels = ['<span id="legend_title"><b>' + cats + '</b></span>'];
+            labels = ['<span id="legend_title"><b>' + cats + '</b></span>'];
 
 		for (var i = 0; i < grades.length; i++) {
-            var color = 
-			labels.push(
-				'<i style="background:' + ((cats.indexOf("add") === -1) && i === 0 ? 'none' : grades_colors[i]) + '"></i> ' +
-				grades[i]);
+            if((cats.indexOf("add") === -1)){
+                // Display legends for 0 and 1 only. Make 0's background transparent
+                if(i < grades.length-1){
+                    labels.push('<i style="background:' + (i === 0 ? 'none' : grades_colors[i]) + '"></i> ' + grades[i]);
+                }
+            }
+            else{
+                // Display all legends
+                labels.push('<i style="background:' + grades_colors[i] + '"></i> ' + grades[i]);
+            }
 		}
 
 		div.innerHTML = labels.join('<br>');
