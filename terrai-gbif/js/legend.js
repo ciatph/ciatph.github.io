@@ -35,8 +35,9 @@ var createLegend = function(cats, position){
 			labels = ['<span id="legend_title"><b>' + cats + '</b></span>'];
 
 		for (var i = 0; i < grades.length; i++) {
+            var color = 
 			labels.push(
-				'<i style="background:' + grades_colors[i] + '"></i> ' +
+				'<i style="background:' + ((cats.indexOf("add") === -1) && i === 0 ? 'none' : grades_colors[i]) + '"></i> ' +
 				grades[i]);
 		}
 
