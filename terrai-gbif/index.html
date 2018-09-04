@@ -10,14 +10,10 @@
 
     <title>Terra-i and GBIF</title>
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-
-    <!-- Custom styles for this template -->
-    <link href="css/main.css" rel="stylesheet">
-
+    <!-- Styles -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link href="css/main.css" rel="stylesheet">
     <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
     <script src="js/legend.js" type="text/javascript"></script>
     <script src="js/map.js" type="text/javascript"></script>  
@@ -60,17 +56,15 @@
 <script>
     var map;
     var basemap;
-    var mapLatin;
+    var mapSouthAmerica;
     var mapAsia;
-    var legend;
+    var legend = {};
     var scale;
     var layerToggle;
     var text;
     var t;
     var caption;
 
-    var legend_la = ['Terra-i Base deforestation detection', 'Prumnopitys Andina', 'Pilgerodendron Uviferum', 'Podocarpus Salignus'];
-    var legend_asia = ['Terra-i Base deforestation detection', 'Picea asperata', 'Taiwania cryptomerioides'];
 
     /**
      * Append text the layers' text descriptions on the main page
@@ -123,7 +117,14 @@
 
         layerToggle.removeLayer(basemap);
         map.removeControl(layerToggle);
-        map.removeControl(legend);
+
+        // remove all legends
+        if(Object.keys(legend).length > 0){
+            for(key in legend){
+                map.removeControl(legend[key]);
+            }
+        }
+
         map.removeControl(scale);
     };
 
@@ -141,49 +142,50 @@
 
         // add scale
         scale = L.control.scale().addTo(map);
-
-        // add legend
-        legend = createLegend(legend_la).addTo(map);
     };    
 
 
+    /**
+     * Initialize the main map object. 
+     * Initialize the south america layers
+     */ 
     var initMap = function(basemap){
-        mapLatin = new Map();
-        mapLatin.init([-26.11598592533351, -81.91406250000001], 4);        
+        mapSouthAmerica = new Map();
+        mapSouthAmerica.init([-26.11598592533351, -81.91406250000001], 4);        
 
-        mapLatin.addLayer({
+        mapSouthAmerica.addLayer({
             name: 'latin_base', layers: 'terrai-gbif:latin_terra_I_resamp_fromedit',
             attribution: 'Terra-i resampled', styles: 'terrai-base', legend: 'true' 
         });
 
-        mapLatin.addLayer({
+        mapSouthAmerica.addLayer({
             name: 'p_andina', layers: 'terrai-gbif:p_andina',
             attribution: 'Prumnopitys andina', styles: 'terrai-species'
         });    
         
-        mapLatin.addLayer({
+        mapSouthAmerica.addLayer({
             name: 'p_salignus', layers: 'terrai-gbif:podocarpus_salignus',
-            attribution: 'Podocarpus salignus', styles: 'terrai-species-2'
+            attribution: 'Podocarpus salignus', styles: 'terrai-species'
         });          
 
-        mapLatin.addLayer({
+        mapSouthAmerica.addLayer({
             name: 'p_uviferum', layers: 'terrai-gbif:pilgerodendron_uviferum',
-            attribution: 'Pilgerodendron uviferum', styles: 'terrai-species-3'
+            attribution: 'Pilgerodendron uviferum', styles: 'terrai-species'
         });           
         
-        mapLatin.addLayer({
+        mapSouthAmerica.addLayer({
             name: 'p_andina_add', layers: 'terrai-gbif:p_andina_add',
-            attribution: 'Prumnopitys andina add', styles: 'p_species-add-1'
+            attribution: 'Prumnopitys andina add', styles: 'terrai-add'
         });     
         
-        mapLatin.addLayer({
+        mapSouthAmerica.addLayer({
             name: 'p_salignus_add', layers: 'terrai-gbif:p_salignus_add',
-            attribution: 'Podocarpus salignus add', styles: 'p_species-add-2'
+            attribution: 'Podocarpus salignus add', styles: 'terrai-add'
         });     
         
-        mapLatin.addLayer({
+        mapSouthAmerica.addLayer({
             name: 'p_uviferum_add', layers: 'terrai-gbif:p_uviferum_add',
-            attribution: 'Pilgerodendron uviferum add', styles: 'p_species-add-3'
+            attribution: 'Pilgerodendron uviferum add', styles: 'terrai-add'
         });           
         
         var baseMaps = {
@@ -192,27 +194,30 @@
 
         // main map
         map = L.map('mapid', {
-            center: mapLatin.center,
-            zoom: mapLatin.zoom,
+            center: mapSouthAmerica.center,
+            zoom: mapSouthAmerica.zoom,
             layers: [basemap]
         });    
 
         // add layer toggle
-        layerToggle = L.control.layers(baseMaps, mapLatin.getOverlays()).addTo(map);
+        layerToggle = L.control.layers(baseMaps, mapSouthAmerica.getOverlays()).addTo(map);
 
         // add scale
         scale = L.control.scale().addTo(map);
 
-        // add legend
-        legend = createLegend(legend_la).addTo(map);
-
         // add layer caption
         map.on('layeradd', function(e){
-            t = e;
             console.log('added layer ' + e.layer.getAttribution());
 
             if(caption !== undefined)
                 map.removeControl(caption);
+
+            // create legend for layer
+            if(e.layer.getAttribution() !== 'Terra-i resampled'){
+                legend[e.layer.getAttribution()] = createLegend(e.layer.getAttribution(),
+                    (Object.keys(legend).length >= 3) ? 'bottomright' : 'bottomleft').addTo(map);
+            }
+                
 
             caption = createCaption(text['captions'][e.layer.getAttribution()]).addTo(map);
         });
@@ -221,6 +226,11 @@
         map.on('layerremove', function(e){
             if(caption !== undefined)
                 map.removeControl(caption);
+            
+            if(Object.keys(legend).length > 0){
+                map.removeControl(legend[e.layer.getAttribution()]);
+                delete legend[e.layer.getAttribution()];
+            }
         });
     };
 
@@ -245,17 +255,17 @@
 
             mapAsia.addLayer({
                 name: 'taiwania_cryptomerioides', layers: 'terrai-gbif:taiwania_cryptomerioides',
-                attribution: 'Taiwania cryptomerioides', styles: 'terrai-species-2'
+                attribution: 'Taiwania cryptomerioides', styles: 'terrai-species'
             });               
 
             mapAsia.addLayer({
                 name: 'picea_add', layers: 'terrai-gbif:picea_add',
-                attribution: 'Picea asperata add', styles: 'p_species-add-1'
+                attribution: 'Picea asperata add', styles: 'terrai-add'
             });                             
             
             mapAsia.addLayer({
                 name: 'taiwania_add', layers: 'terrai-gbif:taiwania_add',
-                attribution: 'Taiwania cryptomerioides add', styles: 'p_species-add-2'
+                attribution: 'Taiwania cryptomerioides add', styles: 'terrai-add'
             });                 
         }
           
@@ -270,33 +280,28 @@
         // add scale
         scale = L.control.scale().addTo(map);
 
-        // add legend
-        legend = createLegend(legend_asia).addTo(map);
-
         map.setZoom(4);
         map.panTo({lon:mapAsia.center[0], lat:mapAsia.center[1]});
         createDescriptions('asia');
     };
 
 
-    var loadMapLatin = function(basemap){        
+    /*
+     * Re-load the South America layers
+     */ 
+    var loadMapSouthAmerica = function(basemap){        
         var baseMaps = {
             "South America Base Map": basemap
         };
 
         // main map
-        map.se
-
         // add layer toggle
-        layerToggle = L.control.layers(baseMaps, mapLatin.getOverlays()).addTo(map);
+        layerToggle = L.control.layers(baseMaps, mapSouthAmerica.getOverlays()).addTo(map);
 
         // add scale
         scale = L.control.scale().addTo(map);
 
-        // add legend
-        legend = createLegend(legend_la).addTo(map);
-
-        map.panTo({lon:mapLatin.center[1], lat:mapLatin.center[0]});
+        map.panTo({lon:mapSouthAmerica.center[1], lat:mapSouthAmerica.center[0]});
         createDescriptions('la');
     };
 

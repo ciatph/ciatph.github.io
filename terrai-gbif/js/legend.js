@@ -13,32 +13,40 @@ var labels_colors = {
     "Taiwania cryptomerioides": "#eeff00"  
 };
 
+var grades_colors = {
+    0: "#eeff00",
+    1: "#00ff00",
+    2: "#1100ff"  
+};
+
 
 /**
  * Create a legend for LA
- * @param {Legend titles to print} cats 
+ * @param {Legend title to print} cats
+ * @param {leafletjs DOM positioning} position   
  */
-var createLegend = function(cats){
-    var legend = L.control({position: 'bottomleft'});
+var createLegend = function(cats, position){
+    var pos = (position !== undefined) ? position : 'bottomleft';
+    var legend = L.control({position: pos});
 
     legend.onAdd = function (map) {
-    var div = L.DomUtil.create('div', 'info-legend');
-        labels = ['<strong>Categories</strong>'],
-        //categories = ['Terra-i Base deforestation detection', 'Prumnopitys Andina', 'Pilgerodendron Uviferum', 'Podocarpus Salignus'];
-        categories = cats;
+		var div = L.DomUtil.create('div', 'info legend'),
+			grades = [0, 1, 2],
+			labels = ['<span id="legend_title"><b>' + cats + '</b></span>'];
 
-        for (var i = 0; i < categories.length; i++) {
-            div.innerHTML += 
-                labels.push(
-                    '<span class="circle" style="background: ' + labels_colors[categories[i]] + '"> &nbsp; &nbsp; &nbsp;</span> ' +
-                    (categories[i] ? categories[i] : '+'));
-                }
-            div.innerHTML = labels.join('<br>');
-        return div;
+		for (var i = 0; i < grades.length; i++) {
+			labels.push(
+				'<i style="background:' + grades_colors[i] + '"></i> ' +
+				grades[i]);
+		}
+
+		div.innerHTML = labels.join('<br>');
+		return div;
     };
 
     return legend;
 };   
+
 
 
 /**
@@ -59,31 +67,23 @@ var createCaption = function(caption){
 }
 
 
+/**
+ * Initialize the loading of a map's layers
+ * @param {Name of map to load: 'asia' or 'la'} maparea 
+ */
 var toggleMap = function(maparea){
     console.log(maparea);
 
     if(maparea === 'asia'){
-        if(mapLatin !== undefined){
-            removeLayers(mapLatin.layers);
+        if(mapSouthAmerica !== undefined){
+            removeLayers(mapSouthAmerica.layers);
             loadMapAsia(basemap);
         }
     }
     else if(maparea === 'la'){
         if(mapAsia !== undefined){
             removeLayers(mapAsia.layers);
-            loadMapLatin(basemap);
+            loadMapSouthAmerica (basemap);
         }
-    }
-};
-
-
-var createColorScale = function(){
-    holder.onAdd = function(map){
-        var div = L.DomUtil.create('div', 'info-legend');
-        div.innerHTML = '<h4>' + caption.label + '</h4>' + caption.description;
-        div.addEventListener('click', function(e){
-            console.log('i was clicked');
-        });
-        return div;
     }
 };
