@@ -63,11 +63,27 @@ var toggleMap = function(maparea){
     console.log(maparea);
 
     if(maparea === 'asia'){
-        removeLayers(mapLatin.layers);
-        loadMapAsia(basemap);
+        if(mapLatin !== undefined){
+            removeLayers(mapLatin.layers);
+            loadMapAsia(basemap);
+        }
     }
     else if(maparea === 'la'){
-        removeLayers(mapAsia.layers);
-        loadMapLatin(basemap);
+        if(mapAsia !== undefined){
+            removeLayers(mapAsia.layers);
+            loadMapLatin(basemap);
+        }
+    }
+};
+
+
+var createColorScale = function(){
+    holder.onAdd = function(map){
+        var div = L.DomUtil.create('div', 'info-legend');
+        div.innerHTML = '<h4>' + caption.label + '</h4>' + caption.description;
+        div.addEventListener('click', function(e){
+            console.log('i was clicked');
+        });
+        return div;
     }
 };
