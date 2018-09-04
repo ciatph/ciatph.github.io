@@ -7,10 +7,10 @@ const maparea = { ASIA:1, LATIN_AMERICA:2 };
 var labels_colors = {
     "Terra-i Base deforestation detection": "#fc8d59",
     "Prumnopitys Andina": "#00ff00",
+    "Podocarpus Salignus": "#eeff00",
     "Pilgerodendron Uviferum": "#3182bd",
-    "Podocarpus Salignus": "#2ca25f",
     "Picea asperata": "#00ff00",
-    "Taiwania cryptomerioides": "#3182bd"  
+    "Taiwania cryptomerioides": "#eeff00"  
 };
 
 
