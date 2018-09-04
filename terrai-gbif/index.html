@@ -209,7 +209,7 @@
             if(caption !== undefined)
                 map.removeControl(caption);
 
-            caption = createCaption(text['la'][e.layer.getAttribution()]).addTo(map);
+            caption = createCaption(text['captions'][e.layer.getAttribution()]).addTo(map);
         });
 
         // remove layer caption
@@ -233,12 +233,25 @@
                 attribution: 'Terra-i resampled', styles: 'terrai-base' 
             });
 
-            /*
             mapAsia.addLayer({
-                name: 'p_andina', layers: 'terrai-gbif:p_andina',
-                attribution: 'Prumnopitys andina', styles: 'terrai-species'
-            });    
-            */                
+                name: 'picea_asperata', layers: 'terrai-gbif:picea_asperata',
+                attribution: 'Picea asperata', styles: 'terrai-species'
+            });      
+
+            mapAsia.addLayer({
+                name: 'taiwania_cryptomerioides', layers: 'terrai-gbif:taiwania_cryptomerioides',
+                attribution: 'Taiwania cryptomerioides', styles: 'terrai-species-2'
+            });               
+
+            mapAsia.addLayer({
+                name: 'picea_add', layers: 'terrai-gbif:picea_add',
+                attribution: 'Picea asperata add', styles: 'terrai-species'
+            });                             
+            
+            mapAsia.addLayer({
+                name: 'taiwania_add', layers: 'terrai-gbif:taiwania_add',
+                attribution: 'Taiwania cryptomerioides add', styles: 'terrai-species-2'
+            });                 
         }
           
         var baseMaps = {
@@ -246,7 +259,6 @@
         };
 
         // main map
-
         // add layer toggle
         layerToggle = L.control.layers(baseMaps, mapAsia.getOverlays()).addTo(map);
 
