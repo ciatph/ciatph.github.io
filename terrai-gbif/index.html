@@ -30,8 +30,8 @@
         <a class="py-2" href="#">
           <img src="images/logo/ciat-icon-48.png" width="30" height="30"/>
         </a> &nbsp; &nbsp;  &nbsp; 
-        <a class="py-2 d-none d-md-inline-block" href="#">Latin America</a> &nbsp; &nbsp;  &nbsp;
-        <a class="py-2 d-none d-md-inline-block" href="#">Asia</a>
+        <a class="py-2 d-none d-md-inline-block" href="#" onclick="toggleMap('la')">Latin America</a> &nbsp; &nbsp;  &nbsp;
+        <a class="py-2 d-none d-md-inline-block" href="#" onclick="toggleMap('asia')">Asia</a>
 
       </div>
     </nav>
@@ -52,18 +52,11 @@
 
       </div> <!-- /container -->
 
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="js/bootstrap.min.js"></script>
-
 <script>
     var map;
     var basemap;
     var mapLatin;
+    var mapAsia;
     var legend;
     var scale;
     var layerToggle;
@@ -71,24 +64,45 @@
     var t;
     var caption;
 
-    var createDescriptions = function(){
+    var legend_la = ['Terra-i Base deforestation detection', 'Prumnopitys Andina', 'Pilgerodendron Uviferum', 'Podocarpus Salignus'];
+    var legend_asia = ['Terra-i Base deforestation detection', 'Picea asperata', 'Taiwania cryptomerioides'];
+
+    /**
+     * Append text the layers' text descriptions on the main page
+     * @param maparea: 'asia' or 'la'
+     */ 
+    var createDescriptions = function(maparea){
+        // remove all descriptions
+        $('.row').children().remove();
+
+        // header
+        $('#page_header').text((maparea === 'la') ? 'Latin America' : 'Asia');
+
+        // fill with new layer text descriptions
+        for(var i in text[maparea]){
+            var note = $('<div class="col-md-4">');
+            var h1 = $('<h3>');
+            h1.text(text[maparea][i].label);
+            note.append(h1);
+
+            var p = $('<p>');
+            p.text(text[maparea][i].description);
+            note.append(p);  
+            $('.row').append(note);                  
+        }  
+    };
+
+
+    /**
+     * Load the layer descriptions json file
+     */  
+    var loadDescriptions = function(){
         $.ajax({
             url: 'js/descriptions.json',
             success: function(j){
                 text = j;
                 console.log('loaded!');
-
-                for(var i in j){
-                    var note = $('<div class="col-md-4">');
-                    var h1 = $('<h3>');
-                    h1.text(j[i].label);
-                    note.append(h1);
-
-                    var p = $('<p>');
-                    p.text(j[i].description);
-                    note.append(p);  
-                    $('.row').append(note);                  
-                }
+                createDescriptions('la');
             }
         });
     };
@@ -102,10 +116,10 @@
             map.removeLayer(submap[i]);
         }
 
+        layerToggle.removeLayer(basemap);
         map.removeControl(layerToggle);
         map.removeControl(legend);
         map.removeControl(scale);
-    
     };
 
 
@@ -124,11 +138,11 @@
         scale = L.control.scale().addTo(map);
 
         // add legend
-        legend = createLegend().addTo(map);
+        legend = createLegend(legend_la).addTo(map);
     };    
 
 
-    var initLatinAmerica = function(basemap){
+    var initMap = function(basemap){
         mapLatin = new Map();
         mapLatin.init([-26.11598592533351, -81.91406250000001], 4);        
 
@@ -185,7 +199,7 @@
         scale = L.control.scale().addTo(map);
 
         // add legend
-        legend = createLegend().addTo(map);
+        legend = createLegend(legend_la).addTo(map);
 
         // add layer caption
         map.on('layeradd', function(e){
@@ -195,7 +209,7 @@
             if(caption !== undefined)
                 map.removeControl(caption);
 
-            caption = createCaption(text[e.layer.getAttribution()]).addTo(map);
+            caption = createCaption(text['la'][e.layer.getAttribution()]).addTo(map);
         });
 
         // remove layer caption
@@ -204,6 +218,72 @@
                 map.removeControl(caption);
         });
     };
+
+
+    /**
+     * Load the Asia map layers and controls
+     */ 
+    var loadMapAsia = function(basemap){
+        if(mapAsia === undefined){
+            mapAsia = new Map();
+            mapAsia.init([113.15917968750001, 19.765977203034804], 4);        
+
+            mapAsia.addLayer({
+                name: 'latin_base', layers: 'terrai-gbif:asia_Terra-I_resampled_fromedit',
+                attribution: 'Terra-i resampled', styles: 'terrai-base' 
+            });
+
+            /*
+            mapAsia.addLayer({
+                name: 'p_andina', layers: 'terrai-gbif:p_andina',
+                attribution: 'Prumnopitys andina', styles: 'terrai-species'
+            });    
+            */                
+        }
+          
+        var baseMaps = {
+            "Asia Base Map": basemap
+        };
+
+        // main map
+
+        // add layer toggle
+        layerToggle = L.control.layers(baseMaps, mapAsia.getOverlays()).addTo(map);
+
+        // add scale
+        scale = L.control.scale().addTo(map);
+
+        // add legend
+        legend = createLegend(legend_asia).addTo(map);
+
+        map.setZoom(4);
+        map.panTo({lon:mapAsia.center[0], lat:mapAsia.center[1]});
+        createDescriptions('asia');
+    };
+
+
+    var loadMapLatin = function(basemap){        
+        var baseMaps = {
+            "Latin America Base Map": basemap
+        };
+
+        // main map
+        map.se
+
+        // add layer toggle
+        layerToggle = L.control.layers(baseMaps, mapLatin.getOverlays()).addTo(map);
+
+        // add scale
+        scale = L.control.scale().addTo(map);
+
+        // add legend
+        legend = createLegend(legend_la).addTo(map);
+
+        map.panTo({lon:mapLatin.center[1], lat:mapLatin.center[0]});
+        createDescriptions('la');
+    };
+
+
 
     window.onload = function(){
         // set window fullscreen height
@@ -215,14 +295,18 @@
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         });
 
-        initLatinAmerica(basemap);
-        createDescriptions();
+        initMap(basemap);
+        loadDescriptions();
     };
 
 </script>
 
-
-<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> 
+    <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js"></script>
+    
   </body>
 </html>
