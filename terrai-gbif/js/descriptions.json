@@ -2,7 +2,7 @@
     "la": {
         "Terra-i resampled": {
             "label": "Terra-i resampled",
-            "description": "This layer is the Terra-I (http://www.terra-i.org/terra-i.html) detection of deforestation events for Asia. The raster is a binary valued layer, wherein 0 is no detection of a deforestation event, while 1 corresponds to a deforestation event. This layer is refreshed once in every 15 days, thereby providing near real time information of deforestation events."
+            "description": "This layer is the Terra-I (http://www.terra-i.org/terra-i.html) detection of deforestation events for South America. The raster is a binary valued layer, wherein 0 is no detection of a deforestation event, while 1 corresponds to a deforestation event. This layer is refreshed once in every 15 days, thereby providing near real time information of deforestation events."
         },
         "Pilgerodendron uviferum": {
             "label": "Pilgerodendron uviferum",
@@ -54,7 +54,7 @@
     "captions": {
         "Terra-i resampled": {
             "label": "Terra-i resampled",
-            "description": "This layer is the Terra-I (http://www.terra-i.org/terra-i.html) detection of deforestation events for Asia. The raster is a binary valued layer, wherein 0 is no detection of a deforestation event, while 1 corresponds to a deforestation event. This layer is refreshed once in every 15 days, thereby providing near real time information of deforestation events."
+            "description": "This layer is the Terra-I (http://www.terra-i.org/terra-i.html) detection of deforestation events for South America. The raster is a binary valued layer, wherein 0 is no detection of a deforestation event, while 1 corresponds to a deforestation event. This layer is refreshed once in every 15 days, thereby providing near real time information of deforestation events."
         },
         "Pilgerodendron uviferum": {
             "label": "Pilgerodendron uviferum",

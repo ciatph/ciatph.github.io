@@ -30,7 +30,7 @@
         <a class="py-2" href="#">
           <img src="images/logo/ciat-icon-48.png" width="30" height="30"/>
         </a> &nbsp; &nbsp;  &nbsp; 
-        <a class="py-2 d-none d-md-inline-block" href="#" onclick="toggleMap('la')">Latin America</a> &nbsp; &nbsp;  &nbsp;
+        <a class="py-2 d-none d-md-inline-block" href="#" onclick="toggleMap('la')">South America</a> &nbsp; &nbsp;  &nbsp;
         <a class="py-2 d-none d-md-inline-block" href="#" onclick="toggleMap('asia')">Asia</a>
 
       </div>
@@ -39,7 +39,7 @@
     <div id="mapid"></div>
 
       <div class="container" style="margin-top: 40px">
-        <h1 id="page_header">Latin America</h1>
+        <h1 id="page_header">South America</h1>
 
         <hr>
 
@@ -76,7 +76,7 @@
         $('.row').children().remove();
 
         // header
-        $('#page_header').text((maparea === 'la') ? 'Latin America' : 'Asia');
+        $('#page_header').text((maparea === 'la') ? 'South America' : 'Asia');
 
         // fill with new layer text descriptions
         for(var i in text[maparea]){
@@ -128,7 +128,7 @@
      */ 
     var activateMap = function(submap){
         var baseMaps = {
-            "Latin America Base Map": basemap
+            "South America Base Map": basemap
         };
 
         // add layer toggle
@@ -182,7 +182,7 @@
         });           
         
         var baseMaps = {
-            "Latin America Base Map": basemap
+            "South America Base Map": basemap
         };
 
         // main map
@@ -276,7 +276,7 @@
 
     var loadMapLatin = function(basemap){        
         var baseMaps = {
-            "Latin America Base Map": basemap
+            "South America Base Map": basemap
         };
 
         // main map
@@ -316,7 +316,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> 
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
     <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.min.js"></script>
     
