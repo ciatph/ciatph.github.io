@@ -361,12 +361,16 @@ Main.prototype.toggleMap = function(maparea){
         if(Main.mapSouthAmerica !== undefined){
             this.removeLayers(this.mapSouthAmerica.layers);
             this.loadMapAsia(this.basemap);
+            $("#map_sa").removeClass("active");
+            $("#map_asia").addClass("active");
         }
     }
     else if(maparea === 'la'){
         if(Main.mapAsia !== undefined){
             this.removeLayers(this.mapAsia.layers);
             this.loadMapSouthAmerica (this.basemap);
+            $("#map_sa").addClass("active");
+            $("#map_asia").removeClass("active");            
         }
     }
 };

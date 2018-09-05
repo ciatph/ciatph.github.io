@@ -32,6 +32,10 @@
   margin-left: 10px;
 }
 
+.active {
+  border-bottom: 4px solid #fff;
+  margin-bottom: 0px;
+}
 
 /*
  * utils
