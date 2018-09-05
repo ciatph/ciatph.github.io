@@ -1,0 +1,28 @@
+{
+  "name": "terrai-gbif",
+  "version": "1.0.0",
+  "description": "A data visualization tool developed for the 2018 Ebbe Nielsen Challenge that overlays generated GBIF species data over Terra-i's deforestation information for closer look-up and information.",
+  "main": "index.js",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ciatph/terrai-gbif.git"
+  },
+  "keywords": [
+    "terrai",
+    "gbif",
+    "ciat"
+  ],
+  "author": "ciatph",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ciatph/terrai-gbif/issues"
+  },
+  "homepage": "https://github.com/ciatph/terrai-gbif#readme"
+}

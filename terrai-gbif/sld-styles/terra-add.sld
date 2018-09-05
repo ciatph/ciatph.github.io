@@ -5,7 +5,7 @@
             <sld:FeatureTypeConstraint/>
         </sld:LayerFeatureConstraints>
         <sld:UserStyle>
-            <sld:Name>terrai-species</sld:Name>
+            <sld:Name>terra-add</sld:Name>
             <sld:Title/>
             <sld:FeatureTypeStyle>
                 <sld:Name/>
@@ -16,8 +16,9 @@
                         </sld:Geometry>
                         <sld:Opacity>1</sld:Opacity>
                         <sld:ColorMap>
-                            <sld:ColorMapEntry color="#fbff00" label="0" opacity="0.0" quantity="0"/>
+                            <sld:ColorMapEntry color="#fbff00" label="0" opacity="1.0" quantity="0"/>
                             <sld:ColorMapEntry color="#00ff00" label="1" opacity="1.0" quantity="1"/>
+                            <sld:ColorMapEntry color="#2000ff" label="2" opacity="1.0" quantity="2"/>
                         </sld:ColorMap>
                     </sld:RasterSymbolizer>
                 </sld:Rule>
