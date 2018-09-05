@@ -39,7 +39,7 @@
 
     <div id="mapid"></div>
 
-      <div class="container" style="margin-top: 40px">
+    <div class="container" style="margin-top: 40px">
         <h1 id="page_header">South America</h1>
 
         <hr>
@@ -51,7 +51,7 @@
 
         <hr><br>
 
-      </div> <!-- /container -->
+    </div> <!-- /container -->
 
 <script>
     var map;
@@ -213,11 +213,8 @@
                 map.removeControl(caption);
 
             // create legend for layer
-            if(e.layer.getAttribution() !== 'Terra-i resampled'){
-                legend[e.layer.getAttribution()] = createLegend(e.layer.getAttribution(),
+            legend[e.layer.getAttribution()] = createLegend(e.layer.getAttribution(),
                     (Object.keys(legend).length >= 3) ? 'bottomright' : 'bottomleft').addTo(map);
-            }
-                
 
             caption = createCaption(text['captions'][e.layer.getAttribution()]).addTo(map);
         });

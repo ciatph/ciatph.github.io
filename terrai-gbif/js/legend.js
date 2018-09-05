@@ -38,7 +38,8 @@ var createLegend = function(cats, position){
             if((cats.indexOf("add") === -1)){
                 // Display legends for 0 and 1 only. Make 0's background transparent
                 if(i < grades.length-1){
-                    labels.push('<i style="background:' + (i === 0 ? 'none' : grades_colors[i]) + '"></i> ' + grades[i]);
+                    labels.push('<i style="background:' + (i === 0 ? 'none' : 
+                        (cats.indexOf("resampled") >= 0) ? '#fc8d59' : grades_colors[i]) + '"></i> ' + grades[i]);
                 }
             }
             else{

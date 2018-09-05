@@ -4,6 +4,10 @@
  * @ciatph 20180903
  */
 
+const SETTINGS = {
+    ONLINE: true
+};
+
 var Map = function(){
     // online accessible geoserver
     this.url_online = 'http://terrai-gbif.azurewebsites.net';
@@ -28,7 +32,13 @@ var Map = function(){
  * @param {Flag if tiles should be loaded from local geoserver} isLocal 
  */
 Map.prototype.init = function(center, zoom, isLocal){
-    this.baseUrl = (isLocal !== undefined && isLocal) ? this.url_local : this.url_online;
+    if(isLocal !== undefined){
+        this.baseUrl = (isLocal) ? this.url_local : this.url_online;
+    }
+    else{
+        this.baseUrl = (SETTINGS.ONLINE) ? this.url_online : this.url_local;
+    }
+
     this.center = center;
     this.zoom = zoom;
 };
