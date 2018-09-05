@@ -55,7 +55,7 @@ var Main = function(basemap){
  */ 
 Main.prototype.createDescriptions = function(maparea){
     // remove all descriptions
-    $('.row').children().remove();
+    $('.description').children().remove();
 
     // header
     $('#page_header').text((maparea === 'la') ? 'South America' : 'Asia');
@@ -70,7 +70,7 @@ Main.prototype.createDescriptions = function(maparea){
         var p = $('<p>');
         p.text(this.text[maparea][i].description);
         note.append(p);  
-        $('.row').append(note);                  
+        $('.description').append(note);                  
     }  
 };
 
