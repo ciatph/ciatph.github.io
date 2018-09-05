@@ -380,7 +380,8 @@ Main.prototype.toggleMap = function(maparea){
 window.onload = function(){
     // set window fullscreen height
     var mapDom = document.getElementById('mapid');
-    mapDom.style.height = window.innerHeight/1.3 + 'px';
+    mapDom.style.height = (window.innerHeight - 75) + 'px';
+    //mapDom.style.height = window.innerHeight/1.3 + 'px';
 
     // Initialize the main maps controller using the OpenStreetMap basemap as default layer
     window.Main = new Main(L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {

@@ -20,18 +20,30 @@
 <body>
 
     <!-- navigation bar -->
-    <nav class="site-header sticky-top py-1">
+    <nav class="navbar site-header sticky-top py-1 navbar-expand-lg navbar-dark">
         <div class="container d-flex flex-column flex-md-row justify-content">
             <a class="py-2" href="#">
                 <img src="images/logo/ciat-icon-48.png" width="30" height="30"/>
-            </a> &nbsp; &nbsp;  &nbsp; 
-            <a class="py-2 d-none d-md-inline-block" href="#" onclick="Main.toggleMap('la')">South America</a> &nbsp; &nbsp;  &nbsp;
-            <a class="py-2 d-none d-md-inline-block" href="#" onclick="Main.toggleMap('asia')">Asia</a> &nbsp; &nbsp;  &nbsp;
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div style="float:right; font-size: 12px; margin-top:3px;">
-            <a class="py-2 d-none d-md-inline-block" href="https://figshare.com/s/0b556b9d4c4a5d6f0e9c">FigShare Poster</a> &nbsp; &nbsp; 
-            <a class="py-2 d-none d-md-inline-block" href="https://github.com/ciatph/terrai-gbif">GitHub Repository</a>
-        </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#" onclick="Main.toggleMap('la')">South America</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="Main.toggleMap('asia')">Asia</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div style="float:right; font-size: 12px; margin-top:3px;">
+                <a class="py-2 d-none d-md-inline-block" href="https://figshare.com/s/0b556b9d4c4a5d6f0e9c">FigShare Poster</a> &nbsp; &nbsp; 
+                <a class="py-2 d-none d-md-inline-block" href="https://github.com/ciatph/terrai-gbif">GitHub Repository</a>
+            </div>
     
       </div>
     </nav>

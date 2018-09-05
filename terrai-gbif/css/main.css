@@ -11,13 +11,25 @@
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
 }
+
+.navbar-nav .active {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
 .site-header a {
   color: #999;
   transition: ease-in-out color .15s;
+  border-bottom-color: #fff;
 }
+
 .site-header a:hover {
   color: #fff;
   text-decoration: none;
+}
+
+#navbarSupportedContent {
+  margin-left: 10px;
 }
 
 
