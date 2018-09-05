@@ -30,7 +30,7 @@ var Main = function(basemap){
     this.basemap = basemap;
     // leafletjs raster map layers for South America
     this.mapSouthAmerica;
-    // leafletjs raster map layers for Asia 
+    // leafletjs raster map layers for Asia     
     this.mapAsia;
     // leafletjs legends control object
     this.legend = {};
@@ -249,6 +249,11 @@ Main.prototype.initMain = function(){
             delete that.legend[e.layer.getAttribution()];
         }
     });
+
+    // display coordinates on mousehover
+    this.map.on('mousemove', function(e){
+        $('.ctrl_coordinates').html(JSON.stringify(e.latlng.lat) + ", " + JSON.stringify(e.latlng.lng));   
+    });
 };
 
 
@@ -299,7 +304,7 @@ Main.prototype.createLegend = function(cats, position){
     var pos = (position !== undefined) ? position : 'bottomleft';
     var legend = L.control({position: pos});
 
-    legend.onAdd = function (map) {
+    legend.onAdd = function () {
 		var div = L.DomUtil.create('div', 'info legend'),
 			grades = [0, 1, 2],
             labels = ['<span id="legend_title"><b>' + cats + '</b></span>'];
@@ -326,6 +331,25 @@ Main.prototype.createLegend = function(cats, position){
 };   
 
 
+
+/**
+ * Prints a legend-like text caption for the selected layer
+ * @param {JSON object containing layer information. Format: {label:"", description:""}} caption 
+ */
+Main.prototype.createCaption = function(caption){
+    var holder = L.control({position: 'topleft'});
+    holder.onAdd = function(){
+        var div = L.DomUtil.create('div', 'info-caption');
+        div.innerHTML = '<h4>' + caption.label + '</h4>' + caption.description;
+        div.addEventListener('click', function(e){
+            console.log('i was clicked');
+        });
+        return div;
+    }
+    return holder;
+}
+
+
 /**
  * Initialize the loading of a map's layers
  * @param {Name of map to load: 'asia' or 'la'} maparea 
@@ -348,22 +372,6 @@ Main.prototype.toggleMap = function(maparea){
 };
 
 
-/**
- * Prints a legend-like text caption for the selected layer
- * @param {JSON object containing layer information. Format: {label:"", description:""}} caption 
- */
-Main.prototype.createCaption = function(caption){
-    var holder = L.control({position: 'topleft'});
-    holder.onAdd = function(map){
-        var div = L.DomUtil.create('div', 'info-caption');
-        div.innerHTML = '<h4>' + caption.label + '</h4>' + caption.description;
-        div.addEventListener('click', function(e){
-            console.log('i was clicked');
-        });
-        return div;
-    }
-    return holder;
-}
 
 
 /**
@@ -382,4 +390,16 @@ window.onload = function(){
     Main.initializeMaps();
     Main.initMain();
     Main.loadDescriptions('js/descriptions.json');
+
+    $(".ctrl_coordinates").html(Main.mapSouthAmerica.center[0] + ', ' + Main.mapSouthAmerica.center[1]);
+
+    var legend = L.control({position: 'bottomright'});
+
+    // print coordinates
+    legend.onAdd = function () {
+		var div = L.DomUtil.create('div', 'info legend ctrl_coordinates');
+		div.innerHTML = Main.mapSouthAmerica.center[0] + ', ' + Main.mapSouthAmerica.center[1];
+		return div;
+    };
+    legend.addTo(Main.map);
 };

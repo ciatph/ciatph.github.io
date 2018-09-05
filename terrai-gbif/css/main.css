@@ -79,3 +79,35 @@ html, body, #mapid {
 
 .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
 .legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; border:1px solid #555; }
+
+.ctrl_coordinates {
+  font-size: 12px;
+}
+
+footer.page-footer {
+  background: #222;
+  border-top: 4px solid #80ff80; }
+  footer.page-footer .about {
+  margin: 0 auto;
+  margin-top: 40px;
+  max-width: 1170px;
+  text-align: center; }
+  footer.page-footer .about p {
+  font-size: 13px;
+  color: #999;
+  margin-top: 30px; }
+  footer.page-footer a {
+  color: #aaa;
+  padding: 2px 0; }
+  footer.page-footer a:hover {
+  color: #80ff80; }
+  footer.page-footer .copyright {
+  margin-top: 15px;
+  background: #111;
+  padding: 7px 0;
+  color: #999; }
+  footer.page-footer .copyright p {
+  margin: 0;
+  padding: 0; }
+
+  /* 80ff80 */
