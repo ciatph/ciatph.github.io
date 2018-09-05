@@ -16,30 +16,30 @@ Figshare [link](https://figshare.com/s/0b556b9d4c4a5d6f0e9c)
 
 ### Prerequisites
 
-1. Raster (GeoTiff) files of species and deforestation generated from the modeling process and Terra-i's.
-2. NodeJS
-3. A stable internet connection (for fetching the generated rasters online).
-	- The raster layers can be accessed on a GeoServer instance hosted on [http://terrai-gbif.azurewebsites.net/](http://terrai-gbif.azurewebsites.net/).
-	- The WMS and list of available rasters can be accessed by web mapping frameworks through the a `GetCapabilities` request:
+1. Raster (GeoTiff) files of species and deforestation generated from the modeling process and Terra-i.
+2. NodeJS installed in your machine.
+3. A stable internet connection for fetching the hosted rasters online.
+	- The raster layers can be accessed from a GeoServer instance hosted on [http://terrai-gbif.azurewebsites.net/](http://terrai-gbif.azurewebsites.net/).
+	- The WMS and list of available rasters can be accessed by web mapping frameworks such as leafletJS through the a `GetCapabilities` request from GeoServer:
 	  `http://terrai-gbif.azurewebsites.net/geoserver/wcs?SERVICE=WCS&REQUEST=GetCapabilities&VERSION=2.0.1`
 
 #### Optional Prerequisites
-1. A locally-installed or online [GeoServer](http://geoserver.org/) server on which to host and serve the rasters as a Web Map Service (WMS), if you will want to run the map service server itself in your local PC. For more information, see GeoServer's [installation](http://docs.geoserver.org/stable/en/user/installation/win_installer.html) documentation.
+1. A locally-installed or online [GeoServer](http://geoserver.org/) on which to host and serve the rasters as a Web Map Service (WMS), if you will want to run the map server and WMS itself in your local PC. For more information, see GeoServer's [installation](http://docs.geoserver.org/stable/en/user/installation/win_installer.html) documentation.
 2. Apply the GeoServer styles from `sld-styles` to the generated rasters.
 2. Change the following codes from `js/map.js`to enable reading rasters from the local GeoServer:
-3. 
+
 		const SETTINGS = {
 		    // flag to use the online or local maps GeoServer
 		    ONLINE: true  // CHANGE true TO false
 		};
 
 
-### Local Website Installation (Running the website from your PC)
+### Local Website Installation (Running this website from your PC)
 
 1. Clone this repository into your desktop.
 2. Navigate inside the cloned directory using the command line, then run `npm install`
 3. Using the command line, run `http-server`
-4. `Ctrl + Click` the link that will be generated.
+4. Copy any of the links that will be generated and paste it in your browser.
 
 <br>
 
