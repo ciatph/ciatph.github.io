@@ -1,10 +1,11 @@
 /**
- * A helper class for structuring the leafletJS maps.
+ * A helper class for structuring and managing leafletJS map layers
  * Dependencies: leaflet.js at https://leafletjs.com/
  * @ciatph 20180903
  */
 
 const SETTINGS = {
+    // flag to use the online or local maps GeoServer
     ONLINE: true
 };
 
