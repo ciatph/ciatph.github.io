@@ -42,9 +42,10 @@ var Main = function(basemap){
     this.caption;    
     // JS object container for layer descriptions
     this.text;        
-
     // legends
     this.legends_list = {};
+    // loading layers spinner
+    this.spinner;
 };
 
 
@@ -237,6 +238,9 @@ Main.prototype.initMain = function(){
 
         // display the layer's caption
         that.caption = that.createCaption(that.text['captions'][e.layer.getAttribution()]).addTo(that.map);
+
+        // display the layer loading spinner
+        that.spinner.show();
     });
 
     // remove layer caption
@@ -377,7 +381,6 @@ Main.prototype.toggleMap = function(maparea){
 
 
 
-
 /**
  * Main program start
  */
@@ -407,4 +410,8 @@ window.onload = function(){
 		return div;
     };
     legend.addTo(Main.map);
+
+    // Initialize the loading indicator space
+     Main.spinner = $('body').loadingIndicator().data("loadingIndicator");
+     Main.spinner.hide();
 };

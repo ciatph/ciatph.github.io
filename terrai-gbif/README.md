@@ -72,12 +72,12 @@ The WMS and list of available rasters can be accessed by web mapping frameworks 
 
 ### Embedding the Matomo Website analytics Widget
 
-The website uses a self-hosted [**matomo**](https://matomo.org/) instance, an open-source analytics platform that have options for paid versions. d ata analytics can be accessed by embedding the following iframe into a website's body:
+The website uses a self-hosted [**matomo**](https://matomo.org/) instance running on a *free tier* [000webhost](https://www.000webhost.com/) account. Matomo is an open-source analytics platform that have options for paid versions. Data analytics can be accessed by embedding the following iframe into a website's body:
 
 
 	<div id="widgetIframe"><iframe width="100%" height="750" src="https://ciatph.000webhostapp.com/analytics/index.php?module=Widgetize&action=iframe&containerId=VisitOverviewWithGraph&widget=1&moduleToWidgetize=CoreHome&actionToWidgetize=renderWidgetContainer&idSite=2&period=day&date=2018-09-10&disableLink=1&widget=1&updated=1" scrolling="no" frameborder="0" marginheight="0" marginwidth="0"></iframe></div>
 
-An in-depth tutorial, installation and usage for Matomo can be read on from [here](). 
+The self-hosted instance can be accessed by approved at [https://ciatph.000webhostapp.com/analytics](https://ciatph.000webhostapp.com/analytics). An in-depth tutorial, installation and usage guide for Matomo can be read from [here](https://github.com/ciatph/pagemetrics). 
 
 
 <br>

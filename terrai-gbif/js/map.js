@@ -58,6 +58,12 @@ Map.prototype.addLayer = function(sublayers){
         styles: sublayers.styles
     });
 
+    // Listen for the event when all tiles have been loaded and drawn on screen
+    this.layers[sublayers.name].on('load', function(){
+        console.log("LAYER LOADED!");
+        Main.spinner.hide();
+    });
+
     // Set the map overlays
     this.overlays[sublayers.attribution] = this.layers[sublayers.name];
 };
