@@ -412,6 +412,6 @@ window.onload = function(){
     legend.addTo(Main.map);
 
     // Initialize the loading indicator space
-     Main.spinner = $('body').loadingIndicator().data("loadingIndicator");
+     Main.spinner = $('#mapid').loadingIndicator().data("loadingIndicator");
      Main.spinner.hide();
 };
