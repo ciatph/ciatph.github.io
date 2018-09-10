@@ -70,7 +70,17 @@ The WMS and list of available rasters can be accessed by web mapping frameworks 
 3. Using the command line, run `http-server`
 4. Copy any of the links that will be generated and paste it in your browser.
 
+### Embedding the Matomo Website analytics Widget
+
+The website uses a self-hosted [**matomo**](https://matomo.org/) instance, an open-source analytics platform that have options for paid versions. d ata analytics can be accessed by embedding the following iframe into a website's body:
+
+
+	<div id="widgetIframe"><iframe width="100%" height="750" src="https://ciatph.000webhostapp.com/analytics/index.php?module=Widgetize&action=iframe&containerId=VisitOverviewWithGraph&widget=1&moduleToWidgetize=CoreHome&actionToWidgetize=renderWidgetContainer&idSite=2&period=day&date=2018-09-10&disableLink=1&widget=1&updated=1" scrolling="no" frameborder="0" marginheight="0" marginwidth="0"></iframe></div>
+
+An in-depth tutorial, installation and usage for Matomo can be read on from [here](). 
+
+
 <br>
 
 **Date Created:** 20180905<br>
-**Date Modified:** 20180905 
+**Date Modified:** 20180910
