@@ -61,7 +61,11 @@ Map.prototype.addLayer = function(sublayers){
     // Listen for the event when all tiles have been loaded and drawn on screen
     this.layers[sublayers.name].on('load', function(){
         console.log("LAYER LOADED!");
+        // Hide the loading spinner
         Main.spinner.hide();
+
+        // Hide/remove the loading message notification
+        PNotify.removeAll();
     });
 
     // Set the map overlays

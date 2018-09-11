@@ -46,6 +46,12 @@ var Main = function(basemap){
     this.legends_list = {};
     // loading layers spinner
     this.spinner;
+    // message notification handler
+    this.notification = {
+        object: null,
+        title: 'Please wait while layer loads',
+        message: 'This may take a while...'
+    };
 };
 
 
@@ -241,6 +247,15 @@ Main.prototype.initMain = function(){
 
         // display the layer loading spinner
         that.spinner.show();
+
+        // display a message
+        that.notification.object = new PNotify({
+            title: that.notification.title,
+            text: that.notification.message,
+            min_height: '12px',
+            styling: 'bootstrap3',
+            delay: '180000'
+        });
     });
 
     // remove layer caption
