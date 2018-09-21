@@ -355,8 +355,8 @@ Main.prototype.createLegend = function(cats, position){
  * Prints a legend-like text caption for the selected layer
  * @param {JSON object containing layer information. Format: {label:"", description:""}} caption 
  */
-Main.prototype.createCaption = function(caption){
-    var holder = L.control({position: 'topleft'});
+Main.prototype.createCaption = function(caption, position){
+    var holder = L.control({position: (position != null) ? position : 'topleft'});
     holder.onAdd = function(){
         var div = L.DomUtil.create('div', 'info-caption');
         div.innerHTML = '<h4>' + caption.label + '</h4>' + caption.description;
@@ -429,4 +429,7 @@ window.onload = function(){
     // Initialize the loading indicator space
      Main.spinner = $('#mapid').loadingIndicator().data("loadingIndicator");
      Main.spinner.hide();
+
+    // Add a server migration notification
+    $('#messageModal').modal('show');
 };
