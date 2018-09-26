@@ -11,7 +11,7 @@ const SETTINGS = {
 
 var Map = function(){
     // online accessible geoserver
-    this.url_online = 'http://terrai-gbif.azurewebsites.net';
+    this.url_online = 'http://terraigbif-server.azurewebsites.net';
     // locallly-installed geoserver 
     this.url_local = 'http://localhost:8080';
     // final base url to use

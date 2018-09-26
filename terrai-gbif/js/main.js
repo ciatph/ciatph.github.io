@@ -431,5 +431,5 @@ window.onload = function(){
      Main.spinner.hide();
 
     // Add a server migration notification
-    $('#messageModal').modal('show');
+    // $('#messageModal').modal('show');
 };

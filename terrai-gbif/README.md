@@ -28,25 +28,32 @@ Do the following steps if you will want to run the GeoServer map server and WMS 
 
 1. Install [GeoServer](http://geoserver.org/) locally in your machine or in your online server. 
 2. Create a workspace in GeoServer named `terrai-gbif`.
+	- Type the following for the *Namespace URI:*  <br>`<PROJECT_NAME>.azurewebsites.net/geoserver/terrai-gbif`
+	- Check the *Set as Default Workspace* checkbox
 3. Upload GeoServer styles for rasters from `sld-styles`, using their filenames as names for the styles themselves. Use the `terrai-gbif` for workspace.
 	- terrai-base.sld
 	- terrai-species.sld
 	- terra-add.sld
-4. Upload the Geotiff files as **GeoTIFF Data Store**. For more information, see [Creating Geotiff Data Stores](https://geoserver.geo-solutions.it/edu/en/adding_data/add_geotiff.html). NOTE: Rename the geotiff files such that they have no spaces in between before setting as data source. Make sure they are named as follows to be referenced in the same naming convention used as in the website codes (or you can edit them in the website codes from `main.js: initializeMaps()`):
+4. Upload the Geotiff files as **GeoTIFF Data Store**. For more information, see [Creating Geotiff Data Stores](https://geoserver.geo-solutions.it/edu/en/adding_data/add_geotiff.html). 
 
-		asia_Terra-I_resampled_fromedit.tif
-		picea_add.tif
-		picea_asperata.tif
-		taiwania_cryptomerioides.tif
-		taiwania_add.tif
-		latin_terra_I_resamp_fromedit.tif
-		p_andina_add.tif
-		p_andina_add_skype.tif
-		p_salignus_add.tif
-		p_uvi_add.tif
-		pilgerodendron_uviferum.tif
-		podocarpus_salignus.tif
-		prumnopitys_andina.tif
+	 - Upload the GeoTiff files via FTP to <br> `/site/wwwroot/bin/apache-tomcat-8.5.24/webapps/geoserver/data/data/raster/`
+	 - NOTE: Rename the geotiff files such that they have no spaces in between before setting as data source. Make sure they are named as follows to be referenced in the same naming convention used as in the website codes (or you can edit them in the website codes from `main.js: initializeMaps()`):
+
+			(ASIA)
+			asia_Terra-I_resampled_fromedit.tif
+			picea_add.tif
+			picea_asperata.tif
+			taiwania_cryptomerioides.tif
+			taiwania_add.tif
+
+			(SOUTH AMERICA)
+			latin_terra_I_resamp_fromedit.tif
+			p_andina_add.tif
+			p_salignus_add.tif
+			p_uviferum_add.tif
+			pilgerodendron_uviferum.tif 	
+			podocarpus_salignus.tif 
+			prumnopitys_andina.tif => p_andina.tif
 
 5. Change the following lines from `js/map.js`to enable reading rasters from the local GeoServer. Change `ONLINE: true` to `ONLINE: false`:
 
