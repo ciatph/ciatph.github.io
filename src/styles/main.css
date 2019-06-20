@@ -1,0 +1,855 @@
+
+/*--------- social media icons ------------*/
+@import url(https://fonts.googleapis.com/css?family=Lato);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
+
+body{
+    font: 400 15px 'Lucida Sans Regular', 'Lucida Sans',   sans-serif;
+    line-height: 1.8;
+    color: #818181;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+/*--------- HEADER ------------*/
+
+.jumbotron{
+    background-color: #00954c;
+    color: #ffffff;
+    padding: 40px 25px 20px;
+    margin-bottom: 0px;
+    font-family: 'Lucida Sans Regular', 'Lucida Sans',   sans-serif;
+}
+
+.jumbotron h1{  
+    font-size: 100px;
+    font-weight: normal;
+}
+
+.jumbotron h2{
+    color: white;
+    font-weight: normal;
+    margin-top: 0px;
+}
+
+.header-title{
+    color: white;
+    font-weight: normal;
+    margin-top: 0px;
+    padding-top: 0px;
+    text-transform: none; 
+}
+
+.main-title{
+    float: left;
+    padding-left: 25px;
+}
+
+.searchbox{
+    width: 30%;
+    float: right;
+    padding-top: 0px;
+}
+
+.logo-ciat{
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);   
+
+    border-radius: 0 0 10px 10px;
+    -moz-border-radius: 0 0 10px 10px;
+    -webkit-border-radius: 0 0 10px 10px;
+    border: 0px solid #000000;
+    position: absolute;
+}
+
+.divider-gray{
+    background-color: #537979;
+    height: 3px;
+}
+
+.divider-footer{
+    background-color: #00954c;
+    height: 60px;
+    border-top: 2px solid #006622;
+}
+
+.divider-social{
+    background-color: #537979;
+    height: 35px;
+}
+
+.divider-social li a {
+    margin: 3px;
+}
+
+.center {
+    padding: 80px 120px;
+}
+
+
+.container-fluid-custom {
+    padding: 100px 25px;
+}
+
+
+.logo-footer{
+    padding-left: 0px;
+    float: left;
+    margin-right: 20px;
+    width: 30%;
+}
+
+.content-workshop{
+    text-align: left; 
+    margin-top: 30px; 
+    border: 2px solid #00954c; 
+    padding: 20px;    
+}
+
+.content-workshop ul{
+    margin-left: 10px;
+}
+
+.footer-style{
+  background-color: #00954c;
+  color: white;
+  padding-bottom: 100px; 
+  padding-top: 40px; 
+}
+
+.footer-style li a {
+    float: left;
+}
+
+.bg-grey{
+    background-color: #f6f6f6;
+    padding: 60px 50px;
+}
+
+.bg-greylight{
+    background-color: #f6f6f6;
+}
+
+.bg-orange{
+    background-color: orange;
+}
+
+.bg-red{
+    background-color: red;
+}
+
+.bg-yellow{
+    background-color: yellow;
+}
+
+.color-dgreen{
+    color: #00954c;
+}
+
+
+/*-------------- titles, sub headers ---------------*/
+.subtitle-center {
+    text-align: center;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.subtitle {
+    text-align: left;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.subtitle-center h4 {
+    color: #00802b;
+}
+
+.subtitle h4 {
+    color: #00802b;
+}
+
+.subtitle ul {
+    margin: 30px;
+}
+
+
+
+/*-------------- glyph icons ---------------*/
+.glyphicon {
+    position: relative;
+    display: inline-block;
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 0.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+.glyphicon-stop:before { 
+    content: "\e074"; 
+}  
+.glyph-custom .glyphicon {color:#000 !important;}
+
+.glyph-custom li {
+    display: block;
+}
+
+.glyph-custom li:before {
+    /*Using a Bootstrap glyphicon as the bullet point*/
+    content: "\2709";
+    font-family: 'Arial';
+    font-size: 14px;
+    float: left;
+    margin-top: 2px;
+    margin-right: 6px;
+    color: #000;
+}
+
+.glyph-nav{
+    padding-left: 10px;
+}
+
+.glyph-va-veryhigh{
+    background-color: #67000d;
+}
+
+.glyph-va-high{
+    background-color: #d42020;
+}
+
+.glyph-va-moderate{
+    background-color: #fc7050;
+}
+
+.glyph-va-low{
+    background-color: #fdbea5;
+}
+
+.glyph-va-verylow{
+    background-color: #fff5f0;
+}
+
+.logo-small{
+    color: #00954c;
+    font-size: 50px;
+}
+
+.logo{
+    color: #00954c;
+    font-size: 200px;   
+}
+
+.logo-amia{
+    text-align: center; 
+    float: left; 
+    width: parent; 
+    height: parent;
+}
+
+.img-style{
+    padding: 0 0 15px 0;    
+    margin-bottom: 10px;    
+}
+
+
+/*---------- thumnbails for footer --------------*/
+.thumbnail-footer{
+    border: none;
+    padding: 0 0 15px 0;
+    border-radius: 0;
+}
+
+.thumbnail-footer img{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+}
+
+.thumbnail-footer-logo{
+    margin-top: 10px;
+    transition: none;
+    background: transparent;
+}
+
+.thumbnail-footer-logo:hover{
+    box-shadow: 0px 0px 0px rgba(0,0,0, .2);
+}
+
+
+/*---------- thumnbails for maps --------------*/
+.thumbnail-maps{
+    border: none;
+    padding: 0 0 15px 0;
+    border-radius: 0;
+    transition: box-shadow 0.5s;
+    margin-bottom: 20px;
+    line-height: 1.42857143;
+}
+
+.thumbnail-maps img{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+}
+
+.thumbnail-maps:hover {
+    box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+}
+
+.thumbnail-maps-logo{
+    margin-top: 10px;
+    transition: none;
+    background: transparent;
+}
+
+.thumbnail-maps-logo:hover{
+    box-shadow: 0px 0px 0px rgba(0,0,0, .2);
+}
+
+
+
+/*---------- thumnbails for documents --------------*/
+
+.thumbnail-container{
+    border: none;
+    padding: 0 0 15px 0;
+    border-radius: 0;
+    margin-top: 120px;
+    transition: box-shadow 0.5s;
+}
+
+.thumbnail{
+    transition: box-shadow 0.5s;    
+}
+
+.thumbnail:hover {
+    box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+}
+
+.thumbnail-logo{
+    margin-top: 10px;
+    transition: none;
+    background: transparent;
+}
+
+.thumbnail-logo:hover{
+    box-shadow: 0px 0px 0px rgba(0,0,0, .2);
+}
+    
+.panel{
+    border: 1px solid orange;
+    border-radius: 0;
+    transition: box-shadow 0.5s;
+}
+
+.panel-footer .btn:hover {
+    border: 1px solid #00954c;
+    background-color: #fff !important;
+    color: #00954c;
+}
+
+.panel-heading {
+    color: #fff !important;
+    background-color: #00954c !important;
+    padding: 25px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.panel-footer{
+    background-color: #fff !important;
+}
+
+.panel-footer {
+    background-color: #fff !important;
+}
+
+.panel-footer h3 {
+    font-size: 32px;
+}
+
+.panel-footer h4 {
+    color: #aaa;
+    font-size: 14px;
+}
+
+.panel-footer .btn {
+    margin: 15px 0;
+    background-color: #00954c;
+    color: #fff;
+}
+
+
+/* --------- navigation bar -----------------*/
+.navbar-container {
+    background-color: #ccffdd; 
+    border-bottom: 2px solid #d1e0e0; 
+    z-index:9999; 
+    position: relative; 
+    min-height: 50px;
+}
+
+.navbar {
+    margin-bottom: 0;
+    z-index: 9999;
+    border: 0;
+    font-size: 14px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 1px;
+    border-radius: 0;
+    padding: 0;
+    background-color: #ccffdd;
+    align-items: flex-start;
+    min-height: 50px;
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color: #636466 !important;
+    font-family: 'Lucida Sans Regular', 'Lucida Sans', sans-serif;
+    margin-right:10px;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #00954c !important;
+    background-color: #fff !important;
+    font-weight: bold;
+}
+
+.navbar-selected{
+    background-color: #fff;
+    font-weight: bold;
+    color: #636466;
+}
+
+.navbar-toggle{
+    background-color: #9d9fa2;
+}
+
+.dropdown-menu{
+    letter-spacing: 1px;
+    border: 3px solid #009552;
+    right: 0;
+    left: auto;
+}
+
+.affix {
+    top: 0;
+    width: 100%;
+    position: fixed;
+}
+
+.affix + .container-fluid-custom {
+    padding-top: 70px;
+}
+
+.maps-list li{
+    margin-bottom: 50px;
+}
+
+.download-link{
+    font-size: 12px;
+    text-transform: uppercase;
+    padding-top: 10px;
+}
+
+.download-link a{
+    text-decoration: none;
+}
+
+/* --------- footer-----------------*/
+/*
+footer .glyphicon{
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: orange;
+}
+
+.glyphicon.center:before {
+    vertical-align: middle;
+}
+*/
+
+#map{
+    margin-left: -20px;
+}
+
+.map-overlay {
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    position: absolute;
+    width: 20%;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    z-index: 9998;
+}
+
+.map-overlay .map-overlay-inner {
+    background-color: #fff;
+    box-shadow:0 1px 2px rgba(0, 0, 0, 0.20);
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.map-overlay h2 {
+    line-height: 24px;
+    display: block;
+    margin: 0 0 10px;
+}
+
+.map-overlay .legend .bar {
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #FCA107, #7F3121);
+}
+
+.legend {
+    list-style: none;
+    text-align: left;
+}
+
+.footer-style h4{
+    font-family: 'Lucida Sans Regular', 'Lucida Sans',   sans-serif;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: bold;
+}
+
+.footer-style p{
+    font-family: 'Lucida Sans Regular', 'Lucida Sans',   sans-serif;
+    line-height: 100%;
+    font-weight: normal;
+    text-align: left;
+}
+
+h2 {
+    font-family: 'Lucida Sans Regular', 'Lucida Sans',   sans-serif;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #636466;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+h4 {
+    font-family: 'Lucida Sans Regular', 'Lucida Sans',   sans-serif;
+    font-size: 19px;
+    line-height: 1.375em;
+    color: #636466;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+h3{
+    color: #636466;
+}
+
+.footer-style a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.footer-style a:hover{
+    color: #fff;
+    text-decoration: underline
+}
+
+.content-p{
+    font-size: 16px;
+    line-height: 1.375em;
+    color: #636466;
+    font-weight: 0;
+    margin-bottom: 30px;
+}
+
+.content-area-text{
+    text-align: justify;
+}
+
+.content-text{
+    margin-bottom:55px;
+    margin-top:20px;
+}
+
+.spinner-download {
+    display: none;
+}
+
+.spinner-download-active {
+    display: visible;
+}
+
+.slideanim {visibility:hidden;}
+.slide {
+    /* The name of the animation */
+    animation-name: slide;
+    -webkit-animation-name: slide; 
+    /* The duration of the animation */
+    animation-duration: 1s; 
+    -webkit-animation-duration: 1s;
+    /* Make the element visible */
+    visibility: visible; 
+}
+
+
+/* --------- page-----------------*/
+
+/* Go from 0% to 100% opacity (see-through) and specify the percentage from when to slide in the element along the Y-axis */
+@keyframes slide {
+    0% {
+        opacity: 0;
+        transform: translateY(70%);
+    } 
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    } 
+}
+@-webkit-keyframes slide {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(70%);
+    } 
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0%);
+    }
+}
+
+
+/* --------- social media icons -----------------*/
+._12 {
+    font-size: 1.2em;
+}
+._14 {
+    font-size: 1.4em;
+}
+ul {
+    padding: 0;
+    margin: 0;
+}
+.footer-style-social-icons {
+    width: 350px;
+    display:block;
+    margin: 0 auto;
+}
+.social-icon {
+    color: #4c4c4c;
+}
+ul.social-icons {
+    margin-top: 0px;
+}
+.social-icons li {
+    vertical-align: top;
+    display: inline;
+    height: 100px;
+}
+.social-icons a {
+    color: #4c4c4c;
+    text-decoration: none;
+}
+.fa-facebook {
+    padding:10px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: #fff;
+}
+.fa-facebook:hover {
+    color: #fff;
+    background-color: #3d5b99;
+}
+.fa-twitter {
+    padding:10px 12px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: #fff;
+}
+.fa-twitter:hover {
+    background-color: #00aced;
+}
+.fa-rss {
+    padding:10px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: #322f30;
+}
+.fa-rss:hover {
+    background-color: #eb8231;
+}
+.fa-youtube {
+    padding:10px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: #322f30;
+}
+.fa-youtube:hover {
+    background-color: #e64a41;
+}
+.fa-linkedin {
+    padding:10px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: #322f30;
+}
+.fa-linkedin:hover {
+    background-color: #0073a4;
+}
+.fa-google-plus {
+    padding:10px 9px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: #fff;
+}
+.fa-google-plus:hover {
+    background-color: #e25714;
+}
+
+
+/*------- youtube video ------------*/
+.video-youtube{
+    padding-top: -200px;
+}
+
+
+/* this is used with the 'mediaquery.html' page to see media queries in effect. Reference this CSS file on a blank page and then resize the browser window */
+@media screen and (max-width: 1193px) {
+    body {
+        /* background-color: blue; */
+    }
+
+    .jumbotron h1{
+        font-size: 70px;
+    }
+} 
+@media screen and (max-width: 960px) {
+    body {
+        /* background-color: red; */
+    }
+
+    .main-title{
+        float: none;
+    }       
+
+    .jumbotron h1{
+        font-size: 70px;
+    }       
+
+    .jumbotron h2{
+        font-size: 16px;
+    }    
+
+    .searchbox{
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar-brand, .logo-ciat{
+        visibility: hidden;
+    }
+
+    .spacer{
+        display: none;
+    }
+
+    .logo-footer{
+        width: 29%;
+    }
+} 
+@media screen and (max-width: 768px) {
+    body {
+        /* background-color: orange; */
+    }
+
+    .col-sm-4{
+        text-align: center;
+        margin: 25px 0;
+    }
+
+    .jumbotron h2{
+        font-size: 16px;
+    }
+
+    .jumbotron{
+        padding-top: 0px;
+    } 
+
+    .main-title{
+        padding-top: 10px;
+    }
+
+    .divider-gray{
+        background-color: #efeff0;
+        height: 8px;
+    }          
+
+    .navbar-brand, .logo-ciat{
+        visibility: hidden;
+    }
+
+    .spacer{
+        display: none;
+    }
+} 
+@media screen and (max-width: 550px) {
+    body {
+        /* background-color: yellow; */
+    }
+
+    .logo-amia{
+        float: center;
+    }     
+    .main-title{
+        float: none;
+    }    
+    .jumbotron h1{  
+        font-size: 40px;
+        font-weight: normal;
+    }    
+
+    .logo-footer{
+        width: 28%;
+    }    
+} 
+@media screen and (max-width: 320px) {
+    body {
+        /* background-color: green; */
+    }
+} 
+@media screen and (max-width: 373px) {
+    body {
+        /* background-color: gray; */
+    }
+    
+    .logo-amia img{
+        width: 150px;
+    }
+} 

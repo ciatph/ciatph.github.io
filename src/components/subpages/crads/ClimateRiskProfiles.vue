@@ -1,0 +1,53 @@
+<template lang="pug">
+  b-container(fluid class="container-fluid-custom bg-greylight")
+    b-container(class="text-center")
+      h2 Climate Risk Profiles
+      b-breadcrumb(:items="items")
+      br
+      h4 “Climate Risk Profiles define value chains, farming systems and geographic areas which are highly sensitive and exposed to climate factors, and then assess the programmatic interventions and institutional capacity to deliver adaptation options to help farmers cope with climate risks and vulnerabilities.”
+
+      loading-indicator(
+        v-if="thumbnailData === null")
+
+      thumbnails-gallery(
+        v-else
+        :thumbnailData="thumbnailData")
+</template>
+
+<script>
+import LoadingIndicator from '@/components/templates/LoadingIndicator'
+import ThumbnailsGallery from '@/components/templates/ThumbnailsGallery'
+export default {
+  name: 'ClimateRiskProfiles',
+  components: {
+    LoadingIndicator,
+    ThumbnailsGallery
+  },
+  data () {
+    return {
+      thumbnailData: null,
+      items: [
+        {
+          text: 'CRA-DS',
+          to: { name: 'crads' }
+        },
+        {
+          text: 'Climate Risk Profiles',
+          href: '/crp',
+          active: true
+        }
+      ]
+    }
+  },
+
+  created () {
+    this.$http.get('/static/data/thumbnails-sub-crariskprofile.json')
+      .then((result) => {
+        this.thumbnailData = result.data
+      })
+      .catch((error) => {
+        console.log('error! ' + error)
+      })
+  }
+}
+</script>
