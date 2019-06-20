@@ -4,7 +4,7 @@
       h2 Climate Risk Profiles
       b-breadcrumb(:items="items")
       br
-      h4 “Climate Risk Profiles define value chains, farming systems and geographic areas which are highly sensitive and exposed to climate factors, and then assess the programmatic interventions and institutional capacity to deliver adaptation options to help farmers cope with climate risks and vulnerabilities.”
+      h4(class="subtitle-normal") “Climate Risk Profiles define value chains, farming systems and geographic areas which are highly sensitive and exposed to climate factors, and then assess the programmatic interventions and institutional capacity to deliver adaptation options to help farmers cope with climate risks and vulnerabilities.”
 
       loading-indicator(
         v-if="thumbnailData === null")

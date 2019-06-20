@@ -5,7 +5,7 @@
       b-breadcrumb(:items="items")
       br
       div(class="subtitle-center")
-        h4 “Highlight the potential of CRA practices for climate change adaptation and mitigation and present the economic feasibility of adopting CRA.”
+        h4(class="subtitle-normal") “Highlight the potential of CRA practices for climate change adaptation and mitigation and present the economic feasibility of adopting CRA.”
 
       loading-indicator(
         v-if="thumbnailData === null")

@@ -4,7 +4,7 @@
       h2 CRA Country Profile
       b-breadcrumb(:items="items")
       br
-      h4 “Country-wide status of CRA approaches and initiatives, including potential entry points for CRA out-scaling in target agri-fisheries communities.”
+      h4(class="subtitle-normal") “Country-wide status of CRA approaches and initiatives, including potential entry points for CRA out-scaling in target agri-fisheries communities.”
 
       loading-indicator(
         v-if="thumbnailData === null")

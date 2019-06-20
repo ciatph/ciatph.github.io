@@ -2,7 +2,8 @@
   b-container(fluid class="container-fluid-custom bg-greylight")
     b-container(class="text-center")
       h2 Climate Risk and Vulnerability Assessment (CRVA)
-      h4 Downloadable documents of our outputs
+      i
+        h4 This page is under maintenance
 
       loading-indicator(
         v-if="thumbnailData === null")

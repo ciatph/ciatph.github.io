@@ -5,7 +5,7 @@
       b-breadcrumb(:items="items")
       br
       div(class="subtitle-center")
-        h4  “Investment Briefs present a visual comparison of farm scenarios with CRA and without CRA coupled with indicators of profitability and estimates of investment requirements”
+        h4(class="subtitle-normal")  “Investment Briefs present a visual comparison of farm scenarios with CRA and without CRA coupled with indicators of profitability and estimates of investment requirements”
 
       loading-indicator(
         v-if="thumbnailData === null")

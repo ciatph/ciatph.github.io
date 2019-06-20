@@ -150,6 +150,11 @@ body{
 
 
 /*-------------- titles, sub headers ---------------*/
+.subtitle-normal {
+    text-align: center;
+    font-style: italic;
+}
+
 .subtitle-center {
     text-align: center;
     border: 1px solid #d9d9d9;
@@ -168,10 +173,12 @@ body{
 
 .subtitle-center h4 {
     color: #00802b;
+    font-style: italic;
 }
 
-.subtitle h4 {
+.subtitle-normal h4 {
     color: #00802b;
+    font-style: italic;
 }
 
 .subtitle ul {

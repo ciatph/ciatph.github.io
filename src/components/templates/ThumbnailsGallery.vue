@@ -107,8 +107,7 @@ export default {
     },
 
     isPDF (url) {
-      let index = url.indexOf('?alt')
-      return (url.substring(index - 3, index) === 'pdf' || url[0] === '#')
+      return ((url.match(/\.pdf/g) !== undefined) || url[0] === '#')
     }
   },
 

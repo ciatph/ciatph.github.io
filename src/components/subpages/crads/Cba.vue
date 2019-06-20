@@ -4,7 +4,7 @@
       h2 Cost-Benefit Analysis (CBA) of CRA Practices
       b-breadcrumb(:items="items")
       br
-      h4 “CBA to help analyze and recommend prioritized CRA options for evidence-informed investment planning and decision-making by key stakeholders.”
+      h4(class="subtitle-normal") “CBA to help analyze and recommend prioritized CRA options for evidence-informed investment planning and decision-making by key stakeholders.”
 
       loading-indicator(
         v-if="thumbnailData === null")

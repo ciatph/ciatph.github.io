@@ -5,7 +5,7 @@
       b-breadcrumb(:items="items")
       br
       div(class="subtitle")
-        h4 Highlight the potential of CRA practices for climate change adaptation and mitigation and outline the benefits of adopting CRA practices over conventional non-CRA measures. Technical Briefs present information on:
+        h4(style="font-style: italic; color: #00802b;") Highlight the potential of CRA practices for climate change adaptation and mitigation and outline the benefits of adopting CRA practices over conventional non-CRA measures. Technical Briefs present information on:
         ul
           li Initial investment and material requirements, estimated annual production costs and indicators of profitability and feasibility
           li Targeted recommendations and evidence-based reasons to invest, along with site-specific recommendations such as timing of planting, suitable areas, and favourable conditions for CRA adoption.
