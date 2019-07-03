@@ -3,6 +3,8 @@
     b-container(class="text-center")
       h2 AMIA M&E Strategy Paper
       b-breadcrumb(:items="items")
+      br
+      h4(class="subtitle-normal") “A comprehensive guide in the systematization of the collection and use of information towards building an evidence base on climate resilience outcomes and the pathways through which these are achieved.”
 
       loading-indicator(
         v-if="thumbnailData === null")

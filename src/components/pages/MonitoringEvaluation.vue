@@ -2,8 +2,7 @@
   b-container(fluid class="container-fluid-custom bg-greylight")
     b-container(class="text-center")
       h2 Monitoring and Evaluation: Systematizing Outcome Evidence for Climate-Resilient Agri-fisheries Communities, Services, and Institutions
-      i
-        h4 This page is under maintenance
+      h4(class="subtitle-normal") “AMIA envisions to achieve outcomes at scale by promoting the proven CRA practices and enhancing access to support services. An M&E system can help in decision-making, learning, and scaling of the intervention like CRA.”
 
       loading-indicator(
         v-if="thumbnailData === null")
