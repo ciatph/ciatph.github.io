@@ -18,6 +18,7 @@
 <script>
 import LoadingIndicator from '@/components/templates/LoadingIndicator'
 import ThumbnailsGallery from '@/components/templates/ThumbnailsGallery'
+import {iconData} from '@/defines/iconmaps/thumbnails-sub-cracba-investment1'
 export default {
   name: 'InvestmentBriefsOne',
 
@@ -47,13 +48,7 @@ export default {
   },
 
   created () {
-    this.$http.get('/static/data/thumbnails-sub-cracba-investment1.json')
-      .then((result) => {
-        this.thumbnailData = result.data
-      })
-      .catch((error) => {
-        console.log('error! ' + error)
-      })
+    this.thumbnailData = iconData
   }
 }
 </script>

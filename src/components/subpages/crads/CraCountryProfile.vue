@@ -11,12 +11,15 @@
 
       thumbnails-gallery(
         v-else
-        :thumbnailData="thumbnailData")
+        :thumbnailData="thumbnailData"
+        :firebaseStoragePath="storagePath")
 </template>
 
 <script>
 import LoadingIndicator from '@/components/templates/LoadingIndicator'
 import ThumbnailsGallery from '@/components/templates/ThumbnailsGallery'
+import {iconData} from '@/defines/iconmaps/thumbnails-sub-craprofile'
+
 export default {
   name: 'CraCountryProfile',
   components: {
@@ -26,6 +29,7 @@ export default {
   data () {
     return {
       thumbnailData: null,
+      storagePath: 'yula/CRA Investment Briefs',
       items: [
         {
           text: 'CRA-DS',
@@ -41,13 +45,11 @@ export default {
   },
 
   created () {
-    this.$http.get('/static/data/thumbnails-sub-craprofile.json')
-      .then((result) => {
-        this.thumbnailData = result.data
-      })
-      .catch((error) => {
-        console.log('error! ' + error)
-      })
+    this.thumbnailData = iconData
+  },
+
+  methods: {
+
   }
 }
 </script>

@@ -15,6 +15,7 @@
 <script>
 import LoadingIndicator from '@/components/templates/LoadingIndicator'
 import ThumbnailsGallery from '@/components/templates/ThumbnailsGallery'
+import {iconData} from '@/defines/iconmaps/thumbnails-me'
 export default {
   name: 'MonitoringEvaluation',
   components: {
@@ -28,13 +29,7 @@ export default {
   },
 
   created () {
-    this.$http.get('/static/data/thumbnails-me.json')
-      .then((result) => {
-        this.thumbnailData = result.data
-      })
-      .catch((error) => {
-        console.log('error! ' + error)
-      })
+    this.thumbnailData = iconData
   }
 }
 </script>

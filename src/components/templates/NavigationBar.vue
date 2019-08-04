@@ -56,6 +56,7 @@
 
 <script>
 import HeaderNav from '@/components/templates/HeaderNav'
+import {menuData} from '@/defines/menumaps/links-mainmenu'
 
 export default {
   name: 'NavigationBar',
@@ -90,13 +91,7 @@ export default {
 
   created () {
     window.addEventListener('scroll', this.handleScroll)
-    this.$http.get('/static/data/links-mainmenu.json')
-      .then((result) => {
-        this.mainMenuData = result.data
-      })
-      .catch((error) => {
-        console.log('error! ' + error)
-      })
+    this.mainMenuData = menuData
   },
 
   destroyed () {

@@ -18,8 +18,11 @@
 <script>
 import LoadingIndicator from '@/components/templates/LoadingIndicator'
 import ThumbnailsGallery from '@/components/templates/ThumbnailsGallery'
+import firebaseMixin from '@/components/mixins/firebaseMixin'
+import {iconData} from '@/defines/iconmaps/thumbnails-sub-cracba-investment2'
 export default {
   name: 'InvestmentBriefsTwo',
+  mixins: [firebaseMixin],
 
   components: {
     ThumbnailsGallery,
@@ -29,6 +32,7 @@ export default {
   data () {
     return {
       thumbnailData: null,
+      storagePath: 'yula/CRA Investment Briefs',
       items: [
         {
           text: 'CRA-DS',
@@ -46,14 +50,13 @@ export default {
     }
   },
 
-  created () {
-    this.$http.get('/static/data/thumbnails-sub-cracba-investment2.json')
-      .then((result) => {
-        this.thumbnailData = result.data
-      })
-      .catch((error) => {
-        console.log('error! ' + error)
-      })
+  async created () {
+    try {
+      let links = await this.mFirebaseGetURLS(this.storagePath)
+      this.thumbnailData = await this.mFirebaseUpdateDownloadLink(iconData, links)
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 </script>

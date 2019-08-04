@@ -17,6 +17,7 @@
 <script>
 import LoadingIndicator from '@/components/templates/LoadingIndicator'
 import ThumbnailsGallery from '@/components/templates/ThumbnailsGallery'
+import {iconData} from '@/defines/iconmaps/thumbnails-sub-cracba'
 export default {
   name: 'Cba',
   components: {
@@ -41,13 +42,7 @@ export default {
   },
 
   created () {
-    this.$http.get('/static/data/thumbnails-sub-cracba.json')
-      .then((result) => {
-        this.thumbnailData = result.data
-      })
-      .catch((error) => {
-        console.log('error! ' + error)
-      })
+    this.thumbnailData = iconData
   }
 }
 </script>
