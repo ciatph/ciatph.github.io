@@ -3,7 +3,7 @@
     b-container(class="text-center")
       h2 Climate Risk and Vulnerability Assessment (CRVA)
       i
-        h4 This page is under maintenance
+        h4(class="subtitle-normal") “Climate risks pose a major threat to sustaining the productivity of the agri-fisheries sector. CRVA aims to support regional targeting and planning for AMIA. This also addresses the inherent spatial and temporal variabilities within and across AMIA sites.”
 
       loading-indicator(
         v-if="thumbnailData === null")
