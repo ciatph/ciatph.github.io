@@ -18,7 +18,7 @@ module.exports = {
       'title': 'Document',
       'description': 'Indicator Factsheet',
       'img': 'th-me-indicator-factsheet.png',
-      'link': 'https://firebasestorage.googleapis.com/v0/b/ciat-pdfstorage.appspot.com/o/josh%2FIndicator%20Factsheet%2FIndicator%20Factsheet.pdf?alt=media&token=561e2805-b8d0-4d4a-a417-dbc49a30fd9a',
+      'link': 'Indicator Factsheet.pdf',
       'external': 'true'
     },
     {

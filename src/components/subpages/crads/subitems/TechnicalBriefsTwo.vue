@@ -22,9 +22,11 @@
 <script>
 import LoadingIndicator from '@/components/templates/LoadingIndicator'
 import ThumbnailsGallery from '@/components/templates/ThumbnailsGallery'
+import firebaseMixin from '@/components/mixins/firebaseMixin'
 import {iconData} from '@/defines/iconmaps/thumbnails-sub-cracba-technical2'
 export default {
   name: 'TechnicalBriefsTwo',
+  mixins: [firebaseMixin],
   components: {
     LoadingIndicator,
     ThumbnailsGallery
@@ -49,8 +51,13 @@ export default {
     }
   },
 
-  created () {
-    this.thumbnailData = iconData
+  async created () {
+    try {
+      let links = await this.mFirebaseGetURLS('yula/CRA Technical Briefs')
+      this.thumbnailData = await this.mFirebaseUpdateDownloadLink(iconData, links)
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 </script>

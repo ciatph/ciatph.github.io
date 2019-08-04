@@ -32,7 +32,6 @@ export default {
   data () {
     return {
       thumbnailData: null,
-      storagePath: 'yula/CRA Investment Briefs',
       items: [
         {
           text: 'CRA-DS',
@@ -52,7 +51,7 @@ export default {
 
   async created () {
     try {
-      let links = await this.mFirebaseGetURLS(this.storagePath)
+      let links = await this.mFirebaseGetURLS('yula/CRA Investment Briefs')
       this.thumbnailData = await this.mFirebaseUpdateDownloadLink(iconData, links)
     } catch (error) {
       console.log(error)
