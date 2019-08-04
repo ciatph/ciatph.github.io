@@ -54,7 +54,8 @@ export default {
           this.$firebaseStorageRef.child(item.link).getDownloadURL().then((url) => {
             filename.push(item.file)
             dl.push(url)
-            if (filename.length === 10) {
+            if (filename.length === storageItems.length) {
+              console.log({filename, dl})
               resolve({filename, dl})
             }
           }).catch((error) => {
@@ -110,7 +111,8 @@ export default {
      * @param {Array} newLinks
      */
     async mFirebaseUpdateDownloadLink (original, newLinks) {
-      original.forEach((item, index) => {
+      original.forEach((item) => {
+        let index = newLinks.filename.indexOf(item.link)
         if (newLinks.filename.indexOf(item.link) >= 0) {
           console.log('found! ' + item.link + ' at index ' + index)
           item.link = newLinks.dl[index]

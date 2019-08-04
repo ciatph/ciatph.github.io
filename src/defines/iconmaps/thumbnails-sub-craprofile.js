@@ -11,7 +11,7 @@ module.exports = {
       'title': 'Documents',
       'description': 'Key insights from the CRA Country Profile',
       'img': 'th-key-insights.png',
-      'link': 'https://firebasestorage.googleapis.com/v0/b/ciat-pdfstorage.appspot.com/o/googledocs%2Fkey_insights%2FDraft%20Philippines.pdf?alt=media&token=2d77f56d-8b97-49bd-8865-ac6ef21f9872',
+      'link': 'Draft Philippines.pdf',
       'external': 'true'
     }
   ]
