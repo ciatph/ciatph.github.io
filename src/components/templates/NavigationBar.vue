@@ -9,8 +9,8 @@
       ref="bnavbar")
         b-container
           // CIAT Logo
-          a(href="#" class="navbar-brand" style="vertical-align: top;")
-          img(class="logo-ciat" src="../../assets/logo_ciat_up.png" style="padding-top: 0; margin-top: 0;")
+          //a(href="#" class="navbar-brand" style="vertical-align: top;")
+          //img(class="logo-ciat" src="../../assets/logo_ciat_up.png" style="padding-top: 0; margin-top: 0;")
           // Collapsed Menu Button
           b-navbar-toggle(target="nav-collapse")
           // Menu Labels
