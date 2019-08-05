@@ -10,9 +10,11 @@
           div(class="thumbnail-footer logo-footer thumbnail-logo-footer")
             img(src="../../assets/logos/logo-ccafs.png")
           div(class="thumbnail-footer logo-footer thumbnail-logo-footer")
-            img(src="../../assets/logos/logo-ciat.png")
+            img(src="../../assets/logos/logo-ciat.png"
+              style="width: 85%;")
           div(class="thumbnail-footer logo-footer thumbnail-logo-footer")
-            img(src="../../assets/logos/logo-da-amia.png")
+            img(src="../../assets/logos/logo-da-amia.png"
+              style="width: 115%;")
         b-col(sm="2")
     // Footer Content
     b-container(fluid style="padding-top:20px;")
