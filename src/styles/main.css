@@ -123,6 +123,15 @@ body{
     float: left;
 }
 
+.contacts {
+    font-size: 12px;
+}
+
+.contact-header {
+    font-size: 15px;
+    font-weight: bold;
+}
+
 .bg-grey{
     background-color: #f6f6f6;
     padding: 60px 50px;
