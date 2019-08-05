@@ -10,9 +10,9 @@ module.exports = {
     {
       'title': 'Document',
       'description': 'CRVA Manual',
-      'img': 'th-maintenance-02.png',
-      'link': '#',
-      'external': 'true'
+      'img': 'th-crva-manual.png',
+      'link': '/crva/manual',
+      'external': 'false'
     }
   ]
 }
