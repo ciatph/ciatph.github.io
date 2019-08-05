@@ -1,28 +1,28 @@
 module.exports = {
   iconData: [
     {
-      'title': 'Poster',
+      'title': '',
       'description': 'CRP Poster',
       'img': 'th-crads-crariskprofile-01.png',
       'link': 'CRP Poster.jpg',
       'external': 'true'
     },
     {
-      'title': 'Document',
+      'title': '',
       'description': 'Luzon CRP',
       'img': 'th-maintenance-02.png',
       'link': '#',
       'external': 'true'
     },
     {
-      'title': 'Document',
+      'title': '',
       'description': 'Visayas CRP',
       'img': 'th-maintenance-02.png',
       'link': '#',
-      'external': 'true'
+      'external': ''
     },
     {
-      'title': 'Document',
+      'title': '',
       'description': 'Mindanao CRP',
       'img': 'th-maintenance-02.png',
       'link': '#',

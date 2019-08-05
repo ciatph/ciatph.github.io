@@ -1,22 +1,22 @@
 module.exports = {
   iconData: [
     {
-      'title': 'Documents',
-      'description': 'CRA Country Profile',
+      'title': 'CRA Country Profile',
+      'description': '',
       'img': 'th-crads-cra.png',
       'link': '/crads/cra',
       'external': 'false'
     },
     {
-      'title': 'Documents',
-      'description': 'Climate Risk Profiles',
+      'title': 'Climate Risk Profiles',
+      'description': '',
       'img': 'th-crads-climaterisk.png',
       'link': '/crads/crp',
       'external': 'false'
     },
     {
-      'title': 'Documents',
-      'description': 'Cost-Benefit Analysis (CBA) of CRA Practices',
+      'title': 'Cost-Benefit Analysis (CBA) of CRA Practices',
+      'description': '',
       'img': 'th-crads-cba.png',
       'link': '/crads/cba',
       'external': 'false'
