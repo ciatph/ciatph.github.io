@@ -15,6 +15,7 @@
 <script>
 import LoadingIndicator from '@/components/templates/LoadingIndicator'
 import ThumbnailsGallery from '@/components/templates/ThumbnailsGallery'
+import {iconData} from '@/defines/iconmaps/thumbnails-cra-ds'
 export default {
   name: 'CraDs',
   components: {
@@ -29,13 +30,7 @@ export default {
   },
 
   created () {
-    this.$http.get('/static/data/thumbnails-cra-ds.json')
-      .then((result) => {
-        this.thumbnailData = result.data
-      })
-      .catch((error) => {
-        console.log('error! ' + error)
-      })
+    this.thumbnailData = iconData
   }
 }
 </script>

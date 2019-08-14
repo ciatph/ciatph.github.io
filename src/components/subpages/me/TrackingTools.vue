@@ -20,8 +20,11 @@
 <script>
 import LoadingIndicator from '@/components/templates/LoadingIndicator'
 import ThumbnailsGallery from '@/components/templates/ThumbnailsGallery'
+import firebaseMixin from '@/components/mixins/firebaseMixin'
+import {iconData} from '@/defines/iconmaps/thumbnails-sub-me-tools'
 export default {
   name: 'TrackingTools',
+  mixins: [firebaseMixin],
   components: {
     LoadingIndicator,
     ThumbnailsGallery
@@ -42,15 +45,15 @@ export default {
     }
   },
 
-  mounted () {
-    this.$http.get('/static/data/thumbnails-sub-me-tools.json')
-      .then((result) => {
-        this.thumbnailData = result.data
-        console.log(this.thumbnailData)
-      })
-      .catch((error) => {
-        console.log('error! ' + error)
-      })
+  async mounted () {
+    try {
+      let links = await this.mFirebaseGetURLS('M&E/Tracking Tools')
+      iconData[0].content = await this.mFirebaseUpdateDownloadLink(iconData[0].content, links)
+      iconData[1].content = await this.mFirebaseUpdateDownloadLink(iconData[1].content, links)
+      this.thumbnailData = await this.mFirebaseUpdateDownloadLink(iconData, links)
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 </script>

@@ -17,8 +17,11 @@
 <script>
 import LoadingIndicator from '@/components/templates/LoadingIndicator'
 import ThumbnailsGallery from '@/components/templates/ThumbnailsGallery'
+import firebaseMixin from '@/components/mixins/firebaseMixin'
+import {iconData} from '@/defines/iconmaps/thumbnails-sub-crariskprofile'
 export default {
   name: 'ClimateRiskProfiles',
+  mixins: [firebaseMixin],
   components: {
     LoadingIndicator,
     ThumbnailsGallery
@@ -40,14 +43,16 @@ export default {
     }
   },
 
-  created () {
-    this.$http.get('/static/data/thumbnails-sub-crariskprofile.json')
-      .then((result) => {
-        this.thumbnailData = result.data
-      })
-      .catch((error) => {
-        console.log('error! ' + error)
-      })
+  async created () {
+    try {
+      let linksPoster = await this.mFirebaseGetURLS('CRA-DS/CRP Poster')
+      let linksProfiles = await this.mFirebaseGetURLS('CRA-DS/CRP')
+      linksPoster.filename = linksPoster.filename.concat(linksProfiles.filename)
+      linksPoster.dl = linksPoster.dl.concat(linksProfiles.dl)
+      this.thumbnailData = await this.mFirebaseUpdateDownloadLink(iconData, linksPoster)
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 </script>

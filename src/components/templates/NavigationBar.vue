@@ -7,10 +7,10 @@
       toggleable="lg"
       type="light"
       ref="bnavbar")
-        b-container
+        b-container(class="navbar-items-wrapper")
           // CIAT Logo
-          a(href="#" class="navbar-brand" style="vertical-align: top;")
-          img(class="logo-ciat" src="../../assets/logo_ciat_up.png" style="padding-top: 0; margin-top: 0;")
+          //a(href="#" class="navbar-brand" style="vertical-align: top;")
+          //img(class="logo-ciat" src="../../assets/logo_ciat_up.png" style="padding-top: 0; margin-top: 0;")
           // Collapsed Menu Button
           b-navbar-toggle(target="nav-collapse")
           // Menu Labels
@@ -56,6 +56,7 @@
 
 <script>
 import HeaderNav from '@/components/templates/HeaderNav'
+import {menuData} from '@/defines/menumaps/links-mainmenu'
 
 export default {
   name: 'NavigationBar',
@@ -90,13 +91,7 @@ export default {
 
   created () {
     window.addEventListener('scroll', this.handleScroll)
-    this.$http.get('/static/data/links-mainmenu.json')
-      .then((result) => {
-        this.mainMenuData = result.data
-      })
-      .catch((error) => {
-        console.log('error! ' + error)
-      })
+    this.mainMenuData = menuData
   },
 
   destroyed () {

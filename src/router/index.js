@@ -8,6 +8,8 @@ import CraDs from '@/components/pages/CraDs'
 import Crva from '@/components/pages/Crva'
 import MonitoringEvaluation from '@/components/pages/MonitoringEvaluation'
 
+import CrvaManual from '@/components/subpages/crva/CrvaManual'
+
 import CraCountryProfile from '@/components/subpages/crads/CraCountryProfile'
 import ClimateRiskProfiles from '@/components/subpages/crads/ClimateRiskProfiles'
 import Cba from '@/components/subpages/crads/Cba'
@@ -53,6 +55,11 @@ export default new Router({
       path: '/crva',
       name: 'crva',
       component: Crva
+    },
+    {
+      path: '/crva/manual',
+      name: 'crvamanual',
+      component: CrvaManual
     },
     {
       path: '/me',

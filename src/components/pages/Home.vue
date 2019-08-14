@@ -13,6 +13,9 @@
           li
             h3 CRA Investment Prioritization Project
             p(class="content-p") To undertake program-wide intervention planning and resource targeting. Its key decision-makers, field implementation teams, and stakeholders would need to be equipped with readily accessible knowledge and user-friendly tools to support the rollout of CRA practices at scale.
+          li
+            h3 Monitoring and Evaluating Resilience Project
+            p(class="content-p")  To achieve outcomes at scale by promoting the proven CRA practices and enhancing access to support services. An M&E system can help in decision-making, learning, and scaling of the intervention like CRA.
             br
             br
             br
