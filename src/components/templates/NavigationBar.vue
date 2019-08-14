@@ -7,7 +7,7 @@
       toggleable="lg"
       type="light"
       ref="bnavbar")
-        b-container
+        b-container(class="navbar-items-wrapper")
           // CIAT Logo
           //a(href="#" class="navbar-brand" style="vertical-align: top;")
           //img(class="logo-ciat" src="../../assets/logo_ciat_up.png" style="padding-top: 0; margin-top: 0;")

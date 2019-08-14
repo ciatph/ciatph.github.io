@@ -45,15 +45,15 @@
 
           // Philippines Office
           p(class="contacts")
-            span(class="contact-header") CIAT Philippine Country Office
+            span(class="contact-header") CIAT Philippines Country Office
             br
             span c/o UPLB Foundation Inc., UPLB, College, Laguna 4030
-            p(class="contact-details")
-              span Contact: Mylene Aquino, Country Administrative Officer
-              br
-              span Phone: +63 49 5010581
-              br
-              span Email: mylene.aquino@cgiar.org
+            br
+            span Contact: Mylene Aquino, Country Administrative Officer
+            br
+            span Phone: +63 49 5010581
+            br
+            span Email: mylene.aquino@cgiar.org
 
           // Vietnam Office
           p(class="contacts")
@@ -62,12 +62,11 @@
             span c/o Agricultural Genetics Institute
             br
             span Pham Van Dong Street, Tu Liem, Hanoi, Vietnam
-            p(class="contact-details")
-              span Contact: Dr. Dindo M. Campilan, Director for Asia
-              br
-              span Phone: +84 4 37576969
-              br
-              span Fax: +84 4 37570999
+            span Contact: Dr. Dindo M. Campilan, Director for Asia
+            br
+            span Phone: +84 4 37576969
+            br
+            span Fax: +84 4 37570999
 
           // Dept. of Agriculture
           p(class="contacts")
@@ -78,12 +77,11 @@
             span Department of Agriculture Compound, Elliptical Road, Diliman
             br
             span Quezon City, PHILIPPINES 1104
-            p(class="contact-details")
-              span Contact: U-Nichols Manalo, Director
-              br
-              span Phone: +63 2 273-2489
-              br
-              span Email: climatechange.da@gmail.com
+            span Contact: U-Nichols Manalo, Director
+            br
+            span Phone: +63 2 273-2489
+            br
+            span Email: climatechange.da@gmail.com
 
           // DA-BAR
           p(class="contacts")
@@ -92,12 +90,11 @@
             span RDMIC Building, Visayas Ave. cor. Elliptical Road, Diliman
             br
             span Quezon City, PHILIPPINES 1104
-            p(class="contact-details")
-              span Contact: Dr. Nicomedes P. Eleazar, Director
-              br
-              span Phone: +63 2 461-2900 / +63 2 461-2800
-              br
-              span Email: rd@bar.gov.ph
+            span Contact: Dr. Nicomedes P. Eleazar, Director
+            br
+            span Phone: +63 2 461-2900 / +63 2 461-2800
+            br
+            span Email: rd@bar.gov.ph
 
         b-col(sm="2")
     // Social Media Icons
