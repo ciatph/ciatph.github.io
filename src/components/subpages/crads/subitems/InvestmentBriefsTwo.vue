@@ -51,7 +51,7 @@ export default {
 
   async created () {
     try {
-      let links = await this.mFirebaseGetURLS('yula/CRA Investment Briefs')
+      let links = await this.mFirebaseGetURLS('CRA-DS/CRA Investment Briefs')
       this.thumbnailData = await this.mFirebaseUpdateDownloadLink(iconData, links)
     } catch (error) {
       console.log(error)

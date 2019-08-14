@@ -45,8 +45,8 @@ export default {
 
   async created () {
     try {
-      let linksPoster = await this.mFirebaseGetURLS('yula/CRP Poster')
-      let linksProfiles = await this.mFirebaseGetURLS('yula/CRP')
+      let linksPoster = await this.mFirebaseGetURLS('CRA-DS/CRP Poster')
+      let linksProfiles = await this.mFirebaseGetURLS('CRA-DS/CRP')
       linksPoster.filename = linksPoster.filename.concat(linksProfiles.filename)
       linksPoster.dl = linksPoster.dl.concat(linksProfiles.dl)
       this.thumbnailData = await this.mFirebaseUpdateDownloadLink(iconData, linksPoster)

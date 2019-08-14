@@ -42,7 +42,7 @@ export default {
 
   async created () {
     try {
-      let links = await this.mFirebaseGetURLS('josh/Questionnaires')
+      let links = await this.mFirebaseGetURLS('M&E/Questionnaires')
       this.thumbnailData = await this.mFirebaseUpdateDownloadLink(iconData, links)
     } catch (error) {
       console.log(error)

@@ -4,6 +4,6 @@ module.exports = {
     filename: [],
 
     // array of download URLs from a firebase storage directory
-    dl: [],
+    dl: []
   }
 }
