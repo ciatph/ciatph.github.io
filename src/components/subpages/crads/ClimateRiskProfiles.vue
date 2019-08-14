@@ -45,8 +45,11 @@ export default {
 
   async created () {
     try {
-      let links = await this.mFirebaseGetURLS('yula/CRP Poster')
-      this.thumbnailData = await this.mFirebaseUpdateDownloadLink(iconData, links)
+      let linksPoster = await this.mFirebaseGetURLS('yula/CRP Poster')
+      let linksProfiles = await this.mFirebaseGetURLS('yula/CRP')
+      linksPoster.filename = linksPoster.filename.concat(linksProfiles.filename)
+      linksPoster.dl = linksPoster.dl.concat(linksProfiles.dl)
+      this.thumbnailData = await this.mFirebaseUpdateDownloadLink(iconData, linksPoster)
     } catch (error) {
       console.log(error)
     }

@@ -10,22 +10,22 @@ module.exports = {
     {
       'title': '',
       'description': 'Luzon CRP',
-      'img': 'th-maintenance-02.png',
-      'link': '#',
+      'img': 'th-crads-climaterisk-luzon.png',
+      'link': 'Luzon CRP.pdf',
       'external': 'true'
     },
     {
       'title': '',
       'description': 'Visayas CRP',
-      'img': 'th-maintenance-02.png',
-      'link': '#',
-      'external': ''
+      'img': 'th-crads-climaterisk-visayas.png',
+      'link': 'Visayas CRP.pdf',
+      'external': 'true'
     },
     {
       'title': '',
       'description': 'Mindanao CRP',
-      'img': 'th-maintenance-02.png',
-      'link': '#',
+      'img': 'th-crads-climaterisk-mindanao.png',
+      'link': 'Mindanao CRP.pdf',
       'external': 'true'
     }
   ]
