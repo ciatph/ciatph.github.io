@@ -1,3 +1,6 @@
+import { LIVE } from '@/defines/constants'
+import { firebaseStorageURL } from '@/defines/firebaseStorageURL'
+
 export default {
   methods: {
     /**
@@ -44,7 +47,7 @@ export default {
      * @param {Array} storageItems an Array of Objects that following the format {file: "", link:""}
      *    where file: firebase storage file's filename
      *    where link: full firebase storage path for the file
-     * @returns {Object} {filename:[], dl:[]} an object that contains parallel maps of filenames and firebase download URLs
+     * @returns {Object} firebaseStorageURL {filename:[], dl:[]} an object that contains parallel maps of filenames and firebase download URLs
      */
     async mFirebaseGetDownloadLink (storageItems) {
       return new Promise((resolve, reject) => {
@@ -69,6 +72,7 @@ export default {
      * Works on a 1-level folder-items structure only; inner subdirectories and items won't be included
      * @param {Firebase Storage Reference} folderRef
      * @param {Array} data
+     * @returns {Object} firebaseStorageURL {filename:[], dl:[]} an object that contains parallel maps of filenames and firebase download URLs
      */
     async mFirebaseList (folderRef, data) {
       let a = await new Promise((resolve, reject) => {
@@ -95,11 +99,16 @@ export default {
     /**
      * Get the current download URLs of items from a specified firebase storage directory
      * @param {String} rootFolder firebase storage directory (or subdirectory)
+     * @returns {Object} firebaseStorageURL {filename:[], dl:[]} an object that contains parallel maps of filenames and firebase download URLs
      */
     async mFirebaseGetURLS (rootFolder) {
       // Root reference
-      let listRef = this.$firebaseStorageRef.child(rootFolder)
-      return this.mFirebaseList(listRef, [])
+      if (LIVE) {
+        let listRef = this.$firebaseStorageRef.child(rootFolder)
+        return this.mFirebaseList(listRef, [])
+      } else {
+        return firebaseStorageURL
+      }
     },
 
     /**

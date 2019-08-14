@@ -775,7 +775,7 @@ ul.social-icons {
 /* this is used with the 'mediaquery.html' page to see media queries in effect. Reference this CSS file on a blank page and then resize the browser window */
 @media screen and (max-width: 1193px) {
     .header-row {
-        background-color: blue;
+        /* background-color: blue; */
     }
 
     .jumbotron h1{
@@ -792,7 +792,7 @@ ul.social-icons {
 } 
 @media screen and (max-width: 960px) {
     .header-row {
-        background-color: red;
+        /* background-color: red; */
     }
 
     .mainlogo-ciat {
@@ -834,7 +834,7 @@ ul.social-icons {
 } 
 @media screen and (max-width: 768px) {
     .header-row {
-        background-color: orange;
+        /* background-color: orange; */
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -881,7 +881,7 @@ ul.social-icons {
 } 
 @media screen and (max-width: 550px) {
     .header-row {
-        background-color: yellow;
+        /* background-color: yellow; */
     }
 
     .navbar-items-wrapper {
