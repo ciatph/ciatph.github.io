@@ -2,8 +2,8 @@
 
 > AMIA-CIAT demo output website (version 2.0) <br>
 > A Vue.js project <br>
-> ###version 2.0.0
-> Static build files from the latest vue project at branch [vue-version](https://github.com/ciatph/ciatph.github.io/tree/vue-version)).
+> ### version 2.0.0
+> Static build files from the latest vue project at branch [vue-version](https://github.com/ciatph/ciatph.github.io/tree/vue-version)). <br>
 Contains updated content with new AMIA Phase 2 information and documents.
 
 <br>
