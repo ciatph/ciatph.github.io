@@ -1,25 +1,32 @@
-# vue-version
+# ciatph.github.io
 
-> A Vue.js project
+> AMIA-CIAT demo output website (version 2.0) <br>
+> A Vue.js project <br>
+> ###version 2.0.0
+> Static build files from the latest vue project at branch [vue-version](https://github.com/ciatph/ciatph.github.io/tree/vue-version)).
+Contains updated content with new AMIA Phase 2 information and documents.
+
+<br>
 
 
 ## Build Setup
 
-1. clone the project.
+1. Clone the project. <br>
+`git clone https://github.com/ciatph/ciatph.github.io.git`
 
-2. checkout branch **vue-version**<br>
+2. Checkout branch **vue-version**<br>
 `git checkout vue-version`
 
-1. install dependencies: <br> `npm install`
+1. Install dependencies: <br> `npm install`
 
-2. serve with hot reload at localhost:8080 <br> 
+2. Serve with hot reload at localhost:8080 <br>
 `npm run dev` 
 
-3. build for production with minification. <br> 
+3. Build for production with minification. <br>
 `npm run build` <br>
 (static build files will be generated in the **/dist** directory)
 
-4. build for production and view the bundle analyzer report <br>
+4. Build for production and view the bundle analyzer report <br>
 `npm run build --report`
 
 
