@@ -5,6 +5,11 @@
 
 ## Build Setup
 
+1. clone the project.
+
+2. checkout branch **vue-version**<br>
+`git checkout vue-version`
+
 1. install dependencies: <br> `npm install`
 
 2. serve with hot reload at localhost:8080 <br> 
