@@ -58,20 +58,24 @@ Read on this [reference](https://trello.com/c/0A36NOdS) for more information on 
 New GitHub pages website updates can be viewed from [https://ciatph.github.io](https://ciatph.github.io) if the build passed.
 
 
+
 ### Manual Deployment to GitHub Pages
 
-Please take note, the steps mentioned in  **_Automatic CI/CD to GitHub Pages Using Travis_** is the recommended way of publishing updates to the GitHub pages website.
+Please take note, the steps mentioned in  **_Automatic CI/CD to GitHub Pages Using Travis_** is the recommended way for publishing updates to the GitHub pages website.
 
-1. Checkout a new branch from `master`. <br>
+1. Follow the steps from the local **Build Setup** section. Keep the contents of the **/dist** directory.
+
+2. Checkout a new branch from the `master` branch. <br>
 `git checkout -b <NEW_BRANCH_NAME>`
 
-2. Copy the static contents of the **/dist** directory into `<NEW_BRANCH_NAME>`.
+3. Copy the static contents of the local **/dist** directory (from `# 1`) into `<NEW_BRANCH_NAME>`.
 
-3. Depending on the updated static files, you may need to delete  some `.js`, `.map` and `.css` files from **/static/css** or **/static/js**. Make sure that only the contents of */dist* will exist in `<NEW_BRANCH_NAME>`.  
+4. Depending on the updated static files, you may need to delete  some `.js`, `.map` and `.css` files from **/static/css** or **/static/js**. Make sure that only the contents of */dist* will exist in `<NEW_BRANCH_NAME>`.
 
-4. Push the new branch `<NEW_BRANCH_NAME>` and create a pull request.
+5. Push the new branch `<NEW_BRANCH_NAME>` and create a pull request.
 
-5. Approve the pull request if there are no conflicts.
+6. Approve the pull request if there are no conflicts.
+
 
 
 ## Deployment to Firebase Hosting
