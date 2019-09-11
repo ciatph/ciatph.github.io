@@ -1,5 +1,5 @@
 <template lang="pug">
-  // Use this as a template for styled content inside <router-view>, placed between 
+  // Use this as a template for styled content inside <router-view>, placed between
   // <header-navbar> and <footer-view> from App.vue
   b-container(fluid class="container-fluid-custom bg-greylight")
     b-row
