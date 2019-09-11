@@ -23,6 +23,33 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## Deployment to GitHub Pages
 
+The website, accessible from [https://ciatph.github.io](https://ciatph.github.io) serves static build files pushed into the `master` branch.
+
+This can be manually done by (a) pushing static build files directly into the `master` branch, or (b) automatically by pushing vue project code updates into the `vue-version` branch. Please follow the instructions below to trigger the automatic [Travis](https://travis-ci.com/) CI/CD.
+
+Read on this [reference](https://trello.com/c/0A36NOdS) for more information on setting up Travis CI for GitHub pages.
+
+
+
+### Automatic CI/CD to GitHub Pages Using Travis
+
+1. Create a branch from `vue-version`. <br>
+`git checkout -b my-updates-branch`
+
+2. Edit and push updates to `my-updates-branch`.
+
+2. Create a pull request for branch `vue-version` from the new `my-updates-branch` that you've created.
+
+3. Approve the pull request.
+
+4. View the travis CI status from [https://travis-ci.com/ciatph/ciatph.github.io](https://travis-ci.com/ciatph/ciatph.github.io). <br>
+New GitHub pages website updates can be viewed from [https://ciatph.github.io](https://ciatph.github.io) if the build passed.
+
+
+### Manual Deployment to GitHub Pages
+
+Please take note, the steps mentioned in  **_Automatic CI/CD to GitHub Pages Using Travis_** is the recommended way of publishing updates to the GitHub pages website.
+
 1. Checkout a new branch from `master`. <br>
 `git checkout -b <NEW_BRANCH_NAME>`
 
