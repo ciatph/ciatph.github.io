@@ -3,7 +3,7 @@
 > AMIA-CIAT demo output website (version 2.0) <br>
 > A Vue.js project <br>
 > ### version 2.0.0
-> Static build files from the latest vue project at branch [vue-version](https://github.com/ciatph/ciatph.github.io/tree/vue-version)). <br>
+> Static build files from the latest vue project at branch [vue-version](https://github.com/ciatph/ciatph.github.io/tree/vue-version). <br>
 Contains updated content with new AMIA Phase 2 information and documents.
 
 <br>
@@ -50,7 +50,7 @@ Read on this [reference](https://trello.com/c/0A36NOdS) for more information on 
 
 2. Edit and push updates to `my-updates-branch`.
 
-2. Create a pull request for branch `vue-version` from the new `my-updates-branch` that you've created.
+2. Create a pull request from the `my-updates-branch` that you've created to branch `vue-version`.
 
 3. Approve the pull request.
 
