@@ -92,3 +92,6 @@ For testing purposes, the static build files can be optionally uploaded to Fireb
 	- *File dist/index.html already exists. Overwrite?* - choose **N**
 
 3. Run `firebase deploy`
+
+
+**Updated:** 20191113
