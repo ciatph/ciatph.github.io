@@ -50,11 +50,21 @@ Read on this [reference](https://trello.com/c/0A36NOdS) for more information on 
 
 2. Edit and push updates to `my-updates-branch`.
 
-2. Create a pull request from the `my-updates-branch` that you've created to branch `vue-version`.
+3. Create a new **Pull Request (PR)** from the `my-updates-branch` that you've created to branch `vue-version`.
+	- Go to `my-updates-branch` page in GitHub, i.e.:  
+https://github.com/ciatph/ciatph.github.io/tree/my-updates-branch
+	- Press the **[New pull request]** button beside the branch navigator dropdown menu [Branch: my-updates-branch].
+	
+4. Set the following in the resulting **"Open a pull request"** page:
+	- **base:** `vue-version`
+	- **compare:** `my-updates-branch`
+	- Press the **[Create pull request]** button.
+	- **WAIT** for the Travis CI checks to finish.
 
-3. Approve the pull request.
+5. Press the **[Merge pull request]** button.  
+	> WARNING: It is important to **WAIT** for the Travis CI checks from #4 to finish first before pressing this button, else the Travis CI build will fail.
 
-4. View the travis CI status from [https://travis-ci.com/ciatph/ciatph.github.io](https://travis-ci.com/ciatph/ciatph.github.io). <br>
+6. View the travis CI status from [https://travis-ci.com/ciatph/ciatph.github.io](https://travis-ci.com/ciatph/ciatph.github.io). <br>
 New GitHub pages website updates can be viewed from [https://ciatph.github.io](https://ciatph.github.io) if the build passed.
 
 
