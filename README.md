@@ -37,7 +37,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 The website, accessible from [https://ciatph.github.io](https://ciatph.github.io) serves static build files pushed into the `master` branch.
 
-This can be manually done by (a) pushing static build files directly into the `master` branch, or (b) automatically by pushing vue project code updates into the `vue-version` branch. Please follow the instructions below to trigger the automatic [Travis](https://travis-ci.com/) CI/CD.
+This can be manually done by (a) pushing static build files from the **/dist** directly into the `master` branch, or (b) automatically by pushing vue project code updates into the `vue-version` branch. Please follow the instructions below to trigger the automatic [Travis](https://travis-ci.com/) CI/CD.
 
 Read on this [reference](https://trello.com/c/0A36NOdS) for more information on setting up Travis CI for GitHub pages.
 
