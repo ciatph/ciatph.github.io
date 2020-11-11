@@ -9,6 +9,15 @@ Contains updated content with new AMIA Phase 2 information and documents.
 <br>
 
 
+## Requirements
+
+The following requirements and dependencies were used for this project. Other system and software configurations are open for testing.
+
+1. Windows 10 Pro
+2. NodeJS
+	- npm version 10.16.3
+	- npm version 6.9.0
+
 ## Build Setup
 
 1. Clone the project. <br>
