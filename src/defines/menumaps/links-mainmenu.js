@@ -39,8 +39,8 @@ module.exports = {
     },
     {
       'title': 'CBA Tool',
-      'link': 'http://cbatool.ciat.cgiar.org/',
-      'external': 'true',
+      'link': '/maintenance',
+      'external': 'false',
       'children': []
     },
     {
