@@ -4,6 +4,7 @@ import Home from '@/components/pages/Home'
 import Maps from '@/components/pages/Maps'
 import Documents from '@/components/pages/Documents'
 import PageRedirect from '@/components/widgets/PageRedirect'
+import PageMaintenance from '@/components/widgets/PageMaintenance'
 import CraDs from '@/components/pages/CraDs'
 import Crva from '@/components/pages/Crva'
 import MonitoringEvaluation from '@/components/pages/MonitoringEvaluation'
@@ -110,6 +111,11 @@ export default new Router({
       path: '/me/questionnaires',
       name: 'questionnaires',
       component: Questionnaires
+    },
+    {
+      path: '/maintenance',
+      name: 'PageMaintenace',
+      component: PageMaintenance
     },
     {
       path: '/:projects',
