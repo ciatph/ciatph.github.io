@@ -30,7 +30,7 @@ export default {
       previousRegion: '',
       previousIsland: '',
 
-      disabled: false,
+      disabled: true,
 
       options: [
         { value: null, text: 'Please select a region' }
@@ -168,6 +168,7 @@ export default {
 
   mounted () {
     this.getRegionOptions()
+    const that = this
 
     // Initialize the mapbox basemap
     window.MBL.initMap({
@@ -178,6 +179,16 @@ export default {
     })
 
     this.$refs.map.getElementsByClassName('mapboxgl-canvas')[0].style.position = 'relative'
+
+    // Wait for basemap to load
+    // TO-DO: Listen for mapbox events
+    const time = setInterval(() => {
+      if (!window.MBL.isLoading) {
+        console.log('--BASEMAP')
+        that.disabled = false
+        clearInterval(time)
+      }
+    }, 200)
   },
 
   methods: {

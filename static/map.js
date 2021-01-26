@@ -18,7 +18,7 @@ function MapboxMap (publicAccessToken) {
 
   // Flag if a vector data source is loading
   // TO-DO: Listen for mapbox events
-  this.isLoading = false
+  this.isLoading = true
 }
 
 /**
@@ -61,6 +61,21 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.
   this.mapContainer.style.height = (window.outerHeight + 70) + 'px'
   this.mapCanvas.style.width = '100%'
   this.map.resize()
+
+  // Listen for basemap loading events
+  const that = this
+
+  this.map.on('load', function() {
+    console.log('---basemap loaded')
+    that.isLoading = false
+  })
+
+  this.map.on('sourcedata', function(e) {
+    if (e.isSourceLoaded) {
+      console.log('---vector loaded')
+      that.isLoading = false
+    }
+  })
 } 
 
 /**
@@ -210,10 +225,9 @@ MapboxMap.prototype.addLayerSource = function (layerName, tilesetName, tilesetUr
     const time = setInterval(function() {
       const features = that.map.queryRenderedFeatures({layers: [layerID] })
       if (features) {
-        that.isLoading = false
+        // that.isLoading = false
 
         window.MBL.map.on('click', layerID, function(e) {
-          console.log(e)
           // print all data
           var content = ""
           for(key in e.features[0].properties){
