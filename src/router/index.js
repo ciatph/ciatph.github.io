@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/pages/Home'
-import Maps from '@/components/pages/Maps'
+import Maps from '@/components/subpages/maps/Crva'
+import LivelihoodZones from '@/components/subpages/maps/LivelihoodZones'
 import Documents from '@/components/pages/Documents'
 import PageRedirect from '@/components/widgets/PageRedirect'
 import PageMaintenance from '@/components/widgets/PageMaintenance'
@@ -41,6 +42,11 @@ export default new Router({
       path: '/maps',
       name: 'Maps',
       component: Maps
+    },
+    {
+      path: '/maps-livelihood',
+      name: 'livelihood-maps',
+      component: LivelihoodZones
     },
     {
       path: '/documents',
