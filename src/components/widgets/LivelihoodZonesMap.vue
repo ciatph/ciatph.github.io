@@ -7,11 +7,13 @@
 
         b-form-select(
           v-model="selectedRegion"
+          :disabled="disabled"
           :options="options"
         )
 
         b-form-select(
           v-model="selectedProvince"
+          :disabled="disabled"
           :options="optionsProvince"
         )
 </template>
@@ -27,6 +29,8 @@ export default {
 
       previousRegion: '',
       previousIsland: '',
+
+      disabled: false,
 
       options: [
         { value: null, text: 'Please select a region' }
@@ -133,6 +137,17 @@ export default {
 
       // this.previousIsland = this.selectedIsland
       this.previousRegion = this.selectedIsland
+
+      // Disable the UI
+      this.disabled = true
+      const that = this
+      const time = setInterval(() => {
+        if (!window.MBL.isLoading) {
+          console.log('map loaded!')
+          that.disabled = false
+          clearInterval(time)
+        }
+      }, 200)
     },
 
     selectedProvince () {
@@ -153,7 +168,8 @@ export default {
 
   mounted () {
     this.getRegionOptions()
-    console.log('---INITIALIZING LIVELIHOOD ZONES')
+
+    // Initialize the mapbox basemap
     window.MBL.initMap({
       mapContainer: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
@@ -170,7 +186,6 @@ export default {
         return
       }
 
-      console.log(`--PROCESSING ${str}`)
       let string = str
       if (string.includes('-')) {
         string = Array.from(string.split('-'), (x) => `${x[0].toUpperCase()}${x.substr(1, x.length)}`).join('-')
@@ -214,8 +229,6 @@ export default {
           this.optionsProvince.push({ value: item, text: provinceValue })
         })
       }
-
-      console.log(this.optionsProvince)
     }
   }
 }

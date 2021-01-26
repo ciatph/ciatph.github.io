@@ -15,6 +15,10 @@ function MapboxMap (publicAccessToken) {
 
   // Set the mapbox public access token
   this.accessToken = mapboxgl.accessToken = publicAccessToken
+
+  // Flag if a vector data source is loading
+  // TO-DO: Listen for mapbox events
+  this.isLoading = false
 }
 
 /**
@@ -81,6 +85,9 @@ MapboxMap.prototype.toggleLayer = function (layerName) {
   }
 }
 
+/**
+ * Livelihood zones map fill styles
+ */
 MapboxMap.prototype.getLegendColorCodes = function () {
   const styles = {
     '1 Aquaculture/Freshwater fisheries': '#08306b',
@@ -195,12 +202,16 @@ MapboxMap.prototype.addLayerSource = function (layerName, tilesetName, tilesetUr
     })
 
     console.log(layer)
+    this.isLoading = true
     this.map.addLayer(layer)
 
     // Enable click events (display a pop-up message) after the layer and source has loaded
+    const that = this
     const time = setInterval(function() {
       const features = that.map.queryRenderedFeatures({layers: [layerID] })
       if (features) {
+        that.isLoading = false
+
         window.MBL.map.on('click', layerID, function(e) {
           console.log(e)
           // print all data
@@ -219,11 +230,11 @@ MapboxMap.prototype.addLayerSource = function (layerName, tilesetName, tilesetUr
         clearInterval(time)
       }
     }, 200)
-
+    /*
     this.map.on('load', function(e) {
       console.log('---DONE!!!')
-
     })
+    */
   } else {
     // Display the layer if its source already exists
     this.toggleLayer(layerID)
