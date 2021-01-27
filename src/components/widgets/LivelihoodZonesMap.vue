@@ -123,6 +123,7 @@ export default {
 
       this.selectedIsland = this.getIslandFromRegion(this.selectedRegion)
       this.getProvinceOptions()
+      this.resetMapView()
 
       // Hide the previous selected region
       if (this.previousIsland) {
@@ -180,6 +181,7 @@ export default {
         ? this.hardCodedNames[this.selectedProvince]
         : this.camelCase(this.selectedProvince)
 
+      this.resetMapView()
       window.MBL.setLayerFilter(`${this.selectedIsland}-layer`, {
         key: 'ADM2_EN',
         value: provinceValue
@@ -265,6 +267,16 @@ export default {
       }
     },
 
+    resetMapView () {
+      if (window.MBL.map.getZoom() > 8) {
+        setTimeout(() => {
+          window.MBL.resetCenter()
+        }, 200)
+      }
+
+      window.MBL.toggleHandlers(false)
+    },
+
     updateLegend (provinceName) {
       const that = this
       let loadedOnce = false
@@ -277,19 +289,20 @@ export default {
       // Reset the legends
       this.legends = []
 
-      window.MBL.map.on('sourcedata', function(e) {
+      window.MBL.map.on('sourcedata', function (e) {
         if (e.isSourceLoaded) {
           if (e.sourceId !== 'composite' && !loadedOnce) {
-            const features = window.MBL.map.queryRenderedFeatures({layers: [`${e.sourceId}-layer`] })
+            const features = window.MBL.map.queryRenderedFeatures({ layers: [`${e.sourceId}-layer`] })
 
             if (features.length > 0) {
               window.MBL.isLoading = false
+              window.MBL.toggleHandlers(true)
               loadedOnce = true
               console.log(`--loaded vector length: ${features.length}`)
 
               if (provinceName) {
                 colorCodes = Array.from(features.filter(x => x.properties['ADM2_EN'] === provinceName),
-                (x) => x.properties['Legend_v2']).filter(unique)
+                  (x) => x.properties['Legend_v2']).filter(unique)
               } else {
                 colorCodes = Array.from(features, (x) => x.properties['Legend_v2']).filter(unique)
               }

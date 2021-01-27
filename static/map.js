@@ -66,11 +66,15 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.
   this.map.resize()
   this.colorCodes = this.getLegendColorCodes()
 
+  // Disable map controls
+  this.toggleHandlers(false)
+
   // Listen for basemap loading events
   const that = this
 
   this.map.on('load', function() {
     console.log('---basemap loaded')
+    that.toggleHandlers(true)
     that.isLoading = false
   })
 
@@ -296,5 +300,26 @@ MapboxMap.prototype.removePopups = function () {
   const popups = document.getElementsByClassName('mapboxgl-popup')
   for (let i = 0; i < popups.length; i += 1) {
     popups[i].remove()
+  }
+}
+
+MapboxMap.prototype.resetCenter = function () {
+  this.map.setZoom(5)
+  this.map.flyTo({
+    center: [122.016, 12.127]
+  })
+}
+
+/**
+ * Emable or disable mapbox ma controls
+ */
+MapboxMap.prototype.toggleHandlers = function (enable) {
+  const handlers = ['scrollZoom', 'boxZoom', 'dragRotate', 'dragPan', 'keyboard', 'doubleClickZoom', 'touchZoomRotate']
+  for (let i = 0; i < handlers.length; i += 1) {
+    if (enable) {
+      this.map[handlers[i]].enable()
+    } else {
+      this.map[handlers[i]].disable()
+    }
   }
 }
