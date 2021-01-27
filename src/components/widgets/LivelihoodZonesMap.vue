@@ -150,6 +150,11 @@ export default {
           expression: 'in',
           key: 'ADM2_EN',
           value: provinceList
+        },
+        { // Attribute name mapping
+          'ADM2_EN': 'Province',
+          'ADM3_EN': 'Municipality',
+          'Legend_v2': 'Legend'
         }
       )
 
@@ -297,8 +302,10 @@ export default {
               window.MBL.isLoading = false
               // window.MBL.toggleHandlers(true)
               loadedOnce = true
-              console.log(`--loaded vector length: ${features.length}`)
               that.disabled = false
+
+              console.log(`--loaded vector length: ${features.length} from layer ${e.sourceId}`)
+              console.log(Array.from(features, (x) => x.properties))
 
               if (provinceName) {
                 colorCodes = Array.from(features.filter(x => x.properties['ADM2_EN'] === provinceName),

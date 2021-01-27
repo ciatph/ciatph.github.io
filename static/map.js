@@ -182,8 +182,10 @@ MapboxMap.prototype.getLegendColorCodes = function () {
  *    filter.key - {String} attribute name
  *    filter.value - {String} attribute value OR
  *    filter.value - {Array} string attribute value(s)
+ * attributeNames - {Object} key-value pair of alternate names for feature attributes to display on the pop-up
+ *     i.e. { 'ADM2_EN': 'Province', 'ADM3_EN': 'Municipality' }
  */
-MapboxMap.prototype.addLayerSource = function (layerName, tilesetName, tilesetUrl, filter) {
+MapboxMap.prototype.addLayerSource = function (layerName, tilesetName, tilesetUrl, filter, attributeNames) {
   const that = this
   const layerID = `${layerName}-layer`
   this.isLoading = true
@@ -210,7 +212,7 @@ MapboxMap.prototype.addLayerSource = function (layerName, tilesetName, tilesetUr
       'visibility': 'visible'
     },
     "paint": {
-      "fill-outline-color": "rgba(0,0,0,1.0)",
+      "fill-outline-color": "rgba(0,0,0,0.2)",
       "fill-color": colorExpression,
       "fill-opacity": 1.0,
     },
@@ -251,7 +253,12 @@ MapboxMap.prototype.addLayerSource = function (layerName, tilesetName, tilesetUr
           // print all data
           var content = ""
           for(key in e.features[0].properties){
-            content += `${key}: ${e.features[0].properties[key]}`
+            let attr = key
+            if (attributeNames) {
+              attr = attributeNames[key] ? attributeNames[key] : key
+            }
+
+            content += `${attr}: ${e.features[0].properties[key]}`
             content += "<br>"
           }
       
