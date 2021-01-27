@@ -123,7 +123,7 @@ export default {
 
       this.selectedIsland = this.getIslandFromRegion(this.selectedRegion)
       this.getProvinceOptions()
-      this.resetMapView()
+      // this.resetMapView()
 
       // Hide the previous selected region
       if (this.previousIsland) {
@@ -181,7 +181,7 @@ export default {
         ? this.hardCodedNames[this.selectedProvince]
         : this.camelCase(this.selectedProvince)
 
-      this.resetMapView()
+      // this.resetMapView()
       window.MBL.setLayerFilter(`${this.selectedIsland}-layer`, {
         key: 'ADM2_EN',
         value: provinceValue
