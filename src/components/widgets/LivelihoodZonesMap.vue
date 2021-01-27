@@ -298,6 +298,7 @@ export default {
               // window.MBL.toggleHandlers(true)
               loadedOnce = true
               console.log(`--loaded vector length: ${features.length}`)
+              that.disabled = false
 
               if (provinceName) {
                 colorCodes = Array.from(features.filter(x => x.properties['ADM2_EN'] === provinceName),
