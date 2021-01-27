@@ -1,7 +1,7 @@
 <template lang="pug">
   // Mapbox GUI
   div(id="map" ref="map")
-    div(class="map-overlay" style="margin-top: 60px; margin-left: 2%;")
+    div(class="map-overlay" style="margin-top: 60px; margin-left: 2%; width: 30%;")
       div(class="map-overlay-inner")
         h4 Region/Province selection
 
@@ -16,6 +16,16 @@
           :disabled="disabled"
           :options="optionsProvince"
         )
+
+        small(v-if="disabled") Please wait while loading...
+        br
+        br
+
+        div(v-if="legends.length > 0")
+          h5 Legend
+          div(class="legend-livelihood")
+            div(v-for="item in legends")
+              <div><span v-bind:style="{ backgroundColor: item.color }"></span>{{ item.text }}</div>
 </template>
 
 <script>
@@ -39,6 +49,8 @@ export default {
       optionsProvince: [
         { value: null, text: 'Please select a province' }
       ],
+
+      legends: [],
 
       islands: {
         luzon: {
@@ -104,12 +116,17 @@ export default {
 
   watch: {
     selectedRegion () {
+      if (!this.selectedRegion) {
+        this.selectedRegion = this.previousRegion
+        return
+      }
+
       this.selectedIsland = this.getIslandFromRegion(this.selectedRegion)
       this.getProvinceOptions()
 
       // Hide the previous selected region
-      if (this.previousRegion) {
-        window.MBL.toggleLayer(`${this.previousRegion}-layer`)
+      if (this.previousIsland) {
+        window.MBL.toggleLayer(`${this.previousIsland}-layer`)
       }
 
       // Build the province list filter. Format the hard-coded values
@@ -135,19 +152,23 @@ export default {
         }
       )
 
-      // this.previousIsland = this.selectedIsland
-      this.previousRegion = this.selectedIsland
+      this.previousRegion = this.selectedRegion
+      this.previousIsland = this.selectedIsland
 
-      // Disable the UI
+      // Disable the UI on page load
       this.disabled = true
       const that = this
+
       const time = setInterval(() => {
         if (!window.MBL.isLoading) {
           console.log('map loaded!')
           that.disabled = false
+          that.disabled = false
           clearInterval(time)
         }
       }, 200)
+
+      this.updateLegend()
     },
 
     selectedProvince () {
@@ -163,6 +184,8 @@ export default {
         key: 'ADM2_EN',
         value: provinceValue
       })
+
+      this.updateLegend(provinceValue)
     }
   },
 
@@ -240,6 +263,48 @@ export default {
           this.optionsProvince.push({ value: item, text: provinceValue })
         })
       }
+    },
+
+    updateLegend (provinceName) {
+      const that = this
+      let loadedOnce = false
+      let colorCodes = []
+
+      const unique = (value, index, self) => {
+        return self.indexOf(value) === index
+      }
+
+      // Reset the legends
+      this.legends = []
+
+      window.MBL.map.on('sourcedata', function(e) {
+        if (e.isSourceLoaded) {
+          if (e.sourceId !== 'composite' && !loadedOnce) {
+            const features = window.MBL.map.queryRenderedFeatures({layers: [`${e.sourceId}-layer`] })
+
+            if (features.length > 0) {
+              window.MBL.isLoading = false
+              loadedOnce = true
+              console.log(`--loaded vector length: ${features.length}`)
+
+              if (provinceName) {
+                colorCodes = Array.from(features.filter(x => x.properties['ADM2_EN'] === provinceName),
+                (x) => x.properties['Legend_v2']).filter(unique)
+              } else {
+                colorCodes = Array.from(features, (x) => x.properties['Legend_v2']).filter(unique)
+              }
+
+              for (let i = 0; i < colorCodes.length; i += 1) {
+                that.legends.push({
+                  text: colorCodes[i],
+                  color: window.MBL.colorCodes[colorCodes[i]]
+                })
+              }
+            }
+          }
+          // window.MBL.isLoading = false
+        }
+      })
     }
   }
 }

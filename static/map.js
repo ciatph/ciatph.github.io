@@ -16,6 +16,9 @@ function MapboxMap (publicAccessToken) {
   // Set the mapbox public access token
   this.accessToken = mapboxgl.accessToken = publicAccessToken
 
+  // HTML hex codes mapped to feature attribute values
+  this.colorCodes = null
+
   // Flag if a vector data source is loading
   // TO-DO: Listen for mapbox events
   this.isLoading = true
@@ -61,6 +64,7 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.
   this.mapContainer.style.height = (window.outerHeight + 70) + 'px'
   this.mapCanvas.style.width = '100%'
   this.map.resize()
+  this.colorCodes = this.getLegendColorCodes()
 
   // Listen for basemap loading events
   const that = this
@@ -70,12 +74,18 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.
     that.isLoading = false
   })
 
+  /* Detects if a source data has loaded. Override this method on vue component
   this.map.on('sourcedata', function(e) {
     if (e.isSourceLoaded) {
       console.log('---vector loaded')
+      if (e.sourceId !== 'composite') {
+        that.features = that.map.queryRenderedFeatures({layers: [`${e.sourceId}-layer`] })
+        console.log(`--loaded vector length: ${that.features.length}`)
+      }
       that.isLoading = false
     }
   })
+  */
 } 
 
 /**
@@ -170,6 +180,7 @@ MapboxMap.prototype.getLegendColorCodes = function () {
 MapboxMap.prototype.addLayerSource = function (layerName, tilesetName, tilesetUrl, filter) {
   const that = this
   const layerID = `${layerName}-layer`
+  this.isLoading = true
 
   // Remove popups
   this.removePopups()
@@ -177,7 +188,7 @@ MapboxMap.prototype.addLayerSource = function (layerName, tilesetName, tilesetUr
   // Set the color expression to use on the layer
   const colorExpression = ['match', ['get', 'Legend_v2']]
 
-  const styles = this.getLegendColorCodes()
+  const styles = this.colorCodes
   Object.keys(styles).forEach((item, index) => {
     colorExpression.push(item, styles[item])
   })
@@ -225,6 +236,9 @@ MapboxMap.prototype.addLayerSource = function (layerName, tilesetName, tilesetUr
     const time = setInterval(function() {
       const features = that.map.queryRenderedFeatures({layers: [layerID] })
       if (features) {
+        that.features = features
+
+        // NOTE: this is set to false by the global 'sourcedata' event
         // that.isLoading = false
 
         window.MBL.map.on('click', layerID, function(e) {
