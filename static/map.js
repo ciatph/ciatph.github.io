@@ -50,7 +50,9 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.
     container: mapContainer,
     style, 
     zoom,
-    center: center
+    center: center,
+    minZoom: 1,
+    maxZoom: 12
   })
 
   .addControl(new mapboxgl.FullscreenControl())
@@ -67,14 +69,14 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.
   this.colorCodes = this.getLegendColorCodes()
 
   // Disable map controls
-  this.toggleHandlers(false)
+  // this.toggleHandlers(false)
 
   // Listen for basemap loading events
   const that = this
 
   this.map.on('load', function() {
     console.log('---basemap loaded')
-    that.toggleHandlers(true)
+    // that.toggleHandlers(true)
     that.isLoading = false
   })
 

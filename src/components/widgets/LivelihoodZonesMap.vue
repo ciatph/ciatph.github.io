@@ -273,8 +273,7 @@ export default {
           window.MBL.resetCenter()
         }, 200)
       }
-
-      window.MBL.toggleHandlers(false)
+      // window.MBL.toggleHandlers(false)
     },
 
     updateLegend (provinceName) {
@@ -296,7 +295,7 @@ export default {
 
             if (features.length > 0) {
               window.MBL.isLoading = false
-              window.MBL.toggleHandlers(true)
+              // window.MBL.toggleHandlers(true)
               loadedOnce = true
               console.log(`--loaded vector length: ${features.length}`)
 
