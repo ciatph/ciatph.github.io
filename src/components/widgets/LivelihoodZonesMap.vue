@@ -154,6 +154,7 @@ export default {
 
     // Wait for basemap to load
     // TO-DO: Listen for mapbox events
+    /*
     const time = setInterval(() => {
       if (!window.MBL.isLoading) {
         console.log('--BASEMAP')
@@ -161,6 +162,7 @@ export default {
         clearInterval(time)
       }
     }, 200)
+    */
 
     // Render legends if they are not yet visible after a moveend event
     window.MBL.map.on('moveend', function (e) {
@@ -175,6 +177,11 @@ export default {
           that.updateLegend()
         }
       }
+    })
+
+    window.MBL.map.on('dataloaded', function (e) {
+      console.log('---ALL DATA HAS LOADED')
+      that.disabled = false
     })
   },
 
@@ -284,12 +291,7 @@ export default {
       let colorCodes = []
       this.legends = []
 
-      const features = [
-        ...window.MBL.map.queryRenderedFeatures({ layers: [window.MBL.layerNames[0]] }),
-        ...window.MBL.map.queryRenderedFeatures({ layers: [window.MBL.layerNames[1]] }),
-        ...window.MBL.map.queryRenderedFeatures({ layers: [window.MBL.layerNames[2]] })
-      ]
-
+      const features = window.MBL.map.queryRenderedFeatures({ layers: window.MBL.layerNames })
       if (features.length === 0) {
         console.log('---no legends to show')
         return

@@ -123,11 +123,14 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.
             'Legend_v2': 'Legend'
           }
 
+          console.log(e)
+          this.fire('dataloaded')
+
+          // TO-DO: Verify all data are loaded at this point. Only (1) is registered in console.log but all data are available
           for (let i = 0; i < that.layerNames.length; i += 1) {
             const features = that.map.queryRenderedFeatures({ layers: [that.layerNames[i]] })
+            console.log(`----${that.layerNames[i]}: ${features.length}`)
             if (features) {
-              console.log(`---ADDED EVENTS FOR ${that.layerNames[i]}`)
-
               window.MBL.map.on('click', `${that.layerNames[i]}`, function (e) {
                 // print all data
                 var content = ''
@@ -379,8 +382,6 @@ MapboxMap.prototype.setLayerFilter = function (layerName, filter) {
 MapboxMap.prototype.setLayersFilter = function (filter) {
   // Remove popups
   this.removePopups()
-  console.log('--applying filter')
-  console.log(filter)
 
   for (let i = 0; i < this.layerNames.length; i += 1) {
     this.map.setFilter(this.layerNames[i], filter)
@@ -436,9 +437,8 @@ MapboxMap.prototype.toggleHandlers = function (enable) {
 MapboxMap.prototype.loadAllTilesets = function (tilesets) {
   // Set the color expression to use on the layer
   const colorExpression = ['match', ['get', 'Legend_v2']]
-  console.log(tilesets)
-
   const styles = this.colorCodes
+
   Object.keys(styles).forEach((item, index) => {
     colorExpression.push(item, styles[item])
   })
