@@ -41,6 +41,9 @@ function MapboxMap (publicAccessToken) {
   // TO-DO: Listen for mapbox events
   this.isLoading = true
 
+  // Flag if the map is flying using flyTo()
+  this.isFlying = false
+
   // Click event on 1st-time data load has been initialized
   this.eventsInitialized = false
 }
@@ -51,7 +54,7 @@ function MapboxMap (publicAccessToken) {
  * zoom - {Number} map zoom
  * center - {Array} [lat, lan] map center
  */
-MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.0, center = [122.016, 12.127], mapboxTilesets = mapboxData }) {
+MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.3, center = [122.016, 12.127], mapboxTilesets = mapboxData }) {
   if (!mapboxgl.supported()) {
     alert('Your browser does not support Mapbox GL')
     return
@@ -96,6 +99,16 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.
     // that.toggleHandlers(true)
     that.loadAllTilesets(mapboxTilesets)
     that.isLoading = false
+  })
+
+  this.map.on('flystart', function () {
+    console.log('---fly start')
+    that.isFlying = true
+  })
+
+  this.map.on('flyend', function () {
+    console.log('---fly end')
+    that.isFlying = false
   })
 
   // Add click events after all Tileset data has loaded
@@ -386,10 +399,18 @@ MapboxMap.prototype.removePopups = function () {
 }
 
 MapboxMap.prototype.resetCenter = function () {
-  this.map.setZoom(5)
+  // this.map.setZoom(5.3)
   this.map.flyTo({
-    center: [122.016, 12.127]
+    center: [122.016, 12.127],
+    zoom: 5.3
+    // bearing: 0,
+    // speed: 0.2,
+    // curve: 1,
+    // easing: function (t) { return t },
+    // essential: true
   })
+
+  this.map.fire('flystart')
 }
 
 /**

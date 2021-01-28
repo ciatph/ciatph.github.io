@@ -28,14 +28,19 @@
         br
 
         div(v-if="legends.length > 0")
-          h5 Legend
+          div(style="width: 100%; display: flex;")
+            h5(style="width: 50%;") Legend
+            div(style="width: 50%; line-height: 25px;")
+              p(style="float: right;"
+                @click="resetCenter") [View All]
+
           div(class="legend-livelihood")
             div(v-for="item in legends")
               <div><span v-bind:style="{ backgroundColor: item.color }"></span>{{ item.text }}</div>
 </template>
 
 <script>
-import { mapboxData, philippines, livelihoodZones } from '@/defines/constants'
+import { philippines, livelihoodZones } from '@/defines/constants'
 
 export default {
   name: 'LivelihoodZonesMap',
@@ -97,8 +102,9 @@ export default {
         this.selectedIsland = this.getIslandFromRegion(this.selectedRegion)
         this.getProvinceOptions()
         this.filters.ADM2_EN = ['in', 'ADM2_EN', ...this.getProvinces(this.selectedIsland, this.selectedRegion)]
-        this.updateLayers()
       }
+
+      this.updateLayers()
     },
 
     selectedProvince () {
@@ -119,10 +125,10 @@ export default {
     },
 
     selectedZone () {
-      if (this.selectedZone) {
-        this.filters.layer = ['==', 'layer', this.selectedZone]
-      } else {
+      if (!this.selectedZone) {
         this.filters.layer = null
+      } else {
+        this.filters.layer = ['==', 'layer', this.selectedZone]
       }
 
       this.updateLayers()
@@ -135,12 +141,10 @@ export default {
     const that = this
 
     // Initialize the mapbox basemap
-    console.log('---initializing map')
-    console.log(mapboxData)
     window.MBL.initMap({
       mapContainer: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      zoom: 5.0,
+      zoom: 5.3,
       center: [122.016, 12.127]
     })
 
@@ -158,8 +162,16 @@ export default {
 
     // Render legends if they are not yet visible after a moveend event
     window.MBL.map.on('moveend', function (e) {
-      if (that.legends.length === 0) {
+      if (window.MBL.map.getZoom() > 6 && (that.selectedZone || (that.selectedRegion || that.selectedProvince))) {
+        console.log(`---updating legends! length: ${that.legends.length}, zoom ${window.MBL.map.getZoom()}`)
         that.updateLegend()
+      }
+
+      if (window.MBL.isFlying) {
+        window.MBL.map.fire('flyend')
+        if (that.selectedZone || (that.selectedRegion || that.selectedProvince)) {
+          that.updateLegend()
+        }
       }
     })
   },
@@ -255,21 +267,20 @@ export default {
           finalFilter = this.filters.ADM2_EN
         }
       }
+
       console.log(finalFilter)
       window.MBL.setLayersFilter(finalFilter)
 
-      setTimeout(() => {
-        that.updateLegend()
-      }, 300)
+      if (this.selectedZone || (this.selectedRegion || this.selectedProvince)) {
+        setTimeout(() => {
+          that.updateLegend()
+        }, 200)
+      }
     },
 
     updateLegend () {
       let colorCodes = []
       this.legends = []
-
-      // if (!this.selectedZone) {
-      //  return
-      // }
 
       const features = [
         ...window.MBL.map.queryRenderedFeatures({ layers: [window.MBL.layerNames[0]] }),
@@ -294,6 +305,10 @@ export default {
           color: window.MBL.colorCodes[colorCodes[i]]
         })
       }
+    },
+
+    resetCenter () {
+      window.MBL.resetCenter()
     }
   }
 }
