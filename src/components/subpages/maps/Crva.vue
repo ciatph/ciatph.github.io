@@ -11,7 +11,7 @@
           p(class="wp-content") Climate change and variability continue to exert increasing pressure upon the agricultural sector of the Philippines. Therefore it is vital to identify and prioritise at a high, municipal-level resolution and relevant crops that are most vulnerable to climate risk. Under the umbrella of the Department of Agriculture project the "Adaptation and Mitigation Initiative in Agriculture" (AMIA), a climate risk vulnerability assessment (CRVA) for 10 selected provinces in the Philippines. The figure below shows the framework used for CRVA and the operational definition of the three key components for the agricultural sector:
           br
           br
-          img(src="../../assets/maps/crva-framework.png" width="100%")
+          img(src="@/assets/maps/crva-framework.png" width="100%")
         b-col(sm="3")
     // Content - Hazard Index
     b-container#hazard(fluid class="container-fluid-custom text-center content-area-text bg-greylight")
@@ -22,7 +22,7 @@
           p(class="wp-content") A combination of climate-related natural hazard dataset has been used to estimate by which different municipalities are under pressure from climate variability and extremes. The development of an exposure index relies on spatially-weighted combination of different historical climate-related natural hazards in the Philippines that are open-sourced data or developed by partner institutions, such as the Department of Agriculture (DA). Eight (8) hazards were identified for the Philippines, and these are typhoon, flood, drought, erosion, landslide, storm surge, saltwater intrusion, and sea level rise. Figure below shows the degree each municipalities in target are exposed to hazards provinces. Higher index means that hazards have both 1) multiple geographical overlap and 2) wider geographic coverage.
           br
           br
-          img(src="../../assets/maps/hazard-index-lowres.png" width="100%")
+          img(src="@/assets/maps/hazard-index-lowres.png" width="100%")
           div(class="download-link")
             span(class="glyphicon glyphicon-download glyph-black")
               a(href="https://firebasestorage.googleapis.com/v0/b/ciat-pdfstorage.appspot.com/o/crva%2Fmaps%2Fhi-res%2FHazard%20Index.png?alt=media&token=9fbd7b4a-24c2-4643-8e82-844be860633c" target="blank") [download high-resolution image]
@@ -36,7 +36,7 @@
           p(class="wp-content") Adaptive capacity forms one of the three pillars of the vulnerability assessment in addition to exposure and sensitivity to climate change. At the same time it is also one of the three components when measuring resilience, in addition to absorptive coping capacity and transformative capacity. Both are integrated concepts in a coupled human-environment system (Lei et al. 2014).
           br
           br
-          img(src="../../assets/maps/adaptive-capacity-lowres.png" width="100%")
+          img(src="@/assets/maps/adaptive-capacity-lowres.png" width="100%")
           div(class="download-link")
             a(href="https://firebasestorage.googleapis.com/v0/b/ciat-pdfstorage.appspot.com/o/crva%2Fmaps%2Fhi-res%2FAdaptive%20Capacity.png?alt=media&token=7766e5f7-f53a-4cb0-9e25-c6b0f980f514" target="blank") [download high-resolution image]
         b-col(sm="3")
@@ -49,7 +49,7 @@
           p(class="wp-content") The final climate risk vulnerability map for the year 2050 is an integration of the exposure, sensitivity and adaptive capacity components. The weighting of each of these indicators was discussed during expert workshops and resulted in 15% for exposure, 15% for sensitivity and 70% for adaptive.
           br
           br
-          img(src="../../assets/maps/vulnerability-lowres.png" width="100%")
+          img(src="@/assets/maps/vulnerability-lowres.png" width="100%")
           div(class="download-link")
             a(href="https://firebasestorage.googleapis.com/v0/b/ciat-pdfstorage.appspot.com/o/crva%2Fmaps%2Fhi-res%2FVulnerability.png?alt=media&token=49d32483-21ad-433f-a56f-196d784e9d58" target="_blank") [download high-resolution image]
         b-col(sm="3")
@@ -67,7 +67,7 @@
         // Integrated Farming
         b-col(sm="3")
           div(class="thumbnail-maps")
-            img(src="../../assets/maps/if-trees-sens2050-v2-lowres.png" alt="CRVA factsheet")
+            img(src="@/assets/maps/if-trees-sens2050-v2-lowres.png" alt="CRVA factsheet")
             p
               strong Integrated Farming
             p
@@ -75,7 +75,7 @@
         // Rice
         b-col(sm="3")
           div(class="thumbnail-maps")
-            img(src="../../assets/maps/rice-sens2050-v2-lowres.png" alt="Rice")
+            img(src="@/assets/maps/rice-sens2050-v2-lowres.png" alt="Rice")
             p
               strong Rice
             p
@@ -87,7 +87,7 @@
         // Maize
         b-col(sm="3")
           div(class="thumbnail-maps")
-            img(src="../../assets/maps/maize-sens2050-v2-lowres.png" alt="Maize")
+            img(src="@/assets/maps/maize-sens2050-v2-lowres.png" alt="Maize")
             p
               strong Maize
             p
@@ -95,7 +95,7 @@
         // Vegetables
         b-col(sm="3")
           div(class="thumbnail-maps")
-            img(src="../../assets/maps/vegetables-sens2050-v2-lowres.png" alt="Vegetables")
+            img(src="@/assets/maps/vegetables-sens2050-v2-lowres.png" alt="Vegetables")
             p
               strong Rice
             p

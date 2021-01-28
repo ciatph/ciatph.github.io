@@ -32,10 +32,23 @@ module.exports = {
       ]
     },
     {
-      'title': 'CRVA Maps',
-      'link': '/maps',
+      'title': 'Maps',
+      'link': '#',
       'external': 'false',
-      'children': []
+      'children': [
+        {
+          'title': 'CRVA Maps',
+          'link': '/maps',
+          'external': 'false',
+          'children': []
+        },
+        {
+          'title': 'Livelihood Zones Map',
+          'link': '/maps-livelihood',
+          'external': 'false',
+          'children': []
+        }
+      ]
     },
     {
       'title': 'CBA Tool',

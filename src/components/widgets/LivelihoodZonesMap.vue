@@ -1,0 +1,331 @@
+<template lang="pug">
+  // Mapbox GUI
+  div(id="map" ref="map")
+    div(class="map-overlay" style="margin-top: 60px; margin-left: 2%; width: 30%;")
+      div(class="map-overlay-inner")
+        h4 Region/Province selection
+
+        b-form-select(
+          v-model="selectedRegion"
+          :disabled="disabled"
+          :options="options"
+        )
+
+        b-form-select(
+          v-model="selectedProvince"
+          :disabled="disabled"
+          :options="optionsProvince"
+        )
+
+        small(v-if="disabled") Please wait while loading...
+        small(v-else) &nbsp;
+        br
+
+        div(v-if="legends.length > 0")
+          h5 Legend
+          div(class="legend-livelihood")
+            div(v-for="item in legends")
+              <div><span v-bind:style="{ backgroundColor: item.color }"></span>{{ item.text }}</div>
+</template>
+
+<script>
+export default {
+  name: 'LivelihoodZonesMap',
+  data () {
+    return {
+      selectedIsland: 'luzon',
+      selectedRegion: null,
+      selectedProvince: null,
+
+      previousRegion: '',
+      previousIsland: '',
+
+      disabled: true,
+
+      options: [
+        { value: null, text: 'Please select a region' }
+      ],
+
+      optionsProvince: [
+        { value: null, text: 'Please select a province' }
+      ],
+
+      legends: [],
+
+      islands: {
+        luzon: {
+          'national capital region': ['NCR, city of manila, first district', 'NCR, second district', 'NCR, third district', 'NCR, fourth district'],
+          'cordillera administrative region': ['abra', 'apayao', 'benguet', 'ifugao', 'kalinga', 'mountain province'],
+          'ilocos region': ['ilocos norte', 'ilocos sur', 'la union'],
+          'cagayan valley': ['batanes', 'cagayan', 'isabela', 'nueva vizcaya', 'quirino'],
+          'central luzon': ['aurora', 'bataan', 'bulacan', 'nueva ecija', 'pampanga', 'tarlac', 'zambales'],
+          'calabarzon': ['batangas', 'cavite', 'laguna', 'quezon', 'rizal'],
+          'mimaropa': ['marinduque', 'occidental mindoro', 'oriental mindoro', 'palawan', 'romblon'],
+          'bicol region': ['albay', 'camarines norte', 'camarines sur', 'catanduanes', 'masbate', 'sorsogon']
+        },
+        visayas: {
+          'western visayas': ['aklan', 'antique', 'capiz', 'guimaras', 'iloilo', 'negros occidental'],
+          'central visayas': ['bohol', 'cebu', 'negros oriental', 'siquijor'],
+          'eastern visayas': ['biliran', 'eastern samar', 'leyte', 'northern samar', 'samar', 'southern leyte']
+        },
+        mindanao: {
+          'autonomous region in muslim mindanao': ['basilan', 'lanao del sur', 'maguindanao', 'sulu', 'tawi-tawi'],
+          'zamboanga peninsula': ['city of isabela', 'zamboanga del norte', 'zamboanga del sur', 'zamboanga sibugay'],
+          'northern mindanao': ['bukidnon', 'camiguin', 'lanao del norte', 'misamis occidental', 'misamis oriental'],
+          'davao region': ['compostela valley', 'davao del norte', 'davao del sur', 'davao occidental', 'davao oriental'],
+          'soccskargen': ['cotabato', 'sarangani', 'south cotabato', 'sultan kudarat'],
+          'caraga': ['agusan del norte', 'agusan del sur', 'dinagat islands', 'surigao del norte', 'surigao del sur']
+        }
+      },
+
+      mapboxData: {
+        'luzon': {
+          tilesetID: 'wfp_luzon-0i1ren',
+          tilesetUrl: 'mapbox://ciatph02.0e42q1es',
+          styleUrl: 'mapbox://styles/ciatph02/ckkd7292b00e217ob16egq3f7'
+        },
+        'visayas': {
+          tilesetID: 'wfp_visayas-74aprl',
+          tilesetUrl: 'mapbox://ciatph02.c08hjtkc',
+          styleUrl: 'mapbox://styles/ciatph02/ckkd74y2200f417n6bmkfifhz'
+        },
+        'mindanao': {
+          tilesetID: 'wfp_mindanao-0jf4sv',
+          tilesetUrl: 'mapbox://ciatph02.3xpx7078',
+          styleUrl: 'mapbox://styles/ciatph02/ckkdv5x7h0npp17qjtj9o01u0'
+        }
+      },
+
+      hardCodedNames: {
+        'lanao del sur': 'Lanao del Sur',
+        'lanao del norte': 'Lanao del Norte',
+        'davao del norte': 'Davao del Norte',
+        'davao del sur': 'Davao del Sur',
+        'NCR, city of manila, first district': 'NCR, City of Manila, First District',
+        'agusan del norte': 'Agusan del Norte',
+        'agusan del sur': 'Agusan del Sur',
+        'surigao del norte': 'Surigao del Norte',
+        'surigao del sur': 'Surigao del Sur',
+        'city of isabela': 'City of Isabela',
+        'zamboanga del norte': 'Zamboanga del Norte',
+        'zamboanga del sur': 'Zamboanga del Sur',
+        'zamboanga sibugay': 'Zamboanga Sibugay'
+      }
+    }
+  },
+
+  watch: {
+    selectedRegion () {
+      if (!this.selectedRegion) {
+        this.selectedRegion = this.previousRegion
+        return
+      }
+
+      this.selectedIsland = this.getIslandFromRegion(this.selectedRegion)
+      this.getProvinceOptions()
+      // this.resetMapView()
+
+      // Hide the previous selected region
+      if (this.previousIsland) {
+        window.MBL.toggleLayer(`${this.previousIsland}-layer`)
+      }
+
+      // Build the province list filter. Format the hard-coded values
+      let provinceList = Array.from(this.islands[this.selectedIsland][this.selectedRegion],
+        (x) => {
+          if (this.hardCodedNames[x]) {
+            return this.hardCodedNames[x]
+          } else {
+            return Array.from(x.split(' '), (y) => `${y[0].toUpperCase()}${y.substr(1, y.length)}`).join(' ')
+          }
+        })
+
+      // Draw the region layer
+      window.MBL.addLayerSource(
+        // this.selectedRegion,
+        this.selectedIsland,
+        this.mapboxData[this.selectedIsland].tilesetID,
+        this.mapboxData[this.selectedIsland].tilesetUrl,
+        { // filter
+          expression: 'in',
+          key: 'ADM2_EN',
+          value: provinceList
+        },
+        { // Attribute name mapping
+          'ADM2_EN': 'Province',
+          'ADM3_EN': 'Municipality',
+          'Legend_v2': 'Legend'
+        }
+      )
+
+      this.previousRegion = this.selectedRegion
+      this.previousIsland = this.selectedIsland
+
+      // Disable the UI on page load
+      this.disabled = true
+      const that = this
+
+      const time = setInterval(() => {
+        if (!window.MBL.isLoading) {
+          console.log('map loaded!')
+          that.disabled = false
+          that.disabled = false
+          clearInterval(time)
+        }
+      }, 200)
+
+      this.updateLegend()
+    },
+
+    selectedProvince () {
+      if (!this.selectedProvince) {
+        return
+      }
+
+      const provinceValue = (this.hardCodedNames[this.selectedProvince])
+        ? this.hardCodedNames[this.selectedProvince]
+        : this.camelCase(this.selectedProvince)
+
+      // this.resetMapView()
+      window.MBL.setLayerFilter(`${this.selectedIsland}-layer`, {
+        key: 'ADM2_EN',
+        value: provinceValue
+      })
+
+      this.updateLegend(provinceValue)
+    }
+  },
+
+  mounted () {
+    this.getRegionOptions()
+    const that = this
+
+    // Initialize the mapbox basemap
+    window.MBL.initMap({
+      mapContainer: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      zoom: 5.0,
+      center: [122.016, 12.127]
+    })
+
+    this.$refs.map.getElementsByClassName('mapboxgl-canvas')[0].style.position = 'relative'
+
+    // Wait for basemap to load
+    // TO-DO: Listen for mapbox events
+    const time = setInterval(() => {
+      if (!window.MBL.isLoading) {
+        console.log('--BASEMAP')
+        that.disabled = false
+        clearInterval(time)
+      }
+    }, 200)
+  },
+
+  methods: {
+    camelCase (str, special = '') {
+      if (str === null) {
+        return
+      }
+
+      let string = str
+      if (string.includes('-')) {
+        string = Array.from(string.split('-'), (x) => `${x[0].toUpperCase()}${x.substr(1, x.length)}`).join('-')
+      }
+
+      return Array.from(string.split(' '), (x) => `${x[0].toUpperCase()}${x.substr(1, x.length)}`).join(' ')
+    },
+
+    getIslandFromRegion (region) {
+      const isles = Object.keys(this.islands)
+      let mainIsle
+
+      for (let i = 0; i < isles.length; i += 1) {
+        const regions = Object.keys(this.islands[isles[i]])
+        if (regions.includes(region)) {
+          mainIsle = isles[i]
+          break
+        }
+      }
+
+      return mainIsle
+    },
+
+    // Build the regions list
+    getRegionOptions () {
+      for (let isle in this.islands) {
+        Object.keys(this.islands[isle]).forEach((item, index) => {
+          this.options.push({ value: item, text: this.camelCase(item) })
+        })
+      }
+    },
+
+    // Build a region's province list
+    getProvinceOptions () {
+      this.selectedProvince = null
+      this.optionsProvince = [{ value: null, text: 'Please select a province' }]
+
+      if (this.islands[this.selectedIsland][this.selectedRegion]) {
+        this.islands[this.selectedIsland][this.selectedRegion].forEach((item, index) => {
+          const provinceValue = (this.hardCodedNames[item]) ? this.hardCodedNames[item] : this.camelCase(item)
+          this.optionsProvince.push({ value: item, text: provinceValue })
+        })
+      }
+    },
+
+    resetMapView () {
+      if (window.MBL.map.getZoom() > 8) {
+        setTimeout(() => {
+          window.MBL.resetCenter()
+        }, 200)
+      }
+      // window.MBL.toggleHandlers(false)
+    },
+
+    updateLegend (provinceName) {
+      const that = this
+      let loadedOnce = false
+      let colorCodes = []
+
+      const unique = (value, index, self) => {
+        return self.indexOf(value) === index
+      }
+
+      // Reset the legends
+      this.legends = []
+
+      window.MBL.map.on('sourcedata', function (e) {
+        if (e.isSourceLoaded) {
+          if (e.sourceId !== 'composite' && !loadedOnce) {
+            const features = window.MBL.map.queryRenderedFeatures({ layers: [`${e.sourceId}-layer`] })
+
+            if (features.length > 0) {
+              window.MBL.isLoading = false
+              // window.MBL.toggleHandlers(true)
+              loadedOnce = true
+              that.disabled = false
+
+              console.log(`--loaded vector length: ${features.length} from layer ${e.sourceId}`)
+              // console.log(Array.from(features, (x) => x.properties))
+
+              if (provinceName) {
+                colorCodes = Array.from(features.filter(x => x.properties['ADM2_EN'] === provinceName),
+                  (x) => x.properties['Legend_v2']).filter(unique)
+              } else {
+                colorCodes = Array.from(features, (x) => x.properties['Legend_v2']).filter(unique)
+              }
+
+              for (let i = 0; i < colorCodes.length; i += 1) {
+                that.legends.push({
+                  text: colorCodes[i],
+                  color: window.MBL.colorCodes[colorCodes[i]]
+                })
+              }
+            }
+          }
+          // window.MBL.isLoading = false
+        }
+      })
+    }
+  }
+}
+</script>
