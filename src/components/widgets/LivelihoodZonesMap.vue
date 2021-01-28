@@ -31,8 +31,9 @@
           div(style="width: 100%; display: flex;")
             h5(style="width: 50%;") Legend
             div(style="width: 50%; line-height: 25px;")
-              p(style="float: right;"
-                @click="resetCenter") [View All]
+             div(size="sm" style="float: right;")
+                b-button(size="sm" style="margin-right: 3px;" @click="resetSelections") Clear
+                b-button(size="sm" @click="resetCenter") View All
 
           div(class="legend-livelihood")
             div(v-for="item in legends")
@@ -98,6 +99,7 @@ export default {
       if (!this.selectedRegion) {
         this.filters.ADM2_EN = null
         this.selectedProvince = null
+        this.optionsProvince = [{ value: null, text: 'Please select a province' }]
       } else {
         this.selectedIsland = this.getIslandFromRegion(this.selectedRegion)
         this.getProvinceOptions()
@@ -309,6 +311,13 @@ export default {
 
     resetCenter () {
       window.MBL.resetCenter()
+    },
+
+    resetSelections () {
+      this.selectedIsland = null
+      this.selectedZone = null
+      this.selectedRegion = null
+      this.selectedProvince = null
     }
   }
 }

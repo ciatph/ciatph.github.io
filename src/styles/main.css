@@ -567,6 +567,7 @@ footer .glyphicon{
 
 .legend-livelihood div span {
     border-radius: 50%;
+    border: 1px solid gray;
     display: inline-block;
     height: 10px;
     margin-right: 5px;
