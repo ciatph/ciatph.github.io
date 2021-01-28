@@ -2,6 +2,21 @@
 // requires mapboxgl js
 // Manages layers from a mapbox Tileset data source
 
+const mapboxData = {
+  'luzon': {
+    tilesetID: 'wfp_luzon_v2-4v4oaa',
+    tilesetUrl: 'mapbox://ciatph.5kaa86pi'
+  },
+  'visayas': {
+    tilesetID: 'wfp_visayas_v2-7fws23',
+    tilesetUrl: 'mapbox://ciatph.4dv34cxw'
+  },
+  'mindanao': {
+    tilesetID: 'wfp_mindanao_v2-bxk5d4',
+    tilesetUrl: 'mapbox://ciatph.6g0cm3sd'
+  }
+}
+
 function MapboxMap (publicAccessToken) {
   this.map = null
   this.mapCanvas = null
@@ -19,9 +34,15 @@ function MapboxMap (publicAccessToken) {
   // HTML hex codes mapped to feature attribute values
   this.colorCodes = null
 
+  // User-defined layer names
+  this.layerNames = []
+
   // Flag if a vector data source is loading
   // TO-DO: Listen for mapbox events
   this.isLoading = true
+
+  // Click event on 1st-time data load has been initialized
+  this.eventsInitialized = false
 }
 
 /**
@@ -30,7 +51,7 @@ function MapboxMap (publicAccessToken) {
  * zoom - {Number} map zoom
  * center - {Array} [lat, lan] map center
  */
-MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.0, center = [122.016, 12.127], sourceLayer}) {
+MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.0, center = [122.016, 12.127], mapboxTilesets = mapboxData }) {
   if (!mapboxgl.supported()) {
     alert('Your browser does not support Mapbox GL')
     return
@@ -38,9 +59,6 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.
 
   // Set the mapbox public access token
   mapboxgl.accessToken = this.accessToken
-
-  // Set the Style's source layer name
-  this.sourceLayer = sourceLayer
 
   // Layer definitions. Should have a source added via addSource
   this.layers = {}
@@ -54,10 +72,9 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.
     minZoom: 1,
     maxZoom: 12
   })
-
-  .addControl(new mapboxgl.FullscreenControl())
-  .addControl(new mapboxgl.NavigationControl())
-  .addControl(new mapboxgl.AttributionControl({ compact: true }))
+    .addControl(new mapboxgl.FullscreenControl())
+    .addControl(new mapboxgl.NavigationControl())
+    .addControl(new mapboxgl.AttributionControl({ compact: true }))
 
   // Resize the map
   this.mapCanvas = document.getElementsByClassName('mapboxgl-canvas')[0]
@@ -74,14 +91,58 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.
   // Listen for basemap loading events
   const that = this
 
-  this.map.on('load', function() {
+  this.map.on('load', function () {
     console.log('---basemap loaded')
     // that.toggleHandlers(true)
+    that.loadAllTilesets(mapboxTilesets)
     that.isLoading = false
   })
 
+  // Add click events after all Tileset data has loaded
+  this.map.on('sourcedata', function (e) {
+    if (e.isSourceLoaded) {
+      if (e.sourceId !== 'composite') {
+        if (!that.eventsInitialized) {
+          that.eventsInitialized = true
+          const attributeNames = { // Attribute name mapping
+            'ADM2_EN': 'Province',
+            'ADM3_EN': 'Municipality',
+            'Legend_v2': 'Legend'
+          }
+
+          for (let i = 0; i < that.layerNames.length; i += 1) {
+            const features = that.map.queryRenderedFeatures({ layers: [that.layerNames[i]] })
+            if (features) {
+              console.log(`---ADDED EVENTS FOR ${that.layerNames[i]}`)
+
+              window.MBL.map.on('click', `${that.layerNames[i]}`, function (e) {
+                // print all data
+                var content = ''
+                for (let item in e.features[0].properties) {
+                  let attr = item
+                  if (attributeNames) {
+                    attr = attributeNames[item] ? attributeNames[item] : item
+                  }
+
+                  content += `${attr}: ${e.features[0].properties[item]}`
+                  content += '<br>'
+                }
+
+                new mapboxgl.Popup()
+                  .setLngLat(e.lngLat)
+                  .setHTML(content)
+                  .addTo(this)
+              })
+            }
+          }
+        }
+      }
+      that.isLoading = false
+    }
+  })
+
   /* Detects if a source data has loaded. Override this method on vue component
-  this.map.on('sourcedata', function(e) {
+  this.map.on('sourcedata', function (e) {
     if (e.isSourceLoaded) {
       console.log('---vector loaded')
       if (e.sourceId !== 'composite') {
@@ -92,13 +153,12 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.
     }
   })
   */
-} 
+}
 
 /**
  * Change the map Style (layer)
  */
 MapboxMap.prototype.loadStyle = function (styleUrl, tilesetID, filter) {
-  // this.map.setStyle(`mapbox://styles/ciatph02/${styles[0]}`)
   this.map.setStyle(styleUrl)
   this.initLoadedStyle(tilesetID, filter)
 }
@@ -109,7 +169,7 @@ MapboxMap.prototype.loadStyle = function (styleUrl, tilesetID, filter) {
  */
 MapboxMap.prototype.toggleLayer = function (layerName) {
   const visible = this.map.getLayoutProperty(layerName, 'visibility')
-  
+
   if (visible !== undefined) {
     const set = (visible === 'none') ? 'visible' : 'none'
     this.map.setLayoutProperty(layerName, 'visibility', set)
@@ -211,10 +271,10 @@ MapboxMap.prototype.addLayerSource = function (layerName, tilesetName, tilesetUr
     'layout': {
       'visibility': 'visible'
     },
-    "paint": {
-      "fill-outline-color": "rgba(0,0,0,0.2)",
-      "fill-color": colorExpression,
-      "fill-opacity": 1.0,
+    'paint': {
+      'fill-outline-color': 'rgba(0,0,0,0.2)',
+      'fill-color': colorExpression,
+      'fill-opacity': 1.0
     },
     'source-layer': tilesetName
   }
@@ -240,26 +300,25 @@ MapboxMap.prototype.addLayerSource = function (layerName, tilesetName, tilesetUr
     this.map.addLayer(layer)
 
     // Enable click events (display a pop-up message) after the layer and source has loaded
-    const that = this
-    const time = setInterval(function() {
-      const features = that.map.queryRenderedFeatures({layers: [layerID] })
+    const time = setInterval(function () {
+      const features = that.map.queryRenderedFeatures({ layers: [layerID] })
       if (features) {
         that.features = features
 
         // NOTE: this is set to false by the global 'sourcedata' event
         // that.isLoading = false
 
-        window.MBL.map.on('click', layerID, function(e) {
+        window.MBL.map.on('click', layerID, function (e) {
           // print all data
-          var content = ""
-          for(key in e.features[0].properties){
+          var content = ''
+          for (let key in e.features[0].properties) {
             let attr = key
             if (attributeNames) {
               attr = attributeNames[key] ? attributeNames[key] : key
             }
 
             content += `${attr}: ${e.features[0].properties[key]}`
-            content += "<br>"
+            content += '<br>'
           }
       
           new mapboxgl.Popup()
@@ -271,11 +330,6 @@ MapboxMap.prototype.addLayerSource = function (layerName, tilesetName, tilesetUr
         clearInterval(time)
       }
     }, 200)
-    /*
-    this.map.on('load', function(e) {
-      console.log('---DONE!!!')
-    })
-    */
   } else {
     // Display the layer if its source already exists
     this.toggleLayer(layerID)
@@ -284,7 +338,7 @@ MapboxMap.prototype.addLayerSource = function (layerName, tilesetName, tilesetUr
 }
 
 /**
- * Display only (1) feature attribute on the map
+ * Display only (1) feature attribute on the map using a filter
  * layerName - {String} Unique map layer name
  * filter = {Object} feature attribute to show on the layer
  *    filter.expression - {String} mapbox filter equality expression ('in', '==', etc)
@@ -305,6 +359,25 @@ MapboxMap.prototype.setLayerFilter = function (layerName, filter) {
   this.map.setFilter(layerName, filterExpression)
 }
 
+/**
+ * Apply single or multiple mapbox filters on all declared layers
+ * filter - {Array} Mapbox filter expression ('all', 'in', '==', etc)
+ */
+MapboxMap.prototype.setLayersFilter = function (filter) {
+  // Remove popups
+  this.removePopups()
+  console.log('--applying filter')
+  console.log(filter)
+
+  for (let i = 0; i < this.layerNames.length; i += 1) {
+    this.map.setFilter(this.layerNames[i], filter)
+    this.map.setLayoutProperty(this.layerNames[i], 'visibility', 'visible')
+  }
+}
+
+/**
+ * Hide all pop-ups
+ */
 MapboxMap.prototype.removePopups = function () {
   const popups = document.getElementsByClassName('mapboxgl-popup')
   for (let i = 0; i < popups.length; i += 1) {
@@ -330,5 +403,51 @@ MapboxMap.prototype.toggleHandlers = function (enable) {
     } else {
       this.map[handlers[i]].disable()
     }
+  }
+}
+
+/**
+ * Load multiple mapbox Tilesets as source and add them as layers
+ * tilesets - {Object} contains Objects of mapbox tileset definitions
+ *    tilesets.SAMPLE_KEY.tilesetID - {String} mapbox Tileset ID
+ *    tilesets.SAMPLE_KEY.tilesetUrl - {String} mapbox Tileset URL
+ */
+MapboxMap.prototype.loadAllTilesets = function (tilesets) {
+  // Set the color expression to use on the layer
+  const colorExpression = ['match', ['get', 'Legend_v2']]
+  console.log(tilesets)
+
+  const styles = this.colorCodes
+  Object.keys(styles).forEach((item, index) => {
+    colorExpression.push(item, styles[item])
+  })
+
+  colorExpression.push('rgb(0, 0, 0)')
+
+  for (let key in tilesets) {
+    this.layerNames.push(`${key}-layer`)
+
+    // Build the layer, setting its color styles
+    let layer = {
+      'id': `${key}-layer`,
+      'type': 'fill', // line
+      'source': key,
+      'layout': {
+        'visibility': 'visible'
+      },
+      'paint': {
+        'fill-outline-color': 'rgba(0,0,0,0.2)',
+        'fill-color': colorExpression,
+        'fill-opacity': 1.0
+      },
+      'source-layer': tilesets[key].tilesetID
+    }
+
+    this.map.addSource(key, {
+      type: 'vector',
+      url: tilesets[key].tilesetUrl
+    })
+
+    this.map.addLayer(layer)
   }
 }
