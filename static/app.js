@@ -123,7 +123,7 @@ var colorLayersRandom = function(propertyFilter){
 
         if(provinces.indexOf(joined) == -1){
             provinces.push(joined);
-            map.addLayer(createColoredLayer("amia-" + joined, propertyFilter, hexToRgbA(colorsNameMap[joined], 1.0)), 1.0);
+            map.addLayer(createColoredLayer("amia-" + joined, propertyFilter, hexToRgbA(colorsNameMap[joined], 1.0)));
             map.setFilter("amia-" + joined, ["==", propertyFilter, joined]); 
         }
     }   

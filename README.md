@@ -101,16 +101,13 @@ Please take note, the steps mentioned in  **_Automatic CI/CD to GitHub Pages Usi
 
 For testing purposes, the static build files can be optionally uploaded to Firebase hosting prior to deploying on GitHub pages.
 
+Firebase CLI is required.
+
 1. Login to the firebase cli as `ciat.ph06`.
-
-2. Run `firebase init`.
-	-  *Are you ready to proceed?* - choose **Y**
-	- *Which Firebase CLI features do you want to set up for this folder?* - choose **_Hosting_**.
-	- *What do you want to use as your public directory?* - type **/dist**
-	- *Configure as a single-page app (rewrite all urls to /index.html)?* - choose **Y**
-	- *File dist/index.html already exists. Overwrite?* - choose **N**
-
-3. Run `firebase deploy`
+2. Build the website.  
+`npm run build`
+3. Deploy to firebase (https://ciatphdemo.firebaseapp.com/).  
+`firebase deploy`
 
 
 **Updated:** 20191113
