@@ -8,7 +8,7 @@
       v-for="item, index in thumbnailData")
       div(class="card h-100 thumbnail")
         img(v-lazy="require(`@/assets/thumbnails/${item.img}`)"
-        class="card-img-top" alt="Image")
+        class="card-img-top" style="min-height: 100px;" alt="Image")
         div(class="card-body")
           h4(class="card-title") {{ item.title }}
           p(class="card-text") {{ item.description }}

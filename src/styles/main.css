@@ -795,6 +795,17 @@ ul.social-icons {
 }
 
 
+/*------- modals------------*/
+.ie-notification {
+    width: 40%;
+    margin: auto;
+    margin-top: 10%;
+    font-size: 20px;
+    font-style: italic;
+    color: #6e6e6e;
+}
+
+
 /* this is used with the 'mediaquery.html' page to see media queries in effect. Reference this CSS file on a blank page and then resize the browser window */
 @media screen and (max-width: 1193px) {
     .header-row {
