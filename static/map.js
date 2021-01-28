@@ -54,7 +54,7 @@ function MapboxMap (publicAccessToken) {
  * zoom - {Number} map zoom
  * center - {Array} [lat, lan] map center
  */
-MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.3, center = [122.016, 12.127], mapboxTilesets = mapboxData }) {
+MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.6, center = [120.77551644707285, 12.419614853889797], mapboxTilesets = mapboxData }) {
   if (!mapboxgl.supported()) {
     alert('Your browser does not support Mapbox GL')
     return
@@ -399,10 +399,10 @@ MapboxMap.prototype.removePopups = function () {
 }
 
 MapboxMap.prototype.resetCenter = function () {
-  // this.map.setZoom(5.3)
+  // this.map.setZoom(5.6)
   this.map.flyTo({
-    center: [122.016, 12.127],
-    zoom: 5.3
+    center: [120.77551644707285, 12.419614853889797],
+    zoom: 5.6
     // bearing: 0,
     // speed: 0.2,
     // curve: 1,

@@ -144,8 +144,8 @@ export default {
     window.MBL.initMap({
       mapContainer: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      zoom: 5.3,
-      center: [122.016, 12.127]
+      zoom: 5.6,
+      center: [120.77551644707285, 12.419614853889797]
     })
 
     this.$refs.map.getElementsByClassName('mapboxgl-canvas')[0].style.position = 'relative'
