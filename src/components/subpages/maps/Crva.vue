@@ -1,7 +1,8 @@
 <template lang="pug">
   div
     // map GUI
-    crva-map()
+    notification-internet-explorer(v-if="isIE")
+    crva-map(v-else)
     // Content - CRVA maps overview
     b-container#crvamaps(fluid class="container-fluid-custom text-center content-area-text")
       b-row
@@ -105,11 +106,26 @@
 
 <script>
 import CrvaMap from '@/components/widgets/CrvaMap'
+import NotificationInternetExplorer from '@/components/templates/NotificationInternetExplorer'
+import utils from '@/components/mixins/utils'
 
 export default {
   name: 'Maps',
+  mixins: [utils],
+
   components: {
-    CrvaMap
+    CrvaMap,
+    NotificationInternetExplorer
+  },
+
+  data () {
+    return {
+      isIE: false
+    }
+  },
+
+  mounted () {
+    this.isIE = this.isInternetExplorer()
   }
 }
 </script>

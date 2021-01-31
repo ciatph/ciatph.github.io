@@ -567,6 +567,7 @@ footer .glyphicon{
 
 .legend-livelihood div span {
     border-radius: 50%;
+    border: 1px solid gray;
     display: inline-block;
     height: 10px;
     margin-right: 5px;
@@ -792,6 +793,17 @@ ul.social-icons {
 /*------- youtube video ------------*/
 .video-youtube{
     padding-top: -200px;
+}
+
+
+/*------- modals------------*/
+.ie-notification {
+    width: 40%;
+    margin: auto;
+    margin-top: 10%;
+    font-size: 20px;
+    font-style: italic;
+    color: #6e6e6e;
 }
 
 
