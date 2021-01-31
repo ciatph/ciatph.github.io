@@ -130,6 +130,8 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom, cen
       if (e.sourceId !== 'composite') {
         if (!that.eventsInitialized) {
           that.eventsInitialized = true
+          let hasLoadError = false
+
           const attributeNames = { // Attribute name mapping
             'ADM2_EN': 'Province',
             'ADM3_EN': 'Municipality',
@@ -143,6 +145,7 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom, cen
 
             if (features.length === 0) {
               console.log(`---failed to fetch ${that.layerNames[i]}`)
+              hasLoadError = true
               this.fire(that.events.DATA_LOAD_FAILURE)
               break
             }
@@ -169,10 +172,12 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom, cen
             }
           }
 
-          console.log(`---${that.events.DATA_LOADED}`)
-          that.isLoading = false
-          that.toggleHandlers(true)
-          this.fire(that.events.DATA_LOADED)
+          if (!hasLoadError) {
+            console.log(`---${that.events.DATA_LOADED}`)
+            that.isLoading = false
+            that.toggleHandlers(true)
+            this.fire(that.events.DATA_LOADED)
+          }
         }
       }
     }

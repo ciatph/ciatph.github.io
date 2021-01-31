@@ -76,7 +76,8 @@ export default {
       messages: {
         DEFAULT: '',
         LOADING: 'Please wait while loading...',
-        NAVIGATE_TO: 'Please navigate to the selected region to view legends.'
+        NAVIGATE_TO: 'Please navigate to the selected region to view legends.',
+        LOAD_ERROR: 'An error has occurred while fetching data. Please check your internet connection and reload the web page.'
       },
 
       filters: {
@@ -187,14 +188,16 @@ export default {
     // Enable UI after basemap and (all) Tilesets have finished loading
     window.MBL.map.on(window.MBL.events.DATA_LOADED, function (e) {
       console.log('---ALL DATA HAS LOADED')
-      that.statusMessage = that.messages.DEFAULT
-      that.disabled = false
+      if (that.statusMessage === that.messages.LOADING) {
+        that.statusMessage = that.messages.DEFAULT
+        that.disabled = false
+      }
     })
 
     // Display an error message if initial Tilesets pre-load has failed
     window.MBL.map.on(window.MBL.events.DATA_LOAD_FAILURE, function (e) {
       console.log('---DATA FAILED TO DOWNLOAD')
-      that.statusMessage = 'Map data has failed to download.\nPlease check your internet connection and reload the web page.'
+      that.statusMessage = that.messages.LOAD_ERROR
     })
   },
 
