@@ -4,12 +4,11 @@
     div(class="map-overlay" style="margin-top: 60px; margin-left: 2%; width: 30%;")
       div(class="map-overlay-inner")
         h4 Region/Province selection
-
-        b-form-select(
-          v-model="selectedZone"
-          :disabled="disabled"
-          :options="optionsZone"
-        )
+        // b-form-select(
+        //  v-model="selectedZone"
+        //  :disabled="disabled"
+        //  :options="optionsZone"
+        // )
 
         b-form-select(
           v-model="selectedRegion"
