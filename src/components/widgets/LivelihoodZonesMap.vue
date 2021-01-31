@@ -23,7 +23,7 @@
           :options="optionsProvince"
         )
 
-        small(v-if="disabled") {{ loadingMessage }}
+        small(v-if="statusMessage !== ''") {{ statusMessage }}
         small(v-else) &nbsp;
         br
 
@@ -73,7 +73,12 @@ export default {
       ],
 
       legends: [],
-      loadingMessage: 'Please wait while loading...',
+      statusMessage: '',
+      messages: {
+        DEFAULT: '',
+        LOADING: 'Please wait while loading...',
+        NAVIGATE_TO: 'Please navigate to the selected region to view legends.'
+      },
 
       filters: {
         layer: null, // zone
@@ -110,6 +115,7 @@ export default {
         this.filters.ADM2_EN = ['in', 'ADM2_EN', ...this.getProvinces(this.selectedIsland, this.selectedRegion)]
       }
 
+      this.statusMessage = this.messages.NAVIGATE_TO
       this.updateLayers()
     },
 
@@ -138,12 +144,19 @@ export default {
       }
 
       this.updateLayers()
+    },
+
+    legends () {
+      if (this.legends.length > 0 && (this.selectedZone || (this.selectedRegion || this.selectedProvince))) {
+        this.statusMessage = this.messages.DEFAULT
+      }
     }
   },
 
   mounted () {
     this.getLivelihoodZonesOptions()
     this.getRegionOptions()
+    this.statusMessage = this.messages.LOADING
     const that = this
 
     // Initialize the mapbox basemap
@@ -158,9 +171,10 @@ export default {
 
     // Render legends if they are not yet visible after a moveend event
     window.MBL.map.on('moveend', function (e) {
-      if (window.MBL.map.getZoom() > 6 && (that.selectedZone || (that.selectedRegion || that.selectedProvince))) {
+      if ((that.selectedZone || (that.selectedRegion || that.selectedProvince))) {
         console.log(`---updating legends! length: ${that.legends.length}, zoom ${window.MBL.map.getZoom()}`)
         that.updateLegend()
+        that.showAllLegends()
       }
 
       if (window.MBL.isFlying) {
@@ -174,23 +188,14 @@ export default {
     // Enable UI after basemap and (all) Tilesets have finished loading
     window.MBL.map.on(window.MBL.events.DATA_LOADED, function (e) {
       console.log('---ALL DATA HAS LOADED')
+      that.statusMessage = that.messages.DEFAULT
       that.disabled = false
     })
 
     // Display an error message if initial Tilesets pre-load has failed
     window.MBL.map.on(window.MBL.events.DATA_LOAD_FAILURE, function (e) {
       console.log('---DATA FAILED TO DOWNLOAD')
-      that.loadingMessage = 'Map data has failed to download.\nPlease check your internet connection and reload the web page.'
-    })
-
-    // Display the View All button
-    window.MBL.map.on('zoomend', function (e) {
-      const zoom = window.MBL.map.getZoom()
-      if (zoom > window.MBL.defaultSettings.zoom && that.legends.length > 0) {
-        that.showViewAllBtn = true
-      } else {
-        that.showViewAllBtn = false
-      }
+      that.statusMessage = 'Map data has failed to download.\nPlease check your internet connection and reload the web page.'
     })
   },
 
@@ -292,6 +297,7 @@ export default {
       if (this.selectedZone || (this.selectedRegion || this.selectedProvince)) {
         setTimeout(() => {
           that.updateLegend()
+          that.showAllLegends()
         }, 200)
       }
     },
@@ -303,6 +309,7 @@ export default {
       const features = window.MBL.map.queryRenderedFeatures({ layers: window.MBL.layerNames })
       if (features.length === 0) {
         console.log('---no legends to show')
+        this.statusMessage = this.messages.NAVIGATE_TO
         return
       }
 
@@ -329,6 +336,15 @@ export default {
       this.selectedZone = null
       this.selectedRegion = null
       this.selectedProvince = null
+    },
+
+    showAllLegends () {
+      const zoom = window.MBL.map.getZoom()
+      if (zoom > window.MBL.defaultSettings.zoom && this.legends.length > 0) {
+        this.showViewAllBtn = true
+      } else {
+        this.showViewAllBtn = false
+      }
     }
   }
 }

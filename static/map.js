@@ -101,7 +101,7 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom, cen
   this.layerNames = []
 
   // Disable map controls
-  // this.toggleHandlers(false)
+  this.toggleHandlers(false)
 
   // Listen for basemap loading events
   const that = this
@@ -171,6 +171,7 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom, cen
 
           console.log(`---${that.events.DATA_LOADED}`)
           that.isLoading = false
+          that.toggleHandlers(true)
           this.fire(that.events.DATA_LOADED)
         }
       }
