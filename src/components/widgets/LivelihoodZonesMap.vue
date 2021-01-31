@@ -171,7 +171,7 @@ export default {
     // Render legends if they are not yet visible after a moveend event
     window.MBL.map.on('moveend', function (e) {
       if ((that.selectedZone || (that.selectedRegion || that.selectedProvince))) {
-        console.log(`---updating legends! length: ${that.legends.length}, zoom ${window.MBL.map.getZoom()}`)
+        // console.log(`---updating legends! length: ${that.legends.length}, zoom ${window.MBL.map.getZoom()}`)
         that.updateLegend()
         that.showAllLegends()
       }
@@ -317,6 +317,7 @@ export default {
       }
 
       colorCodes = (Array.from(features, (x) => x.properties['Legend_v2']).filter(unique)).sort()
+      // console.log(`---legends: ${colorCodes.length}`)
 
       for (let i = 0; i < colorCodes.length; i += 1) {
         this.legends.push({
