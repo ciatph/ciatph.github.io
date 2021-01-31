@@ -1,6 +1,6 @@
 <template lang="pug">
   // Mapbox GUI
-  div(id="map" ref="map")
+  div(id="map-livelihood" ref="map")
     div(class="map-overlay" style="margin-top: 60px; margin-left: 2%; width: 30%;")
       div(class="map-overlay-inner")
         h4 Region/Province selection
@@ -23,7 +23,7 @@
           :options="optionsProvince"
         )
 
-        small(v-if="disabled") Please wait while loading...
+        small(v-if="disabled") {{ loadingMessage }}
         small(v-else) &nbsp;
         br
 
@@ -33,7 +33,9 @@
             div(style="width: 50%; line-height: 25px;")
              div(size="sm" style="float: right;")
                 b-button(size="sm" style="margin-right: 3px;" @click="resetSelections") Clear
-                b-button(size="sm" @click="resetCenter") View All
+                b-button(size="sm"
+                  v-if="showViewAllBtn"
+                  @click="resetCenter") View All
 
           div(class="legend-livelihood")
             div(v-for="item in legends")
@@ -56,6 +58,7 @@ export default {
       previousIsland: '',
 
       disabled: true,
+      showViewAllBtn: false,
 
       options: [
         { value: null, text: 'Please select a region' }
@@ -70,6 +73,7 @@ export default {
       ],
 
       legends: [],
+      loadingMessage: 'Please wait while loading...',
 
       filters: {
         layer: null, // zone
@@ -144,25 +148,13 @@ export default {
 
     // Initialize the mapbox basemap
     window.MBL.initMap({
-      mapContainer: 'map',
+      mapContainer: 'map-livelihood',
       style: 'mapbox://styles/mapbox/streets-v11',
       zoom: 5.6,
       center: [120.77551644707285, 12.419614853889797]
     })
 
     this.$refs.map.getElementsByClassName('mapboxgl-canvas')[0].style.position = 'relative'
-
-    // Wait for basemap to load
-    // TO-DO: Listen for mapbox events
-    /*
-    const time = setInterval(() => {
-      if (!window.MBL.isLoading) {
-        console.log('--BASEMAP')
-        that.disabled = false
-        clearInterval(time)
-      }
-    }, 200)
-    */
 
     // Render legends if they are not yet visible after a moveend event
     window.MBL.map.on('moveend', function (e) {
@@ -179,9 +171,26 @@ export default {
       }
     })
 
-    window.MBL.map.on('dataloaded', function (e) {
+    // Enable UI after basemap and (all) Tilesets have finished loading
+    window.MBL.map.on(window.MBL.events.DATA_LOADED, function (e) {
       console.log('---ALL DATA HAS LOADED')
       that.disabled = false
+    })
+
+    // Display an error message if initial Tilesets pre-load has failed
+    window.MBL.map.on(window.MBL.events.DATA_LOAD_FAILURE, function (e) {
+      console.log('---DATA FAILED TO DOWNLOAD')
+      that.loadingMessage = 'Map data has failed to download.\nPlease check your internet connection and reload the web page.'
+    })
+
+    // Display the View All button
+    window.MBL.map.on('zoomend', function (e) {
+      const zoom = window.MBL.map.getZoom()
+      if (zoom > window.MBL.defaultSettings.zoom && that.legends.length > 0) {
+        that.showViewAllBtn = true
+      } else {
+        that.showViewAllBtn = false
+      }
     })
   },
 

@@ -46,6 +46,17 @@ function MapboxMap (publicAccessToken) {
 
   // Click event on 1st-time data load has been initialized
   this.eventsInitialized = false
+
+  // Mapbox custom events
+  this.events = {
+    DATA_LOADED: 'dataloaded',
+    DATA_LOAD_FAILURE: 'dataloadfailure'
+  }
+
+  this.defaultSettings = {
+    zoom: 5.6,
+    center:  [120.77551644707285, 12.419614853889797]
+  }
 }
 
 /**
@@ -54,7 +65,7 @@ function MapboxMap (publicAccessToken) {
  * zoom - {Number} map zoom
  * center - {Array} [lat, lan] map center
  */
-MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.6, center = [120.77551644707285, 12.419614853889797], mapboxTilesets = mapboxData }) {
+MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom, center, mapboxTilesets = mapboxData }) {
   if (!mapboxgl.supported()) {
     alert('Your browser does not support Mapbox GL')
     return
@@ -62,16 +73,14 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.
 
   // Set the mapbox public access token
   mapboxgl.accessToken = this.accessToken
-
-  // Layer definitions. Should have a source added via addSource
-  this.layers = {}
+  console.log('---creating a new map!')
 
   // Create a new mapbox map
   this.map = new mapboxgl.Map({
     container: mapContainer,
-    style, 
-    zoom,
-    center: center,
+    style,
+    zoom: (zoom !== undefined) ? zoom : this.defaultSettings.zoom,
+    center: (center !== undefined) ? center : this.defaultSettings.center,
     minZoom: 1,
     maxZoom: 12
   })
@@ -86,7 +95,10 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.
   this.mapContainer.style.height = (window.outerHeight + 70) + 'px'
   this.mapCanvas.style.width = '100%'
   this.map.resize()
+
   this.colorCodes = this.getLegendColorCodes()
+  this.eventsInitialized = false
+  this.layerNames = []
 
   // Disable map controls
   // this.toggleHandlers(false)
@@ -112,6 +124,7 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.
   })
 
   // Add click events after all Tileset data has loaded
+  // TO-DO: Stay tuned for mapbox gl updates. Confirm that 'sourcedata' fires after loading all Tilesets on e.isSourceLoaded and e.sourceId !== 'composite'
   this.map.on('sourcedata', function (e) {
     if (e.isSourceLoaded) {
       if (e.sourceId !== 'composite') {
@@ -123,13 +136,17 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.
             'Legend_v2': 'Legend'
           }
 
-          console.log(e)
-          this.fire('dataloaded')
-
           // TO-DO: Verify all data are loaded at this point. Only (1) is registered in console.log but all data are available
           for (let i = 0; i < that.layerNames.length; i += 1) {
             const features = that.map.queryRenderedFeatures({ layers: [that.layerNames[i]] })
             console.log(`----${that.layerNames[i]}: ${features.length}`)
+
+            if (features.length === 0) {
+              console.log(`---failed to fetch ${that.layerNames[i]}`)
+              this.fire(that.events.DATA_LOAD_FAILURE)
+              break
+            }
+
             if (features) {
               window.MBL.map.on('click', `${that.layerNames[i]}`, function (e) {
                 // print all data
@@ -151,24 +168,14 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom = 5.
               })
             }
           }
+
+          console.log(`---${that.events.DATA_LOADED}`)
+          that.isLoading = false
+          this.fire(that.events.DATA_LOADED)
         }
       }
-      that.isLoading = false
     }
   })
-
-  /* Detects if a source data has loaded. Override this method on vue component
-  this.map.on('sourcedata', function (e) {
-    if (e.isSourceLoaded) {
-      console.log('---vector loaded')
-      if (e.sourceId !== 'composite') {
-        that.features = that.map.queryRenderedFeatures({layers: [`${e.sourceId}-layer`] })
-        console.log(`--loaded vector length: ${that.features.length}`)
-      }
-      that.isLoading = false
-    }
-  })
-  */
 }
 
 /**
@@ -471,4 +478,24 @@ MapboxMap.prototype.loadAllTilesets = function (tilesets) {
 
     this.map.addLayer(layer)
   }
+}
+
+/**
+ * Check if all Tileset data sources defined during loadAllTilesets() already exist
+ */
+MapboxMap.prototype.sourcesExist = function () {
+  if (this.layerNames.length === 0) {
+    return false
+  }
+
+  let count = 0
+  for (let i = 0; i < this.layerNames.length; i += 1) {
+    const source = this.layerNames[i].substr(0, this.layerNames[i].lastIndexOf('-'))
+    if (this.map.getSource(source)) {
+      count += 1
+    }
+  }
+
+  console.log(`--count: ${count}, layernames: ${this.layerNames.length}`)
+  return (count === this.layerNames.length)
 }
