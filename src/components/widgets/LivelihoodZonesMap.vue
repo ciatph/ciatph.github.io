@@ -22,8 +22,10 @@
           :options="optionsProvince"
         )
 
-        small(v-if="statusMessage !== ''") {{ statusMessage }}
-        small(v-else) &nbsp;
+        small(v-if="statusMessage === messages.NAVIGATE_TO")
+          span {{ messages.NAVIGATE_TO }} or &nbsp;
+          a(href="#" @click="resetCenter") [click here]
+        small(v-else) {{ statusMessage || '&nbsp;' }}
         br
 
         div(v-if="legends.length > 0")
@@ -77,7 +79,8 @@ export default {
         DEFAULT: '',
         LOADING: 'Please wait while loading...',
         NAVIGATE_TO: 'Please navigate to the selected region to view legends.',
-        LOAD_ERROR: 'An error has occurred while fetching data. Please check your internet connection and reload the web page.'
+        LOAD_ERROR: 'An error has occurred while fetching data. Please check your internet connection and reload the web page.',
+        NO_REULTS: 'Selected options are not available for this region or province.'
       },
 
       filters: {
@@ -109,13 +112,15 @@ export default {
         this.filters.ADM2_EN = null
         this.selectedProvince = null
         this.optionsProvince = [{ value: null, text: 'Please select a province' }]
+        this.statusMessage = this.messages.DEFAULT
       } else {
         this.selectedIsland = this.getIslandFromRegion(this.selectedRegion)
         this.getProvinceOptions()
         this.filters.ADM2_EN = ['in', 'ADM2_EN', ...this.getProvinces(this.selectedIsland, this.selectedRegion)]
+        this.statusMessage = this.messages.NAVIGATE_TO
       }
 
-      this.statusMessage = this.messages.NAVIGATE_TO
+      // this.statusMessage = this.messages.NAVIGATE_TO
       this.updateLayers()
     },
 
@@ -180,7 +185,7 @@ export default {
       if (window.MBL.isFlying) {
         window.MBL.map.fire('flyend')
         if (that.selectedZone || (that.selectedRegion || that.selectedProvince)) {
-          that.updateLegend()
+          that.updateLegend(true)
         }
       }
     })
@@ -304,14 +309,14 @@ export default {
       }
     },
 
-    updateLegend () {
+    updateLegend (fromFlyEnd = false) {
       let colorCodes = []
       this.legends = []
 
       const features = window.MBL.map.queryRenderedFeatures({ layers: window.MBL.layerNames })
       if (features.length === 0) {
         console.log('---no legends to show')
-        this.statusMessage = this.messages.NAVIGATE_TO
+        this.statusMessage = (fromFlyEnd) ? this.messages.NO_REULTS : this.messages.NAVIGATE_TO
         return
       }
 
