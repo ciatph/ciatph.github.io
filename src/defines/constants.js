@@ -19,27 +19,28 @@ module.exports = {
 
   philippines: {
     luzon: {
-      'national capital region': ['NCR, city of manila, first district', 'NCR, second district', 'NCR, third district', 'NCR, fourth district'],
-      'cordillera administrative region': ['abra', 'apayao', 'benguet', 'ifugao', 'kalinga', 'mountain province'],
-      'ilocos region': ['ilocos norte', 'ilocos sur', 'la union'],
-      'cagayan valley': ['batanes', 'cagayan', 'isabela', 'nueva vizcaya', 'quirino'],
-      'central luzon': ['aurora', 'bataan', 'bulacan', 'nueva ecija', 'pampanga', 'tarlac', 'zambales'],
-      'calabarzon': ['batangas', 'cavite', 'laguna', 'quezon', 'rizal'],
-      'mimaropa': ['marinduque', 'occidental mindoro', 'oriental mindoro', 'palawan', 'romblon'],
-      'bicol region': ['albay', 'camarines norte', 'camarines sur', 'catanduanes', 'masbate', 'sorsogon']
+      'NCR - National Capital Region': ['NCR, City of Manila, First District', 'NCR, Fourth District', 'NCR, Second District', 'NCR, Third District'],
+      'Cordillera Administrative Region': ['Abra', 'Apayao', 'Benguet', 'Ifugao', 'Kalinga', 'Mountain Province'],
+      'Region I - Ilocos': ['Ilocos Norte', 'Ilocos Sur', 'La Union', 'Pangasinan'],
+      'Region II - Cagayan Valley': ['Batanes', 'Cagayan', 'Isabela', 'Nueva Vizcaya', 'Quirino'],
+      'Region III - Central Luzon': ['Aurora', 'Bataan', 'Bulacan', 'Nueva Ecija', 'Pampanga', 'Tarlac', 'Zambales'],
+      'Region IV-A - CALABARZON': ['Batangas', 'Cavite', 'Laguna', 'Quezon', 'Rizal'],
+      'Region IV-B - MIMAROPA': ['Marinduque', 'Occidental Mindoro', 'Oriental Mindoro', 'Palawan', 'Romblon'],
+      'Region V - Bicol': ['Albay', 'Camarines Norte', 'Camarines Sur', 'Catanduanes', 'Masbate', 'Sorsogon']
     },
     visayas: {
-      'western visayas': ['aklan', 'antique', 'capiz', 'guimaras', 'iloilo', 'negros occidental'],
-      'central visayas': ['bohol', 'cebu', 'negros oriental', 'siquijor'],
-      'eastern visayas': ['biliran', 'eastern samar', 'leyte', 'northern samar', 'samar', 'southern leyte']
+      'Negros Island Region': ['Negros Occidental', 'Negros Oriental'],
+      'Region VI - Western Visayas': ['Aklan', 'Antique', 'Capiz', 'Guimaras', 'Iloilo'],
+      'Region VII - Central Visayas': ['Bohol', 'Cebu', 'Siquijor'],
+      'Region VIII - Eastern Visayas': ['Biliran', 'Eastern Samar', 'Leyte', 'Northern Samar', 'Samar', 'Southern Leyte']
     },
     mindanao: {
-      'autonomous region in muslim mindanao': ['basilan', 'lanao del sur', 'maguindanao', 'sulu', 'tawi-tawi'],
-      'zamboanga peninsula': ['city of isabela', 'zamboanga del norte', 'zamboanga del sur', 'zamboanga sibugay'],
-      'northern mindanao': ['bukidnon', 'camiguin', 'lanao del norte', 'misamis occidental', 'misamis oriental'],
-      'davao region': ['compostela valley', 'davao del norte', 'davao del sur', 'davao occidental', 'davao oriental'],
-      'soccskargen': ['cotabato', 'sarangani', 'south cotabato', 'sultan kudarat'],
-      'caraga': ['agusan del norte', 'agusan del sur', 'dinagat islands', 'surigao del norte', 'surigao del sur']
+      'BARMM - Bangsamoro Autonomous Region in Muslim Mindanao': ['Basilan', 'Lanao del Sur', 'Maguindanao', 'Sulu', 'Tawi-Tawi'],
+      'Region IX - Zamboanga Peninsula': ['City of Isabela', 'Zamboanga Sibugay', 'Zamboanga del Norte', 'Zamboanga del Sur'],
+      'Region X - Northern Mindanao': ['Bukidnon', 'Camiguin', 'Lanao del Norte', 'Misamis Occidental', 'Misamis Oriental'],
+      'Region XI - Davao': ['Compostela Valley', 'Davao Occidental', 'Davao Oriental', 'Davao del Norte', 'Davao del Sur'],
+      'Region XII - SOCCSKARGEN': ['Cotabato', 'Cotabato City', 'Sarangani', 'South Cotabato', 'Sultan Kudarat'],
+      'Region XIII - Caraga': ['Agusan del Norte', 'Agusan del Sur', 'Dinagat Islands', 'Surigao del Norte', 'Surigao del Sur']
     }
   },
 
@@ -57,16 +58,16 @@ module.exports = {
 
   mapboxData: {
     'luzon': {
-      tilesetID: 'wfp_luzon_v2-4v4oaa',
-      tilesetUrl: 'mapbox://ciatph.5kaa86pi'
+      tilesetID: 'wfp_luzon_v3-d8d009',
+      tilesetUrl: 'mapbox://ciatph.bi7iu9gj'
     },
     'visayas': {
-      tilesetID: 'wfp_visayas_v2-7fws23',
-      tilesetUrl: 'mapbox://ciatph.4dv34cxw'
+      tilesetID: 'wfp_visayas_v3-3q13v0',
+      tilesetUrl: 'mapbox://ciatph.4hl4oabg'
     },
     'mindanao': {
-      tilesetID: 'wfp_mindanao_v2-bxk5d4',
-      tilesetUrl: 'mapbox://ciatph.6g0cm3sd'
+      tilesetID: 'wfp_mindanao_v3-4etl85',
+      tilesetUrl: 'mapbox://ciatph.4vlywva5'
     }
   }
 }
