@@ -4,16 +4,16 @@
 
 const mapboxData = {
   'luzon': {
-    tilesetID: 'wfp_luzon_v2-4v4oaa',
-    tilesetUrl: 'mapbox://ciatph.5kaa86pi'
+    tilesetID: 'wfp_luzon_v3-d8d009',
+    tilesetUrl: 'mapbox://ciatph.bi7iu9gj'
   },
   'visayas': {
-    tilesetID: 'wfp_visayas_v2-7fws23',
-    tilesetUrl: 'mapbox://ciatph.4dv34cxw'
+    tilesetID: 'wfp_visayas_v3-3q13v0',
+    tilesetUrl: 'mapbox://ciatph.4hl4oabg'
   },
   'mindanao': {
-    tilesetID: 'wfp_mindanao_v2-bxk5d4',
-    tilesetUrl: 'mapbox://ciatph.6g0cm3sd'
+    tilesetID: 'wfp_mindanao_v3-4etl85',
+    tilesetUrl: 'mapbox://ciatph.4vlywva5'
   }
 }
 
@@ -133,9 +133,10 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom, cen
           let hasLoadError = false
 
           const attributeNames = { // Attribute name mapping
+            'ADM1_EN': 'Region',
             'ADM2_EN': 'Province',
             'ADM3_EN': 'Municipality',
-            'Legend_v2': 'Legend'
+            'Legend_2': 'Legend'
           }
 
           // TO-DO: Verify all data are loaded at this point. Only (1) is registered in console.log but all data are available
@@ -160,7 +161,7 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom, cen
                     attr = attributeNames[item] ? attributeNames[item] : item
                   }
 
-                  content += `${attr}: ${e.features[0].properties[item]}`
+                  content += `<strong>${attr}</strong>: ${e.features[0].properties[item]}`
                   content += '<br>'
                 }
 
@@ -210,52 +211,78 @@ MapboxMap.prototype.toggleLayer = function (layerName) {
  */
 MapboxMap.prototype.getLegendColorCodes = function () {
   const styles = {
-    '1 Aquaculture/Freshwater fisheries': '#08306b',
-    '1 Aquaculture/Freshwater fisheries mixed with coconuts, banana, mango, etc.': '#1c6cb1',
-    '1 Aquaculture/Freshwater fisheries mixed with coconuts, banana, mango, etc., and mining and/or touri': '#529dcc',
-    '1 Aquaculture/Freshwater fisheries mixed with urban and mining and/or tourism': '#9ac8e1',
-    '1 Aquaculture/Freshwater fisheries mixed with vegetable farming, mining and/or tourism': '#d1e3f3',
-    '1 Aquaculture/Freshwater fisheries mixed with vegetables': '#f7fbff',
-    '2 Aquaculture/Coastal fisheries mixed with coconuts, banana, mango, etc.': '#54278f',
-    '2 Aquaculture/Coastal fisheries mixed with coconuts, banana, mango, etc., and mining and/or tourism': '#6f49a0',
-    '2 Aquaculture/Coastal fisheries mixed with freshwater fisheries': '#896bb1',
-    '2 Aquaculture/Coastal fisheries mixed with freshwater fisheries, urban and/or mining': '#a48ec2',
-    '2 Aquaculture/Coastal fisheries mixed with vegetable farming': '#bfb0d3',
-    '2 Aquaculture/Coastal fisheries mixed with vegetable farming, and mining and/or tourism': '#dad2e4',
+    '1 Aquaculture/Freshwater fisheries mixed with perennial crops and tourism': '#350972',
+    '1 Aquaculture/Freshwater fisheries mixed with urban': '#532b8a',
+    '1 Aquaculture/Freshwater fisheries mixed with urban and tourism': '#714ea1',
+    '1 Aquaculture/Freshwater fisheries mixed with vegetable farming and tourism': '#8f70b9',
+    '1 Aquaculture/Freshwater fisheries mixed with vegetables': '#ac92d0',
+    '2 Aquaculture/Coastal and freshwater fisheries mixed with urban': '#08306b',
+    '2 Aquaculture/Coastal fisheries mixed with freshwater fisheries': '#0a549e',
+    '2 Aquaculture/Coastal fisheries mixed with freshwater fisheries and urban': '#2272b5',
+    '2 Aquaculture/Coastal fisheries mixed with perennial crops': '#3e8ec4',
+    '2 Aquaculture/Coastal fisheries mixed with perennial crops and tourism': '#60a6d2',
+    '2 Aquaculture/Coastal fisheries mixed with vegetable farming': '#89bedc',
+    '2 Aquaculture/Coastal fisheries mixed with vegetable farming and tourism': '#afd1e7',
+    '2 Aquaculture/Coastal fisheries mixed with vegetable farming, mining, and/or tourism': '#cde0f1',
     '3 Irrigated rice mixed with vegetables': '#006400',
-    '3 Irrigated rice mixed with vegetables, mining and/or tourism': '#40da0c',
-    '4 Coconut, banana, mango, etc. mixed with rainfed rice': '#72746a',
-    '4 Coconut, banana, mango, etc. mixed with rainfed rice and mining': '#929f64',
-    '4 Rainfed rice mixed with vegetables': '#04c159',
-    '4 Rainfed rice mixed with vegetables, mining and tourism': '#71eca9',
+    '3 Irrigated rice mixed with vegetables and mining': '#2c8b25',
+    '3 Irrigated rice mixed with vegetables and tourism': '#59b24b',
+    '3 Irrigated rice mixed with vegetables, mining, and/or tourism': '#85d870',
+    '4 Perennial crops mixed with rainfed rice': '#5a7300',
+    '4 Rainfed rice mixed with vegetables': '#6e802c',
+    '4 Rainfed rice mixed with vegetables and mining': '#788f29',
+    '4 Rainfed rice mixed with vegetables and tourism': '#91ab36',
+    '4 Rainfed rice mixed with vegetables, mining, and/or tourism': '#aac743',
     '5 Vegetable farming': '#91003f',
-    '5 Vegetable farming mixed with coconut, banana, mango, etc.': '#9c1e56',
-    '5 Vegetable farming mixed with coconut, banana, mango, etc. mixed with pasture, mining and/or touris': '#a63d6c',
-    '5 Vegetable farming mixed with coconut, banana, mango, etc., and mining and/or tourism': '#b05c83',
-    '5 Vegetable farming mixed with pasture and livestock': '#bb7a9a',
-    '5 Vegetable farming mixed with urban, mining and/or tourism': '#c599b1',
-    '5 Vegetables farming mixed with aquaculture/freshwater fisheries, and mining': '#d0b8c8',
-    '6 Coconut, banana, mango, etc. mixed with vegetables, mining and/or tourism': '#792605',
-    '6 Coconut, banana, mango, etc. mixed with vegetables': '#8d4425',
-    '6 Coconut, banana, mango, etc. mixed with urban, mining and/or tourism': '#a16144',
-    '6 Coconut, banana, mango, etc. mixed with pasture and livestock, and mining': '#b47f63',
-    '6 Coconut, banana, mango, etc. mixed with pasture and livestock': '#c89c82',
-    '6 Coconut, banana, mango, etc. mixed with aquaculture/coastal fisheries': '#dcbaa1',
-    '6 Coconut, banana, mango, etc.': '#efd7c0',
-    '7 Cool environment - Coconut, banana, mango, etc. and tourism': '#b10026',
-    '7 Cool environment - Pasture mixed with vegetable farming, mining and/or tourism': '#e31a1c',
-    '7 Cool environment - Vegetable farming': '#fc4e2a',
-    '7 Cool environment - Vegetable farming mixed with coconut, banana, mango, etc.': '#fd8d3c',
-    '7 Cool environment - Vegetable farming mixed with irrigated rice': '#feb24c',
-    '7 Cool environment - Vegetable farming mixed with irrigated rice and mining': '#fed976',
-    '7 Cool environment - Vegetable farming mixed with urban, mining and/or tourism': '#ffffb2',
-    '8 Pasture mixed with aquaculture/freshwater fisheries, and mining': '#050505',
-    '8 Pasture mixed with Coconut, banana, mango, etc.': '#363636',
-    '8 Pasture mixed with Coconut, banana, mango, etc. and tourism': '#676767',
-    '8 Pasture mixed with urban and mining': '#989898',
-    '8 Pasture mixed with vegetable farming': '#c9c9c9',
-    '8 Pasture mixed with vegetable farming, and tourism': '#fafafa',
-    '9 Built-up areas': '#ffff00'
+    '5 Vegetable farming mixed with mining': '#960d49',
+    '5 Vegetable farming mixed with pasture and livestock': '#9a1b53',
+    '5 Vegetable farming mixed with pasture,  livestock, and mining': '#9f295d',
+    '5 Vegetable farming mixed with perennial crops': '#a33768',
+    '5 Vegetable farming mixed with perennial crops and mining': '#a74572',
+    '5 Vegetable farming mixed with perennial crops and tourism': '#b06086',
+    '5 Vegetable farming mixed with perennial crops, mining, and/or tourism': '#b56e90',
+    '5 Vegetable farming mixed with perennial crops, pasture, and tourism': '#be8aa5',
+    '5 Vegetable farming mixed with perennial crops, pasture, mining, and/or tourism': '#c298af',
+    '5 Vegetable farming mixed with urban and tourism': '#c7a5b9',
+    '5 Vegetable farming mixed with urban, mining, and/or tourism': '#c7aabb',
+    '5 Vegetables farming mixed with aquaculture/freshwater fisheries': '#c7b3bf',
+    '6 Perennial crops': '#722e14',
+    '6 Perennial crops mixed with aquaculture/coastal fisheries': '#7b3b21',
+    '6 Perennial crops mixed with mining': '#84482e',
+    '6 Perennial crops mixed with pasture and livestock': '#8d543b',
+    '6 Perennial crops mixed with pasture, livestock, and mining': '#976148',
+    '6 Perennial crops mixed with urban and tourism': '#a97b62',
+    '6 Perennial crops mixed with urban, mining, and/or tourism': '#b2876e',
+    '6 Perennial crops mixed with vegetables': '#b2876e',
+    '6 Perennial crops mixed with vegetables and mining': '#bb947b',
+    '6 Perennial crops mixed with vegetables and tourism': '#c4a188',
+    '6 Perennial crops mixed with vegetables, mining, and/or tourism': '#ceae95',
+    '7 Cool environment - Pasture mixed with vegetable farming and tourism': '#d4d400',
+    '7 Cool environment - Pasture mixed with vegetable farming, mining, and/or tourism': '#d9d918',
+    '7 Cool environment - Perennial crops and tourism': '#dfdf30',
+    '7 Cool environment - Vegetable farming': '#e4e448',
+    '7 Cool environment - Vegetable farming mixed with irrigated rice': '#eaea61',
+    '7 Cool environment - Vegetable farming mixed with mining': '#efef79',
+    '7 Cool environment - Vegetable farming mixed with perennial crops': '#f4f491',
+    '7 Cool environment - Vegetable farming mixed with urban and tourism': '#fafaa9',
+    '8 Pasture mixed with aquaculture/freshwater fisheries': '#585858',
+    '8 Pasture mixed with perennial crops': '#666666',
+    '8 Pasture mixed with perennial crops and tourism': '#747474',
+    '8 Pasture mixed with perennial crops, mining, and/or tourism': '#828282',
+    '8 Pasture mixed with urban': '#909090',
+    '8 Pasture mixed with urban and mining': '#9e9e9e',
+    '8 Pasture mixed with vegetable farming': '#acacac',
+    '8 Pasture mixed with vegetable farming and mining': '#bababa',
+    '8 Pasture mixed with vegetable farming and tourism': '#c8c8c8',
+    '9 Built-up areas - Low Density Rural Cluster': '#67000d',
+    '9 Built-up areas - Low Density Rural Cluster with presence of mining': '#a91016',
+    '9 Built-up areas - Rural Cluster': '#cc191d',
+    '9 Built-up areas - Rural Cluster with presence of mining': '#ea372a',
+    '9 Built-up areas - Suburban/Peri-Urban': '#f85d42',
+    '9 Built-up areas - Urban Centre': '#fc8161',
+    '9 Built-up areas - Urban Centre with presence of mining': '#fca486',
+    '9 Built-up areas - Very Low Density Rural Cluster': '#fdc6af',
+    '9 Built-up areas - Very Low Density Rural Cluster with presence of mining': '#fee3d6'
   }
   
   return styles
@@ -283,7 +310,7 @@ MapboxMap.prototype.addLayerSource = function (layerName, tilesetName, tilesetUr
   this.removePopups()
 
   // Set the color expression to use on the layer
-  const colorExpression = ['match', ['get', 'Legend_v2']]
+  const colorExpression = ['match', ['get', 'Legend_2']]
 
   const styles = this.colorCodes
   Object.keys(styles).forEach((item, index) => {
@@ -449,7 +476,7 @@ MapboxMap.prototype.toggleHandlers = function (enable) {
  */
 MapboxMap.prototype.loadAllTilesets = function (tilesets) {
   // Set the color expression to use on the layer
-  const colorExpression = ['match', ['get', 'Legend_v2']]
+  const colorExpression = ['match', ['get', 'Legend_2']]
   const styles = this.colorCodes
 
   Object.keys(styles).forEach((item, index) => {
