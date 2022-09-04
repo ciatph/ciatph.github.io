@@ -136,6 +136,7 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom, cen
             'ADM1_EN': 'Region',
             'ADM2_EN': 'Province',
             'ADM3_EN': 'Municipality',
+            'Zone': 'Zone',
             'Legend_2': 'Legend'
           }
 
@@ -153,16 +154,13 @@ MapboxMap.prototype.initMap = function ({ mapContainer = 'map', style, zoom, cen
 
             if (features) {
               window.MBL.map.on('click', `${that.layerNames[i]}`, function (e) {
-                // print all data
+                // print data by order as defined in attributeNames
                 var content = ''
-                for (let item in e.features[0].properties) {
-                  let attr = item
-                  if (attributeNames) {
-                    attr = attributeNames[item] ? attributeNames[item] : item
+                for (let item in attributeNames) {
+                  if (e.features[0].properties[item] !== undefined) {
+                    content += `<strong>${attributeNames[item]}</strong>: ${e.features[0].properties[item]}`
+                    content += '<br>'
                   }
-
-                  content += `<strong>${attr}</strong>: ${e.features[0].properties[item]}`
-                  content += '<br>'
                 }
 
                 new mapboxgl.Popup()
