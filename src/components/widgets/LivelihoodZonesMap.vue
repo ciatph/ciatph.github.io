@@ -145,7 +145,7 @@ export default {
       if (!this.selectedZone) {
         this.filters.layer = null
       } else {
-        this.filters.layer = ['==', 'layer', this.selectedZone]
+        this.filters.layer = ['==', 'Zone', this.selectedZone]
       }
 
       this.updateLayers()
@@ -324,7 +324,7 @@ export default {
         return self.indexOf(value) === index
       }
 
-      colorCodes = (Array.from(features, (x) => x.properties['Legend_v2']).filter(unique)).sort()
+      colorCodes = (Array.from(features, (x) => x.properties['Legend_2']).filter(unique)).sort()
       // console.log(`---legends: ${colorCodes.length}`)
 
       for (let i = 0; i < colorCodes.length; i += 1) {
