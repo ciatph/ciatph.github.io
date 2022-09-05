@@ -132,9 +132,8 @@ export default {
           this.filters.ADM2_EN = null
         }
       } else {
-        const provinceValue = (this.hardCodedNames[this.selectedProvince])
-          ? this.hardCodedNames[this.selectedProvince]
-          : this.camelCase(this.selectedProvince)
+        const provinceValue = (this.selectedProvince !== undefined)
+          ? this.selectedProvince : ''
         this.filters.ADM2_EN = ['==', 'ADM2_EN', provinceValue]
       }
 
@@ -249,14 +248,7 @@ export default {
         return
       }
 
-      return Array.from(philippines[island][region],
-        (x) => {
-          if (this.hardCodedNames[x]) {
-            return this.hardCodedNames[x]
-          } else {
-            return Array.from(x.split(' '), (y) => `${y[0].toUpperCase()}${y.substr(1, y.length)}`).join(' ')
-          }
-        })
+      return philippines[island][region]
     },
 
     // Build a region's province list
@@ -266,7 +258,7 @@ export default {
 
       if (philippines[this.selectedIsland][this.selectedRegion]) {
         philippines[this.selectedIsland][this.selectedRegion].forEach((item, index) => {
-          const provinceValue = (this.hardCodedNames[item]) ? this.hardCodedNames[item] : this.camelCase(item)
+          const provinceValue = (item !== undefined) ? item : ''
           this.optionsProvince.push({ value: item, text: provinceValue })
         })
       }
