@@ -29,7 +29,7 @@ The following requirements and dependencies were used for this project. Other sy
 1. Install dependencies: <br> `npm install`
 
 2. Serve with hot reload at localhost:8080 <br>
-`npm run dev` 
+`npm run dev`
 
 3. Build for production with minification. <br>
 `npm run build` <br>
@@ -60,17 +60,17 @@ Read on this [reference](https://trello.com/c/0A36NOdS) for more information on 
 2. Edit and push updates to `my-updates-branch`.
 
 3. Create a new **Pull Request (PR)** from the `my-updates-branch` that you've created to branch `vue-version`.
-	- Go to `my-updates-branch` page in GitHub, i.e.:  
+	- Go to `my-updates-branch` page in GitHub, i.e.:
 https://github.com/ciatph/ciatph.github.io/tree/my-updates-branch
 	- Press the **[New pull request]** button beside the branch navigator dropdown menu [Branch: my-updates-branch].
-	
+
 4. Set the following in the resulting **"Open a pull request"** page:
 	- **base:** `vue-version`
 	- **compare:** `my-updates-branch`
 	- Press the **[Create pull request]** button.
 	- **WAIT** for the Travis CI checks to finish.
 
-5. Press the **[Merge pull request]** button.  
+5. Press the **[Merge pull request]** button.
 	> WARNING: It is important to **WAIT** for the Travis CI checks from #4 to finish first before pressing this button, else the Travis CI build will fail.
 
 6. View the travis CI status from [https://travis-ci.com/ciatph/ciatph.github.io](https://travis-ci.com/ciatph/ciatph.github.io). <br>
@@ -104,10 +104,11 @@ For testing purposes, the static build files can be optionally uploaded to Fireb
 Firebase CLI is required.
 
 1. Login to the firebase cli as `ciat.ph06`.
-2. Build the website.  
+2. Build the website.
 `npm run build`
-3. Deploy to firebase (https://ciatphdemo.firebaseapp.com/).  
+3. Deploy to firebase (https://ciatphdemo.firebaseapp.com/).
 `firebase deploy`
 
 
-**Updated:** 20191113
+**Updated:** 20230121
+
