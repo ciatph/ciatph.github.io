@@ -20,11 +20,11 @@
 <script>
 import LoadingIndicator from '@/components/templates/LoadingIndicator'
 import ThumbnailsGallery from '@/components/templates/ThumbnailsGallery'
-import firebaseMixin from '@/components/mixins/firebaseMixin'
+import cloudinaryMixin from '@/components/mixins/cloudinaryMixin'
 import {iconData} from '@/defines/iconmaps/thumbnails-sub-me-tools'
 export default {
   name: 'TrackingTools',
-  mixins: [firebaseMixin],
+  mixins: [cloudinaryMixin],
   components: {
     LoadingIndicator,
     ThumbnailsGallery
@@ -47,10 +47,9 @@ export default {
 
   async mounted () {
     try {
-      let links = await this.mFirebaseGetURLS('M&E/Tracking Tools')
-      iconData[0].content = await this.mFirebaseUpdateDownloadLink(iconData[0].content, links)
-      iconData[1].content = await this.mFirebaseUpdateDownloadLink(iconData[1].content, links)
-      this.thumbnailData = await this.mFirebaseUpdateDownloadLink(iconData, links)
+      iconData[0].content = await this.mCloudinaryUpdateDownloadLink(iconData[0].content)
+      iconData[1].content = await this.mCloudinaryUpdateDownloadLink(iconData[1].content)
+      this.thumbnailData = this.mCloudinaryUpdateDownloadLink(iconData)
     } catch (error) {
       console.log(error)
     }

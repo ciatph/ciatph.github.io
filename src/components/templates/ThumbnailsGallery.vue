@@ -64,6 +64,11 @@ export default {
   },
 
   methods: {
+    isFirebaseURL (downloadUrl = '') {
+      const url = String(downloadUrl)
+      return url.startsWith('https://firebasestorage')
+    },
+
     forceFileDownload (response, documentName) {
       const url = window.URL.createObjectURL(new Blob([response.data]))
       const link = document.createElement('a')
@@ -95,10 +100,14 @@ export default {
       axios.get(url, {
         responseType: 'blob'
       }).then((response) => {
-        let normalUrl = decodeURIComponent(url)
+        const normalUrl = decodeURIComponent(url)
+
+        const fileName = this.isFirebaseURL(normalUrl)
+          ? normalUrl.substring(normalUrl.lastIndexOf('/') + 1, normalUrl.indexOf('?'))
+          : normalUrl.substring(normalUrl.lastIndexOf('/') + 1, normalUrl.length)
+
         this.resetButton(reference)
-        this.forceFileDownload(response,
-          normalUrl.substring(normalUrl.lastIndexOf('/') + 1, normalUrl.indexOf('?')))
+        this.forceFileDownload(response, fileName)
       })
         .catch((error) => {
           this.resetButton(reference)

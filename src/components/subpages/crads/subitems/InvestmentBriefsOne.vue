@@ -51,8 +51,8 @@ export default {
 
   async created () {
     try {
-      let links = await this.mFirebaseGetURLS('googledocs/FINAL INVESTMENT BRIEFS')
-      this.thumbnailData = await this.mFirebaseUpdateDownloadLink(iconData, links)
+      // let links = await this.mFirebaseGetURLS('googledocs/FINAL INVESTMENT BRIEFS')
+      this.thumbnailData = iconData
     } catch (error) {
       console.log(error)
     }

@@ -18,11 +18,11 @@
 <script>
 import LoadingIndicator from '@/components/templates/LoadingIndicator'
 import ThumbnailsGallery from '@/components/templates/ThumbnailsGallery'
-import firebaseMixin from '@/components/mixins/firebaseMixin'
+import cloudinaryMixin from '@/components/mixins/cloudinaryMixin'
 import {iconData} from '@/defines/iconmaps/thumbnails-sub-cracba-investment2'
 export default {
   name: 'InvestmentBriefsTwo',
-  mixins: [firebaseMixin],
+  mixins: [cloudinaryMixin],
 
   components: {
     ThumbnailsGallery,
@@ -51,8 +51,7 @@ export default {
 
   async created () {
     try {
-      let links = await this.mFirebaseGetURLS('CRA-DS/CRA Investment Briefs')
-      this.thumbnailData = await this.mFirebaseUpdateDownloadLink(iconData, links)
+      this.thumbnailData = this.mCloudinaryUpdateDownloadLink(iconData)
     } catch (error) {
       console.log(error)
     }

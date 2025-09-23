@@ -17,11 +17,11 @@
 <script>
 import LoadingIndicator from '@/components/templates/LoadingIndicator'
 import ThumbnailsGallery from '@/components/templates/ThumbnailsGallery'
-import firebaseMixin from '@/components/mixins/firebaseMixin'
+import cloudinaryMixin from '@/components/mixins/cloudinaryMixin'
 import {iconData} from '@/defines/iconmaps/thumbnails-sub-crva-manual'
 export default {
   name: 'CrvaManual',
-  mixins: [firebaseMixin],
+  mixins: [cloudinaryMixin],
   components: {
     LoadingIndicator,
     ThumbnailsGallery
@@ -45,8 +45,7 @@ export default {
 
   async created () {
     try {
-      let links = await this.mFirebaseGetURLS('crva/reports')
-      this.thumbnailData = await this.mFirebaseUpdateDownloadLink(iconData, links)
+      this.thumbnailData = this.mCloudinaryUpdateDownloadLink(iconData)
     } catch (error) {
       console.log(error)
     }

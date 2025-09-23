@@ -15,11 +15,11 @@
 <script>
 import LoadingIndicator from '@/components/templates/LoadingIndicator'
 import ThumbnailsGallery from '@/components/templates/ThumbnailsGallery'
-import firebaseMixin from '@/components/mixins/firebaseMixin'
+import cloudinaryMixin from '@/components/mixins/cloudinaryMixin'
 import {iconData} from '@/defines/iconmaps/thumbnails-me'
 export default {
   name: 'MonitoringEvaluation',
-  mixins: [firebaseMixin],
+  mixins: [cloudinaryMixin],
   components: {
     LoadingIndicator,
     ThumbnailsGallery
@@ -32,8 +32,8 @@ export default {
 
   async created () {
     try {
-      let links = await this.mFirebaseGetURLS('M&E/Indicator Factsheet')
-      this.thumbnailData = await this.mFirebaseUpdateDownloadLink(iconData, links)
+      console.log('--iconData', iconData)
+      this.thumbnailData = this.mCloudinaryUpdateDownloadLink(iconData)
     } catch (error) {
       console.log(error)
     }

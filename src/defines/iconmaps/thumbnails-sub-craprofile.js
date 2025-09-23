@@ -4,7 +4,7 @@ module.exports = {
       'title': '',
       'description': 'CRA Country Profile',
       'img': 'th-country-profile.png',
-      'link': 'https://www.google.com/url?q=https%3A%2F%2Fcgspace.cgiar.org%2Fbitstream%2Fhandle%2F10568%2F82572%2FCRA_Profile_Philippines.pdf%3Fsequence%3D5%26isAllowed%3Dy&sa=D&sntz=1&usg=AFQjCNE8Hg69G-HVNr7yjXJpRsY2Sxyx2g',
+      'link': 'https://cgspace.cgiar.org/server/api/core/bitstreams/6b842948-e6d2-4c8e-8555-445ea47e2d14/content',
       'external': 'true'
     },
     {

@@ -7,6 +7,8 @@ module.exports = {
     'webscraper'
   ],
 
+  CLOUDINARY_ASSETS_URL: 'https://res.cloudinary.com/dwcrdbqdz/image/upload/v1758636118',
+
   firebaseSettings: {
     apiKey: 'AIzaSyACza2B6mkzcf6IuC2BIaP0avr_kHj-I_M',
     authDomain: 'ciat-pdfstorage.firebaseapp.com',
