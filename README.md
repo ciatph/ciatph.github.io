@@ -14,7 +14,7 @@ Contains updated content with new AMIA Phase 2 information and documents.
 The following requirements and dependencies were used for this project. Other system and software configurations are open for testing.
 
 1. Windows 10 Pro
-2. NodeJS
+2. NodeJS LTS
 	- npm version 10.16.3
 	- npm version 6.9.0
 
@@ -28,7 +28,7 @@ The following requirements and dependencies were used for this project. Other sy
 
 1. Install dependencies: <br> `npm install`
 
-2. Serve with hot reload at localhost:8080 <br>
+2. Serve with hot reload at localhost:3000 <br>
 `npm run dev`
 
 3. Build for production with minification. <br>
@@ -38,9 +38,44 @@ The following requirements and dependencies were used for this project. Other sy
 4. Build for production and view the bundle analyzer report <br>
 `npm run build --report`
 
-
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
+## ⚡ Alternate Usage Using Docker
+
+> [!IMPORTANT]
+> Always ensure port `3000` is free. Stop any process listening to it before proceeding.
+>
+> eg., on Windows OS:
+>
+> ```cmd
+> # Find processes listening to port 3000
+> netstat -ano | findstr :3000
+>
+> # Stop processes by PID
+> taskkill /PID <PID_NUMBER> /F
+> ```
+
+1. Checkout branch **vue-version**
+   ```sh
+	 git checkout vue-version
+	 ```
+
+2. Build the image for local development.
+   ```sh
+   docker compose build --no-cache
+   ```
+
+3. Run the container for local development.
+   ```sh
+   docker compose up
+   ```
+
+4. Launch the local app website in a web browser at:
+   ```sh
+   http://localhost:3000
+   ```
+
+5. Edit the source code and wait for changes to display in the web browser.
 
 ## Deployment to GitHub Pages
 
