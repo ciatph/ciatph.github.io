@@ -1,0 +1,23 @@
+services:
+  ciatph.website:
+    container_name: ciatph-website
+    image: ciatph/website:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    environment:
+      - HOST=0.0.0.0
+      - USE_POLLING=true
+    networks:
+      - ciatph-website
+    volumes:
+      - ./:/opt/app
+      - /opt/app/node_modules
+    ports:
+      - "3000:3000"     # VueJS app development web server
+
+networks:
+  ciatph-website:
+    name: ciatph-website
+    external: false

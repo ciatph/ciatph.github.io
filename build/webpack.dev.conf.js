@@ -12,6 +12,7 @@ const portfinder = require('portfinder')
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
+const POLL = process.env.USE_POLLING === 'true'
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -41,7 +42,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     proxy: config.dev.proxyTable,
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
-      poll: config.dev.poll,
+      poll: POLL ? POLL : config.dev.poll,
     }
   },
   plugins: [
