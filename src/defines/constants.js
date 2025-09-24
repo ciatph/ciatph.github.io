@@ -9,6 +9,14 @@ module.exports = {
 
   CLOUDINARY_ASSETS_URL: 'https://res.cloudinary.com/dwcrdbqdz/image/upload/v1758636118',
 
+  GOOGLE_DRIVE_PREVIEW_URL: 'https://drive.google.com/file/d/{FILE_ID}/view?usp=sharing',
+  GOOGLE_DRIVE_DOWNLOAD_URL: 'https://drive.google.com/uc?export=download&id={FILE_ID}',
+
+  FILE_ACTION: {
+    VIEW: 'view',
+    DOWNLOAD: 'download'
+  },
+
   firebaseSettings: {
     apiKey: 'AIzaSyACza2B6mkzcf6IuC2BIaP0avr_kHj-I_M',
     authDomain: 'ciat-pdfstorage.firebaseapp.com',

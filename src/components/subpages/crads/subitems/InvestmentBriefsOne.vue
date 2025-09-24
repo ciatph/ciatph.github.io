@@ -18,11 +18,11 @@
 <script>
 import LoadingIndicator from '@/components/templates/LoadingIndicator'
 import ThumbnailsGallery from '@/components/templates/ThumbnailsGallery'
-import firebaseMixin from '@/components/mixins/firebaseMixin'
+import googleDriveMixin from '@/components/mixins/googleDriveMixin'
 import {iconData} from '@/defines/iconmaps/thumbnails-sub-cracba-investment1'
 export default {
   name: 'InvestmentBriefsOne',
-  mixins: [firebaseMixin],
+  mixins: [googleDriveMixin],
 
   components: {
     ThumbnailsGallery,
@@ -52,7 +52,7 @@ export default {
   async created () {
     try {
       // let links = await this.mFirebaseGetURLS('googledocs/FINAL INVESTMENT BRIEFS')
-      this.thumbnailData = iconData
+      this.thumbnailData = this.mGoogleDriveUpdateDownloadLink(iconData)
     } catch (error) {
       console.log(error)
     }

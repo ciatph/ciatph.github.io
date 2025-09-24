@@ -8,7 +8,7 @@ export default {
      * Returns the full Cloudinary download URL of a file
      * @param {string} fileName File name to download
      * @param {boolean} isRawFile - Flag indicating raw file type: uploaded to the Cloudinary `/raw/upload` path
-     * @returns
+     * @returns {string} Cloudinary download URL
      */
     getCloudinaryDownloadURL (fileName, isRawFile = false) {
       let ASSETS_URL = isRawFile
@@ -33,7 +33,7 @@ export default {
      *    eg., `{ title, description, img, link, external }`
      * @returns {object[]} Modified `original[]` data with `link` fields replaced by full Cloudinary downloadURL
      */
-    mCloudinaryUpdateDownloadLink (original) {
+    mCloudinaryUpdateDownloadLink (original = []) {
       original.forEach((item) => {
         if (!item.link) return
 
@@ -47,10 +47,10 @@ export default {
         if (item.external === 'false') return
 
         const extension = this.getFileExtension(item.link)
-        const isFileRaw = CLOUDINARY_RAW_FILES.includes(extension)
+        const isRawFile = CLOUDINARY_RAW_FILES.includes(extension)
 
         // Append Cloudinary URL to file name
-        item.link = this.getCloudinaryDownloadURL(item.link, isFileRaw)
+        item.link = this.getCloudinaryDownloadURL(item.link, isRawFile)
       })
 
       return original

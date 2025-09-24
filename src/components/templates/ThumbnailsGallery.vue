@@ -28,7 +28,7 @@
               href="#"
               variant="outline-info"
               size="sm"
-              @click="downloadFILE(item.link, index)"
+              @click="handleDownload(item.google || item.link, index)"
               :ref="item.title") Download
               span &nbsp
               b-spinner(
@@ -69,6 +69,11 @@ export default {
       return url.startsWith('https://firebasestorage')
     },
 
+    isGoogleDirectURL (downloadUrl = '') {
+      const url = String(downloadUrl)
+      return url.startsWith('https://drive.google') && url.includes('?export=download')
+    },
+
     forceFileDownload (response, documentName) {
       const url = window.URL.createObjectURL(new Blob([response.data]))
       const link = document.createElement('a')
@@ -84,6 +89,14 @@ export default {
       btn.classList.remove('btn-outline-secondary')
       btn.classList.add('btn-success')
       btn.getElementsByClassName('spinner-border')[0].classList.add('spinner-download')
+    },
+
+    handleDownload (url, reference) {
+      if (this.isGoogleDirectURL(url)) {
+        window.open(url)
+      } else {
+        this.downloadFILE(url, reference)
+      }
     },
 
     downloadFILE (url, reference) {
