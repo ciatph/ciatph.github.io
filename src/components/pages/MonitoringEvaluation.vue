@@ -32,7 +32,7 @@ export default {
 
   async created () {
     try {
-      console.log('--iconData', iconData)
+      // const links = await this.mFirebaseGetURLS('M&E/Indicator Factsheet')
       this.thumbnailData = this.mCloudinaryUpdateDownloadLink(iconData)
     } catch (error) {
       console.log(error)

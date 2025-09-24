@@ -42,6 +42,7 @@ export default {
 
   async created () {
     try {
+      // const links = await this.mFirebaseGetURLS('M&E/Questionnaires')
       this.thumbnailData = this.mCloudinaryUpdateDownloadLink(iconData)
     } catch (error) {
       console.log(error)

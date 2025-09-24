@@ -47,6 +47,7 @@ export default {
 
   async mounted () {
     try {
+      // const links = await this.mFirebaseGetURLS('M&E/Tracking Tools')
       iconData[0].content = await this.mCloudinaryUpdateDownloadLink(iconData[0].content)
       iconData[1].content = await this.mCloudinaryUpdateDownloadLink(iconData[1].content)
       this.thumbnailData = this.mCloudinaryUpdateDownloadLink(iconData)

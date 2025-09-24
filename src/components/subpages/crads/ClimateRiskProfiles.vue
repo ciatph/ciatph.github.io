@@ -45,6 +45,8 @@ export default {
 
   async created () {
     try {
+      // const linksPoster = await this.mFirebaseGetURLS('CRA-DS/CRP Poster')
+      // const linksProfiles = await this.mFirebaseGetURLS('CRA-DS/CRP')
       this.thumbnailData = this.mCloudinaryUpdateDownloadLink(iconData)
     } catch (error) {
       console.log(error)

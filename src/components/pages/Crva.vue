@@ -33,6 +33,7 @@ export default {
 
   async created () {
     try {
+      // const links = await this.mFirebaseGetURLS('crva')
       this.thumbnailData = this.mCloudinaryUpdateDownloadLink(iconData)
     } catch (error) {
       console.log(error)

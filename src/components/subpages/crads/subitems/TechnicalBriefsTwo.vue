@@ -54,7 +54,7 @@ export default {
 
   async created () {
     try {
-      // let links = await this.mFirebaseGetURLS('CRA-DS/CRA Technical Briefs')
+      // const links = await this.mFirebaseGetURLS('CRA-DS/CRA Technical Briefs')
       this.thumbnailData = this.mCloudinaryUpdateDownloadLink(iconData)
       this.thumbnailData = this.mGoogleDriveUpdateDownloadLink(iconData)
     } catch (error) {
