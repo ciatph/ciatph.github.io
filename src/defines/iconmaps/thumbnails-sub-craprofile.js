@@ -5,7 +5,8 @@ module.exports = {
       'description': 'CRA Country Profile',
       'img': 'th-country-profile.png',
       'link': 'https://cgspace.cgiar.org/server/api/core/bitstreams/6b842948-e6d2-4c8e-8555-445ea47e2d14/content',
-      'external': 'true'
+      'external': 'true',
+      'isNewWindow': true
     },
     {
       'title': '',

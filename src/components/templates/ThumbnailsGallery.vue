@@ -28,7 +28,7 @@
               href="#"
               variant="outline-info"
               size="sm"
-              @click="handleDownload(item.google || item.link, index)"
+              @click="handleDownload(item.google || item.link, index, item.isNewWindow)"
               :ref="item.title") Download
               span &nbsp
               b-spinner(
@@ -91,8 +91,8 @@ export default {
       btn.getElementsByClassName('spinner-border')[0].classList.add('spinner-download')
     },
 
-    handleDownload (url, reference) {
-      if (this.isGoogleDirectURL(url)) {
+    handleDownload (url, reference, isNewWindow = false) {
+      if (this.isGoogleDirectURL(url) || isNewWindow) {
         window.open(url)
       } else {
         this.downloadFILE(url, reference)
