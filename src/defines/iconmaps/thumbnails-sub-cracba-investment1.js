@@ -6,7 +6,8 @@ module.exports = {
       'img': 'th-crads-invest1-01.png',
       'link': 'CMU_Investment Brief_Biodynamics in Corn Production.pdf',
       'external': 'true',
-      'googleDriveId': '1b0O6ZHfNnAIVMyXWoUaGDLPab0pd0HbD'
+      'googleDriveId': '1b0O6ZHfNnAIVMyXWoUaGDLPab0pd0HbD',
+      'google': ''
     },
     {
       'title': 'Northern Mindanao',
@@ -14,7 +15,8 @@ module.exports = {
       'img': 'th-crads-invest1-02.png',
       'link': 'CMU_Investment Brief_Corn-Banana Crop Diversification.pdf',
       'external': 'true',
-      'googleDriveId': '1wIgHHdfYoQz5q2zpPJ4meBzeFuYPb6C5'
+      'googleDriveId': '1wIgHHdfYoQz5q2zpPJ4meBzeFuYPb6C5',
+      'google': ''
     },
     {
       'title': 'Western Visayas',
@@ -22,7 +24,8 @@ module.exports = {
       'img': 'th-crads-invest1-03.png',
       'link': 'ISCoF_Investment Brief_Sloping Agricultural Land Technology.pdf',
       'external': 'true',
-      'googleDriveId': '1r3dtVjjO9chALXFUQ4cs_qkk1nNl2CFB'
+      'googleDriveId': '1r3dtVjjO9chALXFUQ4cs_qkk1nNl2CFB',
+      'google': ''
     },
     {
       'title': 'Western Visayas',
@@ -30,7 +33,8 @@ module.exports = {
       'img': 'th-crads-invest1-04.png',
       'link': 'ISCoF_Investment Brief_Small Water Impounding Project.pdf',
       'external': 'true',
-      'googleDriveId': '1SnMPROYYVFBtpc4sIR9awgXLIJ3aU6SZ'
+      'googleDriveId': '1SnMPROYYVFBtpc4sIR9awgXLIJ3aU6SZ',
+      'google': ''
     },
     {
       'title': 'Ilocos Region',
@@ -38,7 +42,8 @@ module.exports = {
       'img': 'th-crads-invest1-05.png',
       'link': 'MMSU_Investment Brief_Rice-Corn Crop Rotation.pdf',
       'external': 'true',
-      'googleDriveId': '1M-_jbdaCOPNFaRF4F5QFsIOGhPGEoe2j'
+      'googleDriveId': '1M-_jbdaCOPNFaRF4F5QFsIOGhPGEoe2j',
+      'google': ''
     },
     {
       'title': 'Ilocos Region',
@@ -46,7 +51,8 @@ module.exports = {
       'img': 'th-crads-invest1-06.png',
       'link': 'MMSU_Investment Brief_Rice-Tomato Crop Rotation.pdf',
       'external': 'true',
-      'googleDriveId': '12EH6PLQXMOdYef7Mi65a0Ud-Ipr1G2BO'
+      'googleDriveId': '12EH6PLQXMOdYef7Mi65a0Ud-Ipr1G2BO',
+      'google': ''
     },
     {
       'title': 'CALABARZON',
@@ -54,7 +60,8 @@ module.exports = {
       'img': 'th-crads-invest1-07.png',
       'link': 'SLSU_Investment Brief_Coconut-based Integrated Farming System.pdf',
       'external': 'true',
-      'googleDriveId': '1N8UAze81I2DXnc8FWdCBqB2N9IP04qKr'
+      'googleDriveId': '1N8UAze81I2DXnc8FWdCBqB2N9IP04qKr',
+      'google': ''
     },
     {
       'title': 'CALABARZON',
@@ -62,7 +69,8 @@ module.exports = {
       'img': 'th-crads-invest1-08.png',
       'link': 'SLSU_Investment Brief_Rainwater Harvesting.pdf',
       'external': 'true',
-      'googleDriveId': '1MSene2m5-l2qqFBv5FYZMOP7pbBuhKjT'
+      'googleDriveId': '1MSene2m5-l2qqFBv5FYZMOP7pbBuhKjT',
+      'google': ''
     },
     {
       'title': 'Central Luzon',
@@ -70,7 +78,8 @@ module.exports = {
       'img': 'th-crads-invest1-09.png',
       'link': 'TAU_Investment Brief_AWD.pdf',
       'external': 'true',
-      'googleDriveId': '1VaxpB8KMZlqldP5Fc-27nzW0F4Ky2Y3S'
+      'googleDriveId': '1VaxpB8KMZlqldP5Fc-27nzW0F4Ky2Y3S',
+      'google': ''
     },
     {
       'title': 'Central Luzon',
@@ -78,7 +87,8 @@ module.exports = {
       'img': 'th-crads-invest1-10.png',
       'link': 'TAU_Investment Brief_Crop Rotation-Zero Tillage.pdf',
       'external': 'true',
-      'googleDriveId': '1rUNTj_l9cgMyJVslm84Ra1s4pGGbW_77'
+      'googleDriveId': '1rUNTj_l9cgMyJVslm84Ra1s4pGGbW_77',
+      'google': ''
     },
     {
       'title': 'Davao Region',
@@ -86,7 +96,8 @@ module.exports = {
       'img': 'th-crads-invest1-11.png',
       'link': 'USeP_Investment Brief_Crop Rotation with Integrated Nutrient Management.pdf',
       'external': 'true',
-      'googleDriveId': '1kPL-JQR-p1XgtQOk78lry7NIsbhNJHlt'
+      'googleDriveId': '1kPL-JQR-p1XgtQOk78lry7NIsbhNJHlt',
+      'google': ''
     },
     {
       'title': 'Davao Region',
@@ -94,7 +105,8 @@ module.exports = {
       'img': 'th-crads-invest1-12.png',
       'link': 'USeP_Investment Brief_Intercropping.pdf',
       'external': 'true',
-      'googleDriveId': '1PucRng8W_ChDrG0igINUL-7sWZZIR0pm'
+      'googleDriveId': '1PucRng8W_ChDrG0igINUL-7sWZZIR0pm',
+      'google': ''
     },
     {
       'title': 'SOCCSKSARGEN',
@@ -102,7 +114,8 @@ module.exports = {
       'img': 'th-crads-invest1-13.png',
       'link': 'USM_Investment Brief_IRDFS.pdf',
       'external': 'true',
-      'googleDriveId': '1gEhbMIhHqA6R31w0q9vZdJkD1SxaRQ5q'
+      'googleDriveId': '1gEhbMIhHqA6R31w0q9vZdJkD1SxaRQ5q',
+      'google': ''
     },
     {
       'title': 'SOCCSKSARGEN',
@@ -110,7 +123,8 @@ module.exports = {
       'img': 'th-crads-invest1-14.png',
       'link': 'USM_Investment Brief_Organic Rice Farming.pdf',
       'external': 'true',
-      'googleDriveId': '1dpGNjIdIBr_xkrWL3t8jUDfaFJ0an8Yl'
+      'googleDriveId': '1dpGNjIdIBr_xkrWL3t8jUDfaFJ0an8Yl',
+      'google': ''
     },
     {
       'title': 'Negros Island Region',
@@ -118,7 +132,8 @@ module.exports = {
       'img': 'th-crads-invest1-15.png',
       'link': 'VSU_Investment Brief_Organic Red Rice Production.pdf',
       'external': 'true',
-      'googleDriveId': '1QWFMXr-2zS9hrBdtdlpMilfsVpYmNeqM'
+      'googleDriveId': '1QWFMXr-2zS9hrBdtdlpMilfsVpYmNeqM',
+      'google': ''
     },
     {
       'title': 'Negros Island Region',
@@ -126,7 +141,8 @@ module.exports = {
       'img': 'th-crads-invest1-16.png',
       'link': 'VSU_Investment Brief_Submergence-Tolerant Rice Variety.pdf',
       'external': 'true',
-      'googleDriveId': '1RPwSvxe6ozHSpMUdELdze2I6mE88Labi'
+      'googleDriveId': '1RPwSvxe6ozHSpMUdELdze2I6mE88Labi',
+      'google': ''
     }
   ]
 }

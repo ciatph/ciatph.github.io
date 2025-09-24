@@ -34,7 +34,8 @@ module.exports = {
       'img': 'th-crads-technical2-05.png',
       'link': 'CRA Technical Brief_Cebu_Corn-Peanut Crop Rotation.pdf',
       'external': 'true',
-      'googleDriveId': '1OrIJdp7LAXV3Jc52n24gZRy00fQiEgY7'
+      'googleDriveId': '1OrIJdp7LAXV3Jc52n24gZRy00fQiEgY7',
+      'google': ''
     },
     {
       'title': 'Cebu',
